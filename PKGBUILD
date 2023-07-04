@@ -78,7 +78,8 @@ prepare() {
 
 build() {
   cd $_srcname
-  make htmldocs all
+  make all
+  make htmldocs
 }
 
 _package() {
