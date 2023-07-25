@@ -77,8 +77,12 @@ prepare() {
 
 build() {
   cd $_srcname
+
+  make htmldocs &
+  local pid_docs=$!
+
   make all
-  make htmldocs
+  wait "${pid_docs}"
 }
 
 _package() {
