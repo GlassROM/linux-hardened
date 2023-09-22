@@ -20,6 +20,12 @@ makedepends=(
   python
   tar
   xz
+
+  # htmldocs
+  graphviz
+  imagemagick
+  python-sphinx
+  texlive-latexextra
 )
 options=('!strip')
 _srcname=linux-${pkgver%.*}
@@ -79,6 +85,7 @@ prepare() {
 build() {
   cd $_srcname
   make all
+  make htmldocs
 }
 
 _package() {
