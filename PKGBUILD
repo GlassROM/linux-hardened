@@ -4,7 +4,7 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.5.13.hardened2
+pkgver=6.6.6.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -41,16 +41,16 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('78fbd43822f4c56bc16e89e8874767f592532e1a0ffcd1af4dd279559b5fcbb5'
+sha256sums=('ebf70a917934b13169e1be5b95c3b6c2fea5bc14e6dc144f1efb8a0016b224c8'
             'SKIP'
-            '8f5e75f5d0fcc21b0be027093e6df96c917f704d92b2acd7bb7d6465e04eb176'
+            '9e0aeb1f1bc807e5f9e91e23bb9af48aabb32ed60b83c6c0ca23a8e9558f104a'
             'SKIP'
-            'b64eb0b0a93c31e4539c9eb8f4fab3f58643331c7985914fda4d1a23f002269f')
-b2sums=('e21f8d6b28c3d3fdd2ad9b9efd25b8186c68a515b29ea236cbc2f6669777ed2aed3a089df270d78e912cb520848479a99b2561920b1b809ff7ef6c460b843e1a'
+            '50294abfb0e9aebd0c3c492486eed5b7e0bb2fcc7ecded19ed5ab81cf00ab110')
+b2sums=('aef38e65d2bcccabb6d96691f96e5c0b3961e4e6125a33feb7ee99cd95c480984e35cc1e72bfa8da60ca76a40744054b8817012f6ebf85fc66161b802be73fb6'
         'SKIP'
-        '7ffdb604ddb7fc84db7e6ca4d1a550f8544946e4a0632551f810499ef46b6938fe7d04b14084fe0d54b4ad93832acbcf7b65cdebbe4190945524b0650bbdefe5'
+        'e8d193909567a923bc982c6054b569663cc9f01b0e35b330e7da1a67c35e8df903b611001b8109fa1bd0b432f2dfaea7fabe1c253432eb3b033666b7d63b766f'
         'SKIP'
-        '4ec90e08a6f02b99aba6917a7015fb5518e98162b361fcd70e3d3c3e36a8b25c3e00df023ddae264e7fc6133d49ed147ac89771595d6897a45b3430178712812')
+        '8919d4939ffe31b478e1944f50e51d21b7ea0ae71dc6dd3f757c94a7b335affd6fa3bbc25cfa007fe0e196814c47699ff22ca35e28276ecca9f579501ae3cbae')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -127,8 +127,8 @@ _package() {
   ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
     DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
-  # remove build and source links
-  rm "$modulesdir"/{source,build}
+  # remove build link
+  rm "$modulesdir"/build
 }
 
 _package-headers() {
