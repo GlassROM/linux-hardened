@@ -5,7 +5,7 @@
 
 pkgbase=linux-hardened
 pkgver=6.7.3.hardened1
-pkgrel=1
+pkgrel=2
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
 arch=(x86_64)
@@ -34,6 +34,7 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   ${url}/releases/download/${_srctag}/${pkgbase}-${_srctag}.patch{,.sig}
   config  # the main kernel config file
+  0001-Revert-mm-sparsemem-fix-race-in-accessing-memory_sec.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -45,12 +46,14 @@ sha256sums=('b7f08c652747574a3aa26e317d7a8f23ffab3fb645e1b1533b215dcfd5742b44'
             'SKIP'
             'a427d149a67eec747cf070cd176033663b2bfd972b4ba114049e9aee0a644d0e'
             'SKIP'
-            '289ab6e44f281a7bb7c60503b1b817d75d313508405bdca1175c4bc2d2d284ce')
+            '289ab6e44f281a7bb7c60503b1b817d75d313508405bdca1175c4bc2d2d284ce'
+            '88c88d845998b88cb9fa617b2f30e35f05b168c2bdd52537cd6a8b6aac173641')
 b2sums=('2dea0685e5c9b279beb7661f4efa91ccd662d55eb7c5a69aff52fc74bbb574fcb490a9abcc44d895583ca21b3e6860b3c5e9c35daae66b22c4fe97cab44b2a75'
         'SKIP'
         '64b7a697d32582e725125d32303983d2d32bfb8591848be8e1ce7971ce0118d464264c2d3e154cb088bf4f0c614facb07c368aade40f22886d7351cec5c929b1'
         'SKIP'
-        '14fef74422d7b270702f903569490c91b336ba8fc50f90d2a33a2912342dedf3d05c23a334b563c65a84805e331f571616755089a8972d2c9d30e0519afff3fd')
+        '14fef74422d7b270702f903569490c91b336ba8fc50f90d2a33a2912342dedf3d05c23a334b563c65a84805e331f571616755089a8972d2c9d30e0519afff3fd'
+        '687419d6145974e147419d658eec47efa019064f26378081a12ff145f62a141deec42cabfbdedfe5bc27333e1e610a059d3d5584d0d1afd545d8542f9c6d44d7')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
