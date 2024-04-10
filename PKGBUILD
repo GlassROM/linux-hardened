@@ -4,12 +4,12 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.7.11.hardened1
+pkgver=6.8.4.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
 arch=(x86_64)
-license=(GPL2)
+license=(GPL-2.0-only)
 makedepends=(
   bc
   cpio
@@ -25,9 +25,13 @@ makedepends=(
   graphviz
   imagemagick
   python-sphinx
+  python-yaml
   texlive-latexextra
 )
-options=('!strip')
+options=(
+  !debug
+  !strip
+)
 _srcname=linux-${pkgver%.*}
 _srctag=${pkgver%.*}-${pkgver##*.}
 source=(
@@ -41,16 +45,16 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('2c6497c971632fd9d056941a8a31369d36ef07baa755e4c1cdcc326acb090b4a'
+sha256sums=('d5dec495fc00605fa9e04114df547fbc92b33d9ea7a4a2b7073c589590e79e63'
             'SKIP'
-            'd0cdfa49fc63f5fd4fc6ae92fbad07702421ccc164f5ae2c9b0bb6709e2b5a50'
+            '74f51a4113a19ef738e1ccbbf673ef619b0ce077cbd486326291453cbae8ea49'
             'SKIP'
-            '9efc831639dea0f4b8a9f9879063c3c56f02fd57f6bd6551aaa8eec7c28eecda')
-b2sums=('0f7319b641822f07d5bc9f0edaed7c918a73aa67df6a4aa74a5e8e38f2d15795a1c76e0c8c7ab99949165cb8a0ebb77f08e3a380184aa0accad26996a1d415c6'
+            '5ec00df4d4f8d8791a3d0280197ddb3af2598aebc566b83821b1709857a6adff')
+b2sums=('cf58732397bfa11988b79901092887d53c3367d09f63da51ebdcc83518be3a7e9a638fbbb1ff080cd7abed633fadff03d1d7a3928b772de57b14e46e552f9462'
         'SKIP'
-        'd021988771d777bc25d8db3c58b1d62e880c788a50a9c7983569ed74462d65f8487a74a279cf69bcacc89824c9bf5d7960b124ae24585a5716bd3fa50df4dccf'
+        'fe898a256bbe9a77c5e3b4d1e2fc3820a511af88faecd75009b49c4eb31505f4609b020be90197486a296b4bf3f8f3b83ea3c0d803dabf9a9b6f5b6a4a14e656'
         'SKIP'
-        '30eda70776271d694d66c18e9411c6ea9a7b9652fe284eeb9d335ada5f0d05d907daf323e775f6dec9cebaff430ca8317a01319179f3088b461d12bf4655428f')
+        '145793bc1c69625055303d88dc3311fc54a6b79e153c210a8ff791a77808f8e181ee9b9279ebc9f613d552bafa25997dd939bab671db4950eb0c614e56051665')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -89,6 +93,7 @@ build() {
   local pid_docs=$!
 
   make all
+  # make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
   wait "${pid_docs}"
 }
 
@@ -140,7 +145,7 @@ _package-headers() {
 
   echo "Installing build files..."
   install -Dt "$builddir" -m644 .config Makefile Module.symvers System.map \
-    localversion.* version vmlinux
+    localversion.* version vmlinux # tools/bpf/bpftool/vmlinux.h
   install -Dt "$builddir/kernel" -m644 kernel/Makefile
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
