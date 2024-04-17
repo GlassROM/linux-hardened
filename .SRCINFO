@@ -1,7 +1,7 @@
 pkgbase = linux-hardened
 	pkgdesc = Security-Hardened Linux
 	pkgver = 6.8.7.hardened1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/anthraxx/linux-hardened
 	arch = x86_64
 	license = GPL-2.0-only
@@ -33,12 +33,12 @@ pkgbase = linux-hardened
 	sha256sums = SKIP
 	sha256sums = 9af1a4c9671b2627447d05b3c4d00abbd1b24b6aa9b5691a4dd3394b50b9a3f0
 	sha256sums = SKIP
-	sha256sums = ab9f64dca3c88a21983abe4d99eeb925d7522ede0aee5bfeedd413edcfc5c709
+	sha256sums = a331e88264c5604cad58e5b5e28697014c85fbac9a816dec98c069a7336f5422
 	b2sums = e8626a99c6c5769a8126d5ee1c7962c3df3c7a8c689193ffa864c4a4b8e72daeeaf22c3e3bb6ba5490eca3ef64c32a4a12980360a196444a53abadd791cd1855
 	b2sums = SKIP
 	b2sums = a575cbb4042791c81d40ae2a8c43783ba656c7159a3ad6231a1acf5b21653b8b23afe7462f8502488ff3958f21ae0c4e9855111d206351f176c60b04ddcb8ddf
 	b2sums = SKIP
-	b2sums = 6e3384174d88dc9a0be5dd65d5cecd265a460a4dc9ce527d7e98499134dbe0ec4a29572c444f887530448bbafe5ec2698a8465a98a406bfb1caf648b6450c28b
+	b2sums = 57c639b8f7077ee6c1e8571237c3692091deed4962b7e7bb1921f813093c4302404b63974d68762cab4e08ce48afaabe65050d19cd81b84e21663077bd595a5a
 
 pkgname = linux-hardened
 	pkgdesc = The Security-Hardened Linux kernel and modules
