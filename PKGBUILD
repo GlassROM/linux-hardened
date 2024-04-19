@@ -5,7 +5,7 @@
 
 pkgbase=linux-hardened
 pkgver=6.8.7.hardened1
-pkgrel=2
+pkgrel=3
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
 arch=(x86_64)
@@ -38,6 +38,7 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   ${url}/releases/download/${_srctag}/${pkgbase}-${_srctag}.patch{,.sig}
   config  # the main kernel config file
+  0006-docutils.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -49,12 +50,14 @@ sha256sums=('291d1a1faf4e87b3b0ea9729080db887aafd1ff2fac1430ceca921e46bc22fae'
             'SKIP'
             '9af1a4c9671b2627447d05b3c4d00abbd1b24b6aa9b5691a4dd3394b50b9a3f0'
             'SKIP'
-            'a331e88264c5604cad58e5b5e28697014c85fbac9a816dec98c069a7336f5422')
+            'a331e88264c5604cad58e5b5e28697014c85fbac9a816dec98c069a7336f5422'
+            '9cb73cacbb3633f207d0c30e738cae9965adcd0b0eb5ecd60563fed1394c0f38')
 b2sums=('e8626a99c6c5769a8126d5ee1c7962c3df3c7a8c689193ffa864c4a4b8e72daeeaf22c3e3bb6ba5490eca3ef64c32a4a12980360a196444a53abadd791cd1855'
         'SKIP'
         'a575cbb4042791c81d40ae2a8c43783ba656c7159a3ad6231a1acf5b21653b8b23afe7462f8502488ff3958f21ae0c4e9855111d206351f176c60b04ddcb8ddf'
         'SKIP'
-        '57c639b8f7077ee6c1e8571237c3692091deed4962b7e7bb1921f813093c4302404b63974d68762cab4e08ce48afaabe65050d19cd81b84e21663077bd595a5a')
+        '57c639b8f7077ee6c1e8571237c3692091deed4962b7e7bb1921f813093c4302404b63974d68762cab4e08ce48afaabe65050d19cd81b84e21663077bd595a5a'
+        '0bb42a22c110f06a45e59a9adc194184a51ff97e5584d6ffabca0aa37e1e65ccaf44f43dc744eaa3861d6f6b00e299d4662bcf0c0d94478af9352b4c4f6b0ffd')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
