@@ -4,7 +4,7 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.8.10.hardened1
+pkgver=6.9.1.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -46,17 +46,17 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('b0bb92d982f88380e5b2059349c3a862e0afa712e0646eb0e082b9c2c5cb5176'
+sha256sums=('01b414ba98fd189ecd544435caf3860ae2a790e3ec48f5aa70fdf42dc4c5c04a'
             'SKIP'
-            '63dd2572bde3ce80201ea0edfc66ef8f430381e45aadd0fa5b4fbf001cf5e118'
+            '828a8377bff337abfa09279e08b5cf1094b6185f78874e8680640f1233c7e0fe'
             'SKIP'
-            'c368f8cf4542c1d449110c84880ce910b3a4421b2411ec94d36dd83f94ff280f'
+            'ebfaa2ddcf1757de19a38b1eb07c392b2c35a3d456f0ae0af6d6fd3cbb9e334d'
             '9cb73cacbb3633f207d0c30e738cae9965adcd0b0eb5ecd60563fed1394c0f38')
-b2sums=('1e3fba4cdbe1c3d4f0ea56f8e54242e0276a3ae47e5dc97152d0afd7042a02ae9b57d6808ed8482358eb244eecc73ed41f7411ab50d4b462fc776b68c293c30a'
+b2sums=('388af1d13e78a424f72a961697f4b0b6a234e54ce1e4a2532fc73717301e048c6f4a6251b6e3c4541179d1382566c3f411baa6883818a10d178ef27d036b5379'
         'SKIP'
-        'a55ba0001895032faf86a703fa8df019969e352a67832ec32a13cf68a5bf033d69241e193f99d1a91acfc5ea1c96628f0e65b04fdae84a4109066479e99fadad'
+        '9bb6d6154c3500096fe7b85ba066f514304fb26f77feb73e29fae4023ca4d9102b5c43a8de07b07a2513751e58f1cd7d500999be97b5a85404b34e95f825f565'
         'SKIP'
-        'd2a7f46268a62ee2c0c1414f2af9bfc9e2239d8c7ee27c7223eaec93b40426e7c808a4345015582bc27f4c5660e8a1ea75e477a443e40a08c539dcb85360e81b'
+        'd4d599accf9b9f0c28f3881ac715506aa331f29d9af1565ca4e68f98af896db68ff4321be82a8eb60316728d4efac3e4528c76ba486a1906ce7402bb33538928'
         '0bb42a22c110f06a45e59a9adc194184a51ff97e5584d6ffabca0aa37e1e65ccaf44f43dc744eaa3861d6f6b00e299d4662bcf0c0d94478af9352b4c4f6b0ffd')
 
 export KBUILD_BUILD_HOST=archlinux
