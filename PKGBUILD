@@ -20,6 +20,9 @@ makedepends=(
   python
   tar
   xz
+  llvm
+  clang
+  lld
 
   # htmldocs
   graphviz
@@ -49,12 +52,12 @@ sha256sums=('272800e0d1a7d01a78bce95a3aaf5c80816f50eb15c517d7003e58355760ecc2'
             'SKIP'
             '8ad237fab4466942f9aabf4b8de92e28021ef70dcc9ced14d7c8f4cd57279d7e'
             'SKIP'
-            'a2164df95ca81df087a32b20933cf84c2c82cd4c56e3b0410a4fde2afff1e30e')
+	    'SKIP')
 b2sums=('5579aef00f38e87ee9a9878ad4340aebc9c2590d8e813e2e106af59c6739e39a37267672ab7aff56160c8519d3014d139e6c849f33b9292c6fba019bc88d09da'
         'SKIP'
         '7e38be9ec6c02186f82196f6b2060ab13c91d2939ec481bcc1a5f1d37d0272276ee3dc39d58ab7c7ff72e199baed81603ae58ac721cc3795fa35ea2b72726097'
         'SKIP'
-        '45397830cd855372315ae248abd978c99a7683fba98f5588c12279c0c2df1f2fe06d83d2efbd1741c54b7dc7a39012680781bef6944dfac99c8ceb86b7a0c6cc')
+        'SKIP')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -79,7 +82,7 @@ prepare() {
 
   echo "Setting config..."
   cp ../config .config
-  make olddefconfig
+  LLVM=1 make olddefconfig
   diff -u ../config .config || :
 
   make -s kernelrelease > version
@@ -92,7 +95,7 @@ build() {
   make htmldocs &
   local pid_docs=$!
 
-  make all
+  LLVM=1 make all
   # make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
   wait "${pid_docs}"
 }
