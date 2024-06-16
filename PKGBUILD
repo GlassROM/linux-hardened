@@ -95,7 +95,7 @@ build() {
   make htmldocs &
   local pid_docs=$!
 
-  LLVM=1 make all
+  LLVM=1 make all -j$(nproc --all)
   # make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
   wait "${pid_docs}"
 }
