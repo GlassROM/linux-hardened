@@ -12,6 +12,7 @@ USER builder
 
 COPY --chown=builder:builder . /home/builder/linux-hardened
 WORKDIR /home/builder/linux-hardened
-RUN makepkg -sf --noconfirm --skippgpcheck
+RUN /bin/bash makepkg.sh
 
+USER root
 RUN rm -rf /etc/pacman.d/gnupg
