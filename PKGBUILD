@@ -86,6 +86,10 @@ prepare() {
   LLVM=1 make olddefconfig
   diff -u ../config .config || :
 
+  sed -i 's/-O2/-O3 -march=native -mtune=native/g' Makefile
+  scripts/config --disable MODULES
+  LLVM=1 LSMOD=/home/builder/linux-hardened/lsmod make localyesconfig
+
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
 }
