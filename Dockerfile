@@ -2,6 +2,8 @@ FROM ghcr.io/glassrom/os-image-docker:latest
 
 #LABEL maintainer=""
 
+RUN rm -fv /etc/ld.so.preload
+
 RUN pacman-key --init && pacman-key --populate archlinux
 
 RUN pacman -Syyuu git base-devel --noconfirm
