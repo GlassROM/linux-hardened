@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 TAG=$(openssl rand -base64 128 | tr -dc 'a-z')
 echo "tagging as $TAG"
 ./dockersafebuild -t $TAG
