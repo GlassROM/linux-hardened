@@ -42,6 +42,7 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   ${url}/releases/download/${_srctag}/${pkgbase}-${_srctag}.patch{,.sig}
   config  # the main kernel config file
+  ibt.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -53,10 +54,12 @@ sha256sums=('2be05b487eb239a3bf687d628a8f104177d09c310f00bcc2a5e50f1733421eb9'
             'SKIP'
             'ab1cc9bc30d340ba5d96c32afaaa9d4df6059277434566bc414c37e750e086cb'
             'SKIP'
+            'SKIP'
 	    'SKIP')
 b2sums=('a228397902894f566d49adef24e4d44271893173cf0c58e8eb6006137dfb870b5f3aea17cadc775988a0682ba4a5261ebd3f10689b6c096f762cc8af666c56ff'
         'SKIP'
         '7bd34080bb7801fd268e8590ad3a01851582723ac0648cdff7d42076a59defd9344aaf3bbd5acc1fe357db68501ec302a79c1b9e7b1bfcad9fbffb2691737a35'
+        'SKIP'
         'SKIP'
 	'SKIP')
 
@@ -86,7 +89,7 @@ prepare() {
   LLVM=1 make olddefconfig
   diff -u ../config .config || :
 
-  sed -i 's/-O2/-O3 -march=native -mtune=native/g' Makefile
+  sed -i 's/-O2/-O3 -march=native -mtune=native -mllvm -polly -mllvm -polly-run-dce -mllvm -polly-run-inliner -mllvm -polly-opt-fusion=max -mllvm -polly-ast-use-context -mllvm -polly-detect-keep-going -mllvm -polly-vectorizer=stripmine -mllvm -polly-invariant-load-hoisting/g' Makefile
   scripts/config --disable MODULES
   LLVM=1 LSMOD=/home/builder/linux-hardened/lsmod make localyesconfig
 
