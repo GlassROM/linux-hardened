@@ -5,7 +5,7 @@
 
 pkgbase=linux-hardened
 pkgname=linux-hardened
-pkgver=6.9.9.hardened1
+pkgver=6.10.2.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -50,15 +50,15 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('2be05b487eb239a3bf687d628a8f104177d09c310f00bcc2a5e50f1733421eb9'
+sha256sums=('73d8520dd9cba5acfc5e7208e76b35d9740b8aae38210a9224e32ec4c0d29b70'
             'SKIP'
-            'ab1cc9bc30d340ba5d96c32afaaa9d4df6059277434566bc414c37e750e086cb'
+            'd30916f22e1f5fe5c95c3ced05fea3fb72362e737415c8ca17531d4a2371e28f'
             'SKIP'
             'SKIP'
 	    'SKIP')
-b2sums=('a228397902894f566d49adef24e4d44271893173cf0c58e8eb6006137dfb870b5f3aea17cadc775988a0682ba4a5261ebd3f10689b6c096f762cc8af666c56ff'
+b2sums=('ab1d2e79a1bb8a9b78ab5b1af93db7ef356cb5e14bba1121bbd3ae06b9589c8bfc32bab373acdd0ecf965ac132130e7eb34e70b35a9df1bd85b49dab97e2c02a'
         'SKIP'
-        '7bd34080bb7801fd268e8590ad3a01851582723ac0648cdff7d42076a59defd9344aaf3bbd5acc1fe357db68501ec302a79c1b9e7b1bfcad9fbffb2691737a35'
+        '141197fd667df8738ae93156a5389aa6cf0f558945ec04dce55ea7663d3c94e398b7a395a3ee3a181d15145b6e107ab16c719a01ee35b62670d96e3d55222043'
         'SKIP'
         'SKIP'
 	'SKIP')
@@ -86,12 +86,12 @@ prepare() {
 
   echo "Setting config..."
   cp ../config .config
-  LLVM=1 make olddefconfig
+  LLVM=1 LLVM_IAS=1 make olddefconfig
   diff -u ../config .config || :
 
   sed -i 's/-O2/-O3 -march=native -mtune=native -mllvm -polly -mllvm -polly-run-dce -mllvm -polly-run-inliner -mllvm -polly-opt-fusion=max -mllvm -polly-ast-use-context -mllvm -polly-detect-keep-going -mllvm -polly-vectorizer=stripmine -mllvm -polly-invariant-load-hoisting/g' Makefile
   scripts/config --disable MODULES
-  LLVM=1 LSMOD=/home/builder/linux-hardened/lsmod make localyesconfig
+  LLVM=1 LLVM_IAS=1 LSMOD=/home/builder/linux-hardened/lsmod make localyesconfig
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
@@ -100,7 +100,7 @@ prepare() {
 build() {
   cd $_srcname
 
-  LLVM=1 make all -j$(nproc --all)
+  LLVM=1 LLVM_IAS=1 make all -j$(nproc --all)
   # make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
 }
 
