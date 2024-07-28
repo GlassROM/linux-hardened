@@ -24,6 +24,7 @@ makedepends=(
   llvm
   clang
   lld
+  polly
 
   # htmldocs
   graphviz
