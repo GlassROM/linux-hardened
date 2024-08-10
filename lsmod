@@ -1,15 +1,20 @@
 Module                  Size  Used by
 xt_LOG                 16384  0
 nf_log_syslog          24576  0
+crc16                  12288  0
+mbcache                16384  0
+jbd2                  208896  0
+macvlan                36864  0
+tls                   155648  0
+xt_nat                 12288  54
 veth                   40960  0
-xt_nat                 16384  58
 nf_conntrack_netlink    61440  0
 xfrm_user              65536  1
 xfrm_algo              16384  1 xfrm_user
 br_netfilter           36864  0
 bridge                454656  1 br_netfilter
 nft_chain_nat          12288  27
-xt_MASQUERADE          16384  16
+xt_MASQUERADE          16384  11
 nf_nat                 65536  3 xt_nat,nft_chain_nat,xt_MASQUERADE
 wireguard             122880  0
 curve25519_x86_64      36864  1 wireguard
@@ -36,59 +41,59 @@ ipt_REJECT             12288  1
 nf_reject_ipv4         16384  1 ipt_REJECT
 xt_recent              24576  8
 nft_limit              16384  1
-intel_rapl_msr         20480  0
-intel_rapl_common      49152  1 intel_rapl_msr
 xt_limit               12288  0
 xt_addrtype            12288  6
 xt_tcpudp              20480  60
-intel_uncore_frequency_common    16384  0
-xt_conntrack           12288  27
-intel_pmc_core        122880  0
+xt_conntrack           12288  26
 nf_conntrack          204800  5 xt_conntrack,nf_nat,xt_nat,nf_conntrack_netlink,xt_MASQUERADE
-intel_vsec             20480  1 intel_pmc_core
 nf_defrag_ipv6         24576  1 nf_conntrack
-pmt_telemetry          16384  1 intel_pmc_core
 nf_defrag_ipv4         12288  1 nf_conntrack
-pmt_class              16384  1 pmt_telemetry
-nft_compat             24576  202
-nf_tables             376832  1929 nft_compat,nft_chain_nat,nft_limit
+nft_compat             24576  192
+nf_tables             380928  1768 nft_compat,nft_chain_nat,nft_limit
 libcrc32c              12288  3 nf_conntrack,nf_nat,nf_tables
 crc32c_generic         12288  0
+vfat                   24576  1
+fat                   106496  1 vfat
+intel_rapl_msr         20480  0
+intel_rapl_common      49152  1 intel_rapl_msr
+intel_uncore_frequency_common    16384  0
+intel_pmc_core        122880  0
+intel_vsec             20480  1 intel_pmc_core
+pmt_telemetry          16384  1 intel_pmc_core
+pmt_class              16384  1 pmt_telemetry
 crct10dif_pclmul       12288  1
 polyval_clmulni        12288  0
 polyval_generic        12288  1 polyval_clmulni
 gf128mul               16384  1 polyval_generic
-vfat                   24576  1
 ghash_clmulni_intel    16384  0
 sha512_ssse3           53248  0
-fat                   106496  1 vfat
 sha256_ssse3           36864  0
 sha1_ssse3             32768  0
 aesni_intel           364544  0
 crypto_simd            16384  1 aesni_intel
 cryptd                 28672  2 crypto_simd,ghash_clmulni_intel
 rapl                   20480  0
-joydev                 24576  0
 serio_raw              16384  0
+joydev                 24576  0
 atkbd                  40960  0
 mousedev               24576  0
 libps2                 20480  1 atkbd
 mac_hid                12288  0
-hv_utils               57344  1
 vivaldi_fmap           12288  1 atkbd
-hyperv_keyboard        12288  0
+hv_utils               57344  1
 hid_generic            12288  0
+hyperv_keyboard        12288  0
 ptp                    45056  1 hv_utils
+hyperv_drm             24576  0
 hv_netvsc             118784  0
-hyperv_drm             28672  0
-serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
 hid_hyperv             16384  0
+serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
 pps_core               32768  1 ptp
-pcspkr                 12288  0
 hv_balloon             49152  0
-dm_mod                225280  0
+pcspkr                 12288  0
 sg                     57344  0
 loop                   45056  0
+dm_mod                225280  0
 nfnetlink              20480  5 nft_compat,nf_conntrack_netlink,nf_tables
 vsock_loopback         12288  0
 vmw_vsock_virtio_transport_common    61440  1 vsock_loopback
