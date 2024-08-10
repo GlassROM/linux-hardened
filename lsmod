@@ -1,12 +1,7 @@
 Module                  Size  Used by
 xt_LOG                 16384  0
 nf_log_syslog          24576  0
-crc16                  12288  0
-mbcache                16384  0
-jbd2                  208896  0
-macvlan                36864  0
-tls                   155648  0
-xt_nat                 12288  54
+xt_nat                 12288  58
 veth                   40960  0
 nf_conntrack_netlink    61440  0
 xfrm_user              65536  1
@@ -14,7 +9,7 @@ xfrm_algo              16384  1 xfrm_user
 br_netfilter           36864  0
 bridge                454656  1 br_netfilter
 nft_chain_nat          12288  27
-xt_MASQUERADE          16384  11
+xt_MASQUERADE          16384  16
 nf_nat                 65536  3 xt_nat,nft_chain_nat,xt_MASQUERADE
 wireguard             122880  0
 curve25519_x86_64      36864  1 wireguard
@@ -44,12 +39,12 @@ nft_limit              16384  1
 xt_limit               12288  0
 xt_addrtype            12288  6
 xt_tcpudp              20480  60
-xt_conntrack           12288  26
+xt_conntrack           12288  27
 nf_conntrack          204800  5 xt_conntrack,nf_nat,xt_nat,nf_conntrack_netlink,xt_MASQUERADE
 nf_defrag_ipv6         24576  1 nf_conntrack
 nf_defrag_ipv4         12288  1 nf_conntrack
-nft_compat             24576  192
-nf_tables             380928  1768 nft_compat,nft_chain_nat,nft_limit
+nft_compat             24576  202
+nf_tables             380928  1929 nft_compat,nft_chain_nat,nft_limit
 libcrc32c              12288  3 nf_conntrack,nf_nat,nf_tables
 crc32c_generic         12288  0
 vfat                   24576  1
@@ -73,24 +68,24 @@ aesni_intel           364544  0
 crypto_simd            16384  1 aesni_intel
 cryptd                 28672  2 crypto_simd,ghash_clmulni_intel
 rapl                   20480  0
-serio_raw              16384  0
 joydev                 24576  0
-atkbd                  40960  0
+serio_raw              16384  0
 mousedev               24576  0
+atkbd                  40960  0
 libps2                 20480  1 atkbd
 mac_hid                12288  0
-vivaldi_fmap           12288  1 atkbd
 hv_utils               57344  1
+vivaldi_fmap           12288  1 atkbd
 hid_generic            12288  0
 hyperv_keyboard        12288  0
 ptp                    45056  1 hv_utils
 hyperv_drm             24576  0
 hv_netvsc             118784  0
-hid_hyperv             16384  0
 serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
-pps_core               32768  1 ptp
-hv_balloon             49152  0
+hid_hyperv             16384  0
 pcspkr                 12288  0
+hv_balloon             49152  0
+pps_core               32768  1 ptp
 sg                     57344  0
 loop                   45056  0
 dm_mod                225280  0
@@ -111,5 +106,5 @@ lz4_compress           24576  1 f2fs
 hv_storvsc             28672  3
 scsi_transport_fc     110592  1 hv_storvsc
 crc32_pclmul           12288  1
-crc32c_intel           16384  1
 hv_vmbus              188416  8 hv_balloon,hv_utils,hv_netvsc,hid_hyperv,hv_storvsc,hyperv_keyboard,hyperv_drm,hv_sock
+crc32c_intel           16384  1
