@@ -4,7 +4,7 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.10.14.hardened1
+pkgver=6.11.6.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -45,16 +45,16 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('55e5bcbc68d66776fc46896291f0a24844beb57817345a854d65e3d055fa423e'
+sha256sums=('c954f60197008f1e1f32a1e77293903cf3801d2543ec4bf521f5651eb7f133ce'
             'SKIP'
-            '50dd442b6af2c0fd82036caafd2d8b57ab44aa19f666d91d5aec2cffb1d772af'
+            '2ee5a7768b9dffe74b52301f46e4c5638f96d85a95d7a0016a0c6e3b75cfad3c'
             'SKIP'
-            '16ba8ebd87289cac561bc70e0ed76bc0bd6c32f7c4be905f8269ad6d551de2b8')
-b2sums=('587d7c27809f5ca1efef263deaabd8e4b8f0e40bc6bc15d9a94b70486ff68e2d3b3aee0314286fe23be887ef06a8596e83629e96fced9eb9da1da65c39d72609'
+            'fa7886093dde2b20a7797e42de50d0d6fa8c792c3347d05d929cb425adbff352')
+b2sums=('821eceaa7492122c724ea789a79aa99f61078f06c86fd6f76d08f640b47ea682f7441c47ed7b860ca39fd242b8797bb5bc311dc63dbb9c37bc15917eccafc255'
         'SKIP'
-        '7cefbbe200d2ef141e04227ca9ae0cfa58b620a2cc48f8de065617923a1e77e1ded2885b6a2666badf1ae00fe3e4436950cd560c461bb5eb52c36c423adaf9e9'
+        '5c0c29491bebcac03537409b666ad837a835fa0dfeb38f26a941b917b7752affb36bbe92912a80e4e93d3d67de39fb399bd29d6634d9d86555f3450b1d9006f9'
         'SKIP'
-        '8b0d05adc7a1177413bf3db89b223bc485f5bd2a67b9e25ed28db0c6f739e2077e80fee7792613315bfea5441a84d65425e486c2f39e9d18442b4d050f2a7369')
+        '5a81bcb0bf3ae950e06826bdc092fd6fe17f1d6dd89fbfbc846f628fe314fd5e00e3f6b0567ca34568636929744fb8a140abb6647bbc2a3c0f53cefa57ebf3be')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -149,6 +149,7 @@ _package-headers() {
   install -Dt "$builddir/kernel" -m644 kernel/Makefile
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
+  # ln -srt "$builddir" "$builddir/scripts/gdb/vmlinux-gdb.py"
 
   # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
