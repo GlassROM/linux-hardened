@@ -5,7 +5,7 @@
 
 pkgbase=linux-hardened
 pkgname=linux-hardened
-pkgver=6.10.12.hardened1
+pkgver=6.11.7.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -51,15 +51,15 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('524858852f5869a9ef17de8b1e6e7faf05bcb2c462bc96b3c24dbf82ede373cf'
+sha256sums=('0bf5ec644817d7928920f763581311f5bf258a92759cf2f30985da743af3ebb2'
             'SKIP'
-            '72e429209ba08788043dd580043850e09c35d9bbfa60eb857c3b496c892be31f'
+            '9ec10936ae926e820859474310113be34a04c709092a55ced23da2431fa4dbe5'
             'SKIP'
             'SKIP'
 	    'SKIP')
-b2sums=('22cb2e7c59e65da55f1db0678f3e913376d343f8285666bbc2c4e6a2b1b45c492c8d01a10f9a0ab6f944745a676ed7da9270683d29ca4984f68c86f965dfe121'
+b2sums=('4d1aec68c93f3159099ac02a6d4bbc46f207383079ea3117102b9d657964132d946b9579e4e8582a0cf9c79170de0b7a0c5fac2b6e1b36aabd5e66340bec3c18'
         'SKIP'
-        '0b3cd388f968c271424465fcc7662b4671149f16a373fb9d9d253c3933d0a0c98326b1714ab47463c275942b79b92bb43312dbcd7adc5a4171be350f40f4f0b7'
+        'afd5eb661c2f882fd460a9819c9d9a49c5c5691d8ec8cb6741aa313c730b104814b00f08f1551d9f508a32b60f8734e0832ba79c83637f18ff5b2c2af8dab791'
         'SKIP'
         'SKIP'
 	'SKIP')
