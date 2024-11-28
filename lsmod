@@ -1,16 +1,21 @@
 Module                  Size  Used by
 xt_LOG                 16384  0
 nf_log_syslog          24576  0
-xt_nat                 12288  58
+erofs                 159744  1
+netfs                 585728  1 erofs
+blake2b_generic        24576  1
+dm_verity              53248  1
+dm_bufio               57344  1 dm_verity
+reed_solomon           16384  1 dm_verity
+xt_nat                 12288  62
 veth                   40960  0
+bridge                454656  0
+stp                    12288  1 bridge
+llc                    16384  2 bridge,stp
 nf_conntrack_netlink    61440  0
 xfrm_user              65536  1
 xfrm_algo              16384  1 xfrm_user
-br_netfilter           36864  0
-bridge                454656  1 br_netfilter
-stp                    12288  1 bridge
-llc                    16384  2 bridge,stp
-nft_chain_nat          12288  27
+nft_chain_nat          12288  29
 xt_MASQUERADE          16384  16
 nf_nat                 65536  3 xt_nat,nft_chain_nat,xt_MASQUERADE
 wireguard             122880  0
@@ -22,7 +27,7 @@ libcurve25519_generic    45056  2 curve25519_x86_64,wireguard
 libchacha              12288  1 chacha_x86_64
 ip6_udp_tunnel         16384  1 wireguard
 udp_tunnel             32768  1 wireguard
-overlay               237568  12
+overlay               237568  13
 rfkill                 40960  1
 ip6t_REJECT            12288  1
 nf_reject_ipv6         20480  1 ip6t_REJECT
@@ -39,14 +44,14 @@ xt_conntrack           12288  27
 nf_conntrack          204800  5 xt_conntrack,nf_nat,xt_nat,nf_conntrack_netlink,xt_MASQUERADE
 nf_defrag_ipv6         24576  1 nf_conntrack
 nf_defrag_ipv4         12288  1 nf_conntrack
-nft_compat             24576  202
-nf_tables             380928  1929 nft_compat,nft_chain_nat,nft_limit
-libcrc32c              12288  3 nf_conntrack,nf_nat,nf_tables
-intel_rapl_msr         20480  0
+nft_compat             24576  206
+nf_tables             380928  1977 nft_compat,nft_chain_nat,nft_limit
+libcrc32c              12288  4 nf_conntrack,nf_nat,erofs,nf_tables
 crc32c_generic         12288  0
+intel_rapl_msr         20480  0
 vfat                   24576  1
-intel_rapl_common      49152  1 intel_rapl_msr
-fat                   106496  1 vfat
+intel_rapl_common      53248  1 intel_rapl_msr
+fat                   110592  1 vfat
 intel_uncore_frequency_common    16384  0
 intel_pmc_core        122880  0
 intel_vsec             20480  1 intel_pmc_core
@@ -55,36 +60,36 @@ pmt_class              16384  1 pmt_telemetry
 crct10dif_pclmul       12288  1
 polyval_clmulni        12288  0
 polyval_generic        12288  1 polyval_clmulni
-gf128mul               16384  1 polyval_generic
 ghash_clmulni_intel    16384  0
 sha512_ssse3           53248  0
-sha256_ssse3           36864  0
+sha256_ssse3           36864  1
 sha1_ssse3             32768  0
-aesni_intel           364544  0
+aesni_intel           122880  0
+gf128mul               16384  2 polyval_generic,aesni_intel
 crypto_simd            16384  1 aesni_intel
 cryptd                 28672  2 crypto_simd,ghash_clmulni_intel
 rapl                   20480  0
 serio_raw              16384  0
-joydev                 24576  0
 atkbd                  40960  0
-mousedev               24576  0
 libps2                 20480  1 atkbd
 vivaldi_fmap           12288  1 atkbd
+joydev                 24576  0
+mousedev               24576  0
 mac_hid                12288  0
 hv_utils               57344  1
-hid_generic            12288  0
 hyperv_keyboard        12288  0
+hid_generic            12288  0
 ptp                    45056  1 hv_utils
-hyperv_drm             24576  0
-serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
-hid_hyperv             16384  0
 hv_netvsc             118784  0
+serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
+hyperv_drm             24576  0
 hv_balloon             49152  0
-pcspkr                 12288  0
 pps_core               32768  1 ptp
+pcspkr                 12288  0
+hid_hyperv             16384  0
 sg                     57344  0
 loop                   45056  0
-dm_mod                225280  0
+dm_mod                229376  4 dm_verity,dm_bufio
 nfnetlink              20480  5 nft_compat,nf_conntrack_netlink,nf_tables
 vsock_loopback         12288  0
 vmw_vsock_virtio_transport_common    61440  1 vsock_loopback
@@ -95,11 +100,11 @@ vmw_vmci              118784  1 vmw_vsock_vmci_transport
 dmi_sysfs              24576  0
 ip_tables              36864  0
 x_tables               69632  14 xt_conntrack,nft_compat,xt_LOG,xt_tcpudp,xt_addrtype,xt_recent,xt_nat,ip6t_rt,ipt_REJECT,ip_tables,xt_limit,xt_hl,xt_MASQUERADE,ip6t_REJECT
-f2fs                 1019904  1
+f2fs                 1015808  1
 crc32_generic          12288  0
 lz4hc_compress         20480  1 f2fs
 lz4_compress           24576  1 f2fs
-hv_storvsc             28672  3
+hv_storvsc             28672  4
 scsi_transport_fc     110592  1 hv_storvsc
 crc32_pclmul           12288  1
 crc32c_intel           16384  1
