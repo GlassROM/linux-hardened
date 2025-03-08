@@ -4,7 +4,7 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.12.17.hardened1
+pkgver=6.13.6.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -18,6 +18,9 @@ makedepends=(
   pahole
   perl
   python
+  rust
+  rust-bindgen
+  rust-src
   tar
   xz
 
@@ -45,16 +48,16 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('5c205cd34f80974e4973e321cb008f5f6895a8aa8c2577f06a9448cd77de63b3'
+sha256sums=('de0053cb413d408f20fd1d5788219951b8a4403e5dac1b1d9032090938acd199'
             'SKIP'
-            'bc4b14739fb21f630b848e19076f0f9353964e8662538c93b195c0f6cac0f495'
+            '52fc9aaad21a03bd09b7a4c65859609e0bd84b1566145228e8df8eed36efe19c'
             'SKIP'
-            'efdb48994ca16bb613c1813b94fce6e1df94f437e6bffd66439ca5ffa26f99fb')
-b2sums=('70025e9fb55dd808e43f58e5584d46932ac2463203b5c9f86ac5685f59ddadcc22b0b63bf388ce373ae1a9412fe1c19373084b7ea25b493efc20de07f39726a5'
+            'aa99ddeed4fe8696e9010b39e77f89c9dac7bbc19fac7d76393db9c5a62d94f0')
+b2sums=('5a216c56c77efaee1a3f5c9198ade9180e4640ffcde39662ccf85c2a5945a08c5f362220fb0906369c72a3ea8bdc16fdd24d3e1dbc0f51fc831f3f724ed73300'
         'SKIP'
-        '08aaebc135b32f58a52b5ea85aeb55ab7b40497c881a75f72a668def08031f4f78e3016cadc39ac7a40b4efa6cc424c3a5659f08da7b330b6b427542d90d4df6'
+        'e88e310ca8180a6f24680749a6e7c2eb316e4021ef48f9aa0856bf152812b9d9fa0c08a3a2d5d1ec98990e9f7720f663a74693ed220c5eb2b26be795e8984aea'
         'SKIP'
-        '964c51fd13ff1819a2b963aa59b6bd89d186da93e11a49bf533781e1c2ae3e26d1c2893613dd3b452e01036297a38d7489b197d3d6f9b8c09f2968f23723ced3')
+        '3a6f853f6f8f564e0eaafbdd1cbe794dafdf44e4338dbb2d344ae7acd6ace2d6c7fd3ca8d9bf4b3061b504721c1ee4e2025bb29f8ca9a75f37debfd0b54a8848')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -105,8 +108,9 @@ _package() {
     kmod
   )
   optdepends=(
-    'wireless-regdb: to set the correct wireless channels of your country'
     'linux-firmware: firmware images needed for some devices'
+    'scx-scheds: to use sched-ext schedulers'
+    'wireless-regdb: to set the correct wireless channels of your country'
     'usbctl: deny_new_usb control'
   )
   provides=(
