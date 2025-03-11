@@ -5,8 +5,8 @@
 
 pkgbase=linux-hardened
 pkgname=linux-hardened
-pkgver=6.12.12.hardened1
-pkgrel=2
+pkgver=6.13.6.hardened1
+pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
 arch=(x86_64)
@@ -19,6 +19,9 @@ makedepends=(
   pahole
   perl
   python
+  rust
+  rust-bindgen
+  rust-src
   tar
   xz
   llvm
@@ -51,15 +54,15 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('e98942d17ef7063b3f2d6d7692bf24899e2e021cf832d19b55308ec8e8e08eff'
+sha256sums=('de0053cb413d408f20fd1d5788219951b8a4403e5dac1b1d9032090938acd199'
             'SKIP'
-            '0343a3e143b82783e6d2c0b0d4b561550244cc7d0d65e5f2f4c230aa9a1a814c'
+            '52fc9aaad21a03bd09b7a4c65859609e0bd84b1566145228e8df8eed36efe19c'
             'SKIP'
             'SKIP'
 	    'SKIP')
-b2sums=('e32d607f2732c5ad719aa2f31c7f42f6243d7e9d52447dc923563d2982a68a3bed836acac116e1e30f15e4eceb87671a96db507a7019d00eaf52f36c9340b07f'
+b2sums=('5a216c56c77efaee1a3f5c9198ade9180e4640ffcde39662ccf85c2a5945a08c5f362220fb0906369c72a3ea8bdc16fdd24d3e1dbc0f51fc831f3f724ed73300'
         'SKIP'
-        'c4e952725fb88b990568e316b39d98c9bf19ccdc428445c786e0e69e84b1cde50c2f111b01b38bc7265bf3db2def51444e39402ed23998f2fea2885f84fb113c'
+        'e88e310ca8180a6f24680749a6e7c2eb316e4021ef48f9aa0856bf152812b9d9fa0c08a3a2d5d1ec98990e9f7720f663a74693ed220c5eb2b26be795e8984aea'
         'SKIP'
         'SKIP'
 	'SKIP')
@@ -113,8 +116,9 @@ package() {
     kmod
   )
   optdepends=(
-    'wireless-regdb: to set the correct wireless channels of your country'
     'linux-firmware: firmware images needed for some devices'
+    'scx-scheds: to use sched-ext schedulers'
+    'wireless-regdb: to set the correct wireless channels of your country'
     'usbctl: deny_new_usb control'
   )
   provides=(
