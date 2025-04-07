@@ -1,0 +1,276 @@
+From 7479c410c32acb8b41c75f5d0dc64968bcf5d413 Mon Sep 17 00:00:00 2001
+From: randomhydrosol <randomhydrosol@glassrom.org>
+Date: Sat, 13 Jul 2024 21:41:56 +0000
+Subject: [PATCH 1/2] Disable IBT for Hyper-V hypercalls
+
+Hyper-V does not have an endbr instruction at the start of the hypercall page, causing a kernel panic if IBT is enabled.
+
+The upstream Linux patch disabled IBT entirely to fix this, but that poses a security risk. However, this approach is peculiar since Linux already assumes that firmware is never IBT clean, and hypercalls are essentially similar to firmware calls.
+
+To enhance security, this patch disables IBT around the hypercall code instead of disabling it globally. This change ensures that IBT remains active for the rest of the kernel, providing better security while addressing the Hyper-V hypercall issue.
+
+Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
+---
+ arch/x86/hyperv/hv_init.c       | 21 ---------
+ arch/x86/include/asm/mshyperv.h | 75 +++++++++++++++++++++++++++++++--
+ 2 files changed, 72 insertions(+), 24 deletions(-)
+
+diff --git a/arch/x86/hyperv/hv_init.c b/arch/x86/hyperv/hv_init.c
+index ddeb40930bc8..8833f91f009b 100644
+--- a/arch/x86/hyperv/hv_init.c
++++ b/arch/x86/hyperv/hv_init.c
+@@ -17,7 +17,6 @@
+ #include <asm/desc.h>
+ #include <asm/e820/api.h>
+ #include <asm/sev.h>
+-#include <asm/ibt.h>
+ #include <asm/hypervisor.h>
+ #include <hyperv/hvhdk.h>
+ #include <asm/mshyperv.h>
+@@ -548,26 +547,6 @@ void __init hyperv_init(void)
+ 	}
+ 
+ skip_hypercall_pg_init:
+-	/*
+-	 * Some versions of Hyper-V that provide IBT in guest VMs have a bug
+-	 * in that there's no ENDBR64 instruction at the entry to the
+-	 * hypercall page. Because hypercalls are invoked via an indirect call
+-	 * to the hypercall page, all hypercall attempts fail when IBT is
+-	 * enabled, and Linux panics. For such buggy versions, disable IBT.
+-	 *
+-	 * Fixed versions of Hyper-V always provide ENDBR64 on the hypercall
+-	 * page, so if future Linux kernel versions enable IBT for 32-bit
+-	 * builds, additional hypercall page hackery will be required here
+-	 * to provide an ENDBR32.
+-	 */
+-#ifdef CONFIG_X86_KERNEL_IBT
+-	if (cpu_feature_enabled(X86_FEATURE_IBT) &&
+-	    *(u32 *)hv_hypercall_pg != gen_endbr()) {
+-		setup_clear_cpu_cap(X86_FEATURE_IBT);
+-		pr_warn("Disabling IBT because of Hyper-V bug\n");
+-	}
+-#endif
+-
+ 	/*
+ 	 * hyperv_init() is called before LAPIC is initialized: see
+ 	 * apic_intr_mode_init() -> x86_platform.apic_post_init() and
+diff --git a/arch/x86/include/asm/mshyperv.h b/arch/x86/include/asm/mshyperv.h
+index bab5ccfc60a7..e87b954d1ad9 100644
+--- a/arch/x86/include/asm/mshyperv.h
++++ b/arch/x86/include/asm/mshyperv.h
+@@ -9,6 +9,7 @@
+ #include <asm/nospec-branch.h>
+ #include <asm/paravirt.h>
+ #include <hyperv/hvhdk.h>
++#include <asm/ibt.h>
+ 
+ /*
+  * Hyper-V always provides a single IO-APIC at this MMIO address.
+@@ -56,6 +57,17 @@ u64 hv_tdx_hypercall(u64 control, u64 param1, u64 param2);
+ #define HV_AP_INIT_GPAT_DEFAULT		0x0007040600070406ULL
+ #define HV_AP_SEGMENT_LIMIT		0xffffffff
+ 
++static inline bool is_hv_fixup_needed(void)
++{
++#ifdef CONFIG_X86_KERNEL_IBT
++	if (cpu_feature_enabled(X86_FEATURE_IBT) &&
++			*(u32 *) hv_hypercall_pg != gen_endbr()) {
++		return true;
++	}
++#endif
++	return false;
++}
++
+ /*
+  * If the hypercall involves no input or output parameters, the hypervisor
+  * ignores the corresponding GPA pointer.
+@@ -64,25 +76,35 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+ {
+ 	u64 input_address = input ? virt_to_phys(input) : 0;
+ 	u64 output_address = output ? virt_to_phys(output) : 0;
+-	u64 hv_status;
++	u64 hv_status, ibt;
++	bool hyperv_fixup = is_hv_fixup_needed();
+ 
+ #ifdef CONFIG_X86_64
+ 	if (hv_isolation_type_tdx() && !hyperv_paravisor_present)
+ 		return hv_tdx_hypercall(control, input_address, output_address);
+ 
+ 	if (hv_isolation_type_snp() && !hyperv_paravisor_present) {
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__("mov %[output_address], %%r8\n"
+ 				     "vmmcall"
+ 				     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
+ 				       "+c" (control), "+d" (input_address)
+ 				     : [output_address] "r" (output_address)
+ 				     : "cc", "memory", "r8", "r9", "r10", "r11");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 		return hv_status;
+ 	}
+ 
+ 	if (!hv_hypercall_pg)
+ 		return U64_MAX;
+ 
++	if (hyperv_fixup) {
++		ibt = ibt_save(true);
++	}
+ 	__asm__ __volatile__("mov %[output_address], %%r8\n"
+ 			     CALL_NOSPEC
+ 			     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
+@@ -90,6 +112,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+ 			     : [output_address] "r" (output_address),
+ 			       THUNK_TARGET(hv_hypercall_pg)
+ 			     : "cc", "memory", "r8", "r9", "r10", "r11");
++	if (hyperv_fixup) {
++		ibt_restore(ibt);
++	}
+ #else
+ 	u32 input_address_hi = upper_32_bits(input_address);
+ 	u32 input_address_lo = lower_32_bits(input_address);
+@@ -99,6 +124,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+ 	if (!hv_hypercall_pg)
+ 		return U64_MAX;
+ 
++	if (hyperv_fixup) {
++		ibt = ibt_save(true);
++	}
+ 	__asm__ __volatile__(CALL_NOSPEC
+ 			     : "=A" (hv_status),
+ 			       "+c" (input_address_lo), ASM_CALL_CONSTRAINT
+@@ -107,6 +135,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+ 			       "D"(output_address_hi), "S"(output_address_lo),
+ 			       THUNK_TARGET(hv_hypercall_pg)
+ 			     : "cc", "memory");
++	if (hyperv_fixup) {
++		ibt_restore(ibt);
++	}
+ #endif /* !x86_64 */
+ 	return hv_status;
+ }
+@@ -120,30 +151,46 @@ static inline u64 hv_do_nested_hypercall(u64 control, void *input, void *output)
+ /* Fast hypercall with 8 bytes of input and no output */
+ static inline u64 _hv_do_fast_hypercall8(u64 control, u64 input1)
+ {
+-	u64 hv_status;
++	u64 hv_status, ibt;
++	bool hyperv_fixup = is_hv_fixup_needed();
+ 
+ #ifdef CONFIG_X86_64
+ 	if (hv_isolation_type_tdx() && !hyperv_paravisor_present)
+ 		return hv_tdx_hypercall(control, input1, 0);
+ 
+ 	if (hv_isolation_type_snp() && !hyperv_paravisor_present) {
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__(
+ 				"vmmcall"
+ 				: "=a" (hv_status), ASM_CALL_CONSTRAINT,
+ 				"+c" (control), "+d" (input1)
+ 				:: "cc", "r8", "r9", "r10", "r11");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	} else {
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__(CALL_NOSPEC
+ 				     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
+ 				       "+c" (control), "+d" (input1)
+ 				     : THUNK_TARGET(hv_hypercall_pg)
+ 				     : "cc", "r8", "r9", "r10", "r11");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	}
+ #else
+ 	{
+ 		u32 input1_hi = upper_32_bits(input1);
+ 		u32 input1_lo = lower_32_bits(input1);
+ 
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__ (CALL_NOSPEC
+ 				      : "=A"(hv_status),
+ 					"+c"(input1_lo),
+@@ -152,6 +199,9 @@ static inline u64 _hv_do_fast_hypercall8(u64 control, u64 input1)
+ 					"b" (input1_hi),
+ 					THUNK_TARGET(hv_hypercall_pg)
+ 				      : "cc", "edi", "esi");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	}
+ #endif
+ 	return hv_status;
+@@ -174,20 +224,30 @@ static inline u64 hv_do_fast_nested_hypercall8(u16 code, u64 input1)
+ /* Fast hypercall with 16 bytes of input */
+ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+ {
+-	u64 hv_status;
++	u64 hv_status, ibt;
++	bool hyperv_fixup = is_hv_fixup_needed();
+ 
+ #ifdef CONFIG_X86_64
+ 	if (hv_isolation_type_tdx() && !hyperv_paravisor_present)
+ 		return hv_tdx_hypercall(control, input1, input2);
+ 
+ 	if (hv_isolation_type_snp() && !hyperv_paravisor_present) {
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__("mov %[input2], %%r8\n"
+ 				     "vmmcall"
+ 				     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
+ 				       "+c" (control), "+d" (input1)
+ 				     : [input2] "r" (input2)
+ 				     : "cc", "r8", "r9", "r10", "r11");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	} else {
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__("mov %[input2], %%r8\n"
+ 				     CALL_NOSPEC
+ 				     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
+@@ -195,6 +255,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+ 				     : [input2] "r" (input2),
+ 				       THUNK_TARGET(hv_hypercall_pg)
+ 				     : "cc", "r8", "r9", "r10", "r11");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	}
+ #else
+ 	{
+@@ -203,6 +266,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+ 		u32 input2_hi = upper_32_bits(input2);
+ 		u32 input2_lo = lower_32_bits(input2);
+ 
++		if (hyperv_fixup) {
++			ibt = ibt_save(true);
++		}
+ 		__asm__ __volatile__ (CALL_NOSPEC
+ 				      : "=A"(hv_status),
+ 					"+c"(input1_lo), ASM_CALL_CONSTRAINT
+@@ -210,6 +276,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+ 					"D"(input2_hi), "S"(input2_lo),
+ 					THUNK_TARGET(hv_hypercall_pg)
+ 				      : "cc");
++		if (hyperv_fixup) {
++			ibt_restore(ibt);
++		}
+ 	}
+ #endif
+ 	return hv_status;
+-- 
+2.49.0
+

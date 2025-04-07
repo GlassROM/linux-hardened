@@ -1,0 +1,74 @@
+From 8bcdf49dd38da9ff3a2eaeecd69350d751c2afa2 Mon Sep 17 00:00:00 2001
+From: randomhydrosol <randomhydrosol@glassrom.org>
+Date: Mon, 7 Apr 2025 13:52:27 +0530
+Subject: [PATCH 2/2] x86: add toggle to enforce indirect call verification
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+When FRED is absent or CONFIG_FINEIBT_PARANOID_ALWAYS_ON is set, verify every indirect call by comparing a runtime-patched hash against its expected value. This “paranoid” mode forces full verification of call targets—helping prevent control-flow hijack attacks—without relying on FRED’s improved context handling.
+---
+ arch/x86/Kconfig              | 26 ++++++++++++++++++++++++++
+ arch/x86/kernel/alternative.c |  8 +++++---
+ 2 files changed, 31 insertions(+), 3 deletions(-)
+
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 4b9f378e05f6..8f39aa95f0c9 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -2447,6 +2447,32 @@ config FINEIBT_BHI
+ 	def_bool y
+ 	depends on FINEIBT && CC_HAS_KCFI_ARITY
+ 
++config FINEIBT_PARANOID_ALWAYS_ON
++    bool "Always enable FineIBT paranoid mode"
++    default n
++    depends on FINEIBT
++    help
++      This option forces the kernel to always enable FineIBT paranoid mode.
++      In this mode, every indirect call is preceded by a verification check that
++      compares a runtime-patched hash (derived from the target function
++      prototype) against an expected value. This extra verification is designed
++      to intercept and abort indirect calls that bypass FineIBT’s protection,
++      such as calls to entry_SYSCALL_64() that do not perform the necessary hash
++      check.
++
++      The check is implemented via an optimized instruction sequence:
++      a 'cmpl' instruction compares the hash against the expected value, and if
++      they do not match, a backward jump is taken that deliberately lands in the
++      middle of an instruction (by overlapping a LEA), triggering an invalid
++      opcode exception (#UD). This clever technique ensures strict control-flow
++      integrity while incurring minimal performance overhead on legitimate calls.
++
++      Note: FRED is a new Intel CPU feature—Flexible Return and Event Delivery—that
++      overhauls traditional methods for handling CPU ring transitions. Instead of
++      relying on legacy IDT-based event delivery and IRET-based event returns, FRED
++      provides lower-latency, more secure transitions between privilege levels.
++      When supported, FRED can further enhance system performance and robustness.
++
+ config HAVE_CALL_THUNKS
+ 	def_bool y
+ 	depends on CC_HAS_ENTRY_PADDING && MITIGATION_RETHUNK && OBJTOOL
+diff --git a/arch/x86/kernel/alternative.c b/arch/x86/kernel/alternative.c
+index bf82c6f7d690..7f3c60d1b5a8 100644
+--- a/arch/x86/kernel/alternative.c
++++ b/arch/x86/kernel/alternative.c
+@@ -1500,10 +1500,12 @@ static void __apply_fineibt(s32 *start_retpoline, s32 *end_retpoline,
+ 		cfi_mode = CFI_KCFI;
+ 		if (HAS_KERNEL_IBT && cpu_feature_enabled(X86_FEATURE_IBT)) {
+ 			/*
+-			 * FRED has much saner context on exception entry and
+-			 * is less easy to take advantage of.
++			 * FRED provides a much more robust exception entry context.
++			 * If FRED is not enabled or the CONFIG_FINEIBT_PARANOID_ALWAYS_ON option is set,
++			 * enable strict CFI checks.
+ 			 */
+-			if (!cpu_feature_enabled(X86_FEATURE_FRED))
++			if (!cpu_feature_enabled(X86_FEATURE_FRED) ||
++					IS_ENABLED(CONFIG_FINEIBT_PARANOID_ALWAYS_ON))
+ 				cfi_paranoid = true;
+ 			cfi_mode = CFI_FINEIBT;
+ 		}
+-- 
+2.49.0
+
