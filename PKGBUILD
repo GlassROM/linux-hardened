@@ -47,6 +47,7 @@ source=(
   ${url}/releases/download/${_srctag}/${pkgbase}-${_srctag}.patch{,.sig}
   config  # the main kernel config file
   ibt.patch
+  cake.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -59,10 +60,12 @@ sha256sums=('3a39b62038b7ac2f43d26a1f84b4283e197804e1e817ad637e9a3d874c47801d'
             '0377d6a482c543e10a20e6120701f9c75f41afa24aad4fc26f8ee18ed3371068'
             'SKIP'
             'SKIP'
+            'SKIP'
 	    'SKIP')
 b2sums=('dc9e71842d7e9d2e016ca2c6e791d627790c87cd445b404c73745dc565eb89617ec69f1150b228d7853a595ea7f6daf6acdb74f8383088af30d42bb4c062a129'
         'SKIP'
         '58fb1171cc796c72237ff12c267eb4c6a935aa2551364708115ffe8c2896da2aabdfbbcea0862eecc83dfb793540b2153f9d80463dd4ba0bb874c9676ee5d3a4'
+        'SKIP'
         'SKIP'
         'SKIP'
 	'SKIP')
