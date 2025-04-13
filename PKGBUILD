@@ -4,12 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-<<<<<<< HEAD
 pkgname=linux-hardened
-pkgver=6.13.6.hardened1
-=======
 pkgver=6.13.7.hardened1
->>>>>>> c9e90bd9b7c4b0f9ee7a045afbb0a6a3f1600563
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
