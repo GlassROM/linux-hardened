@@ -1,0 +1,54 @@
+From 86b897f7c8cd977c817482b25d6efd407310cd10 Mon Sep 17 00:00:00 2001
+From: randomhydrosol <randomhydrosol@glassrom.org>
+Date: Mon, 14 Apr 2025 22:21:48 +0530
+Subject: [PATCH 3/3] add toggle to always enable FINEIBT-BHI
+
+Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
+---
+ arch/x86/Kconfig              | 15 +++++++++++++++
+ arch/x86/kernel/alternative.c |  3 ++-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 8f39aa95f0c90..45cb2103af93c 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -2473,6 +2473,21 @@ config FINEIBT_PARANOID_ALWAYS_ON
+       provides lower-latency, more secure transitions between privilege levels.
+       When supported, FRED can further enhance system performance and robustness.
+ 
++config FINEIBT_BHI_ALWAYS_ON
++    bool "Force FineIBT-BHI Always-On"
++    depends on FINEIBT_BHI
++    default n
++    help
++      When enabled, this option activates the complementary FineIBT-BHI mitigation by
++      default on supported platforms.
++
++      While the kernel includes a native mitigation for branch history injection (BHI)
++      attacks, on some modern platforms that native approach may not be fully adequate.
++      FineIBT introduces an additional mitigation layer—FineIBT-BHI—that complements the
++      native protection. Enabling this option forces the enhanced, complementary mitigation
++      into effect by default, thereby providing improved security against BHI-based
++      exploitation techniques.
++
+ config HAVE_CALL_THUNKS
+ 	def_bool y
+ 	depends on CC_HAS_ENTRY_PADDING && MITIGATION_RETHUNK && OBJTOOL
+diff --git a/arch/x86/kernel/alternative.c b/arch/x86/kernel/alternative.c
+index 7f3c60d1b5a8a..e6fe5407a9d06 100644
+--- a/arch/x86/kernel/alternative.c
++++ b/arch/x86/kernel/alternative.c
+@@ -1072,7 +1072,8 @@ static __init int cfi_parse_cmdline(char *str)
+ 			} else {
+ 				pr_err("Ignoring paranoid; depends on fineibt.\n");
+ 			}
+-		} else if (!strcmp(str, "bhi")) {
++		} else if (!strcmp(str, "bhi") ||
++				IS_ENABLED(CONFIG_FINEIBT_BHI_ALWAYS_ON)) {
+ #ifdef CONFIG_FINEIBT_BHI
+ 			if (cfi_mode == CFI_FINEIBT) {
+ 				cfi_bhi = true;
+-- 
+2.49.0
+
