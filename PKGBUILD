@@ -4,8 +4,8 @@
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
 pkgbase=linux-hardened
-pkgver=6.13.12.hardened1
-pkgrel=2
+pkgver=6.14.6.hardened1
+pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
 arch=(x86_64)
@@ -48,16 +48,16 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('611fbb669cf5539da48137a9c052becd499f3f862afaf21ab84cea3966221242'
+sha256sums=('21817f1998e2230f81f7e4f605fa6fdcb040e14fa27d99c27ddb16ce749797a9'
             'SKIP'
-            '2c6aac4ed110fb85da9d730c1d29e73e4e34cd2ad61b9af4eed7308607563945'
+            '8d8e015741e251904aef36b0d7e7a7d867a6743ff33d1dfb40f302b6de9c065e'
             'SKIP'
-            'b300d783e831cde42201f13e19eb09f71bc30f7455abab466adf7f541e7214d2')
-b2sums=('c48911f0bdabdb2534fdfb2c85c74702bdfce1befbb4085c8e931544b746c5f1b1ee48b156df3544ed1e2ee53064c7fe2dd2199879450eb0aa046a59ac51c4a0'
+            '513f54b0ea93fe06a975092497d30e3aa2430c8bf8f0efbca34baba863f4c589')
+b2sums=('dedcadc0b7506f620da3ac849446539e83d694f0955d5417e063b6680d53ef8993eeef40562ae8dae9249a21bea9746093f8873a360dd74f6b139fbafdd7b9ac'
         'SKIP'
-        '4a80f7154aa2c3d917bf140e62981198817354603fbc96248bef5ed2531efc66f54fc0c1ac91eccf88838bcfd67d911973dce0eabf36be01df3c084bebd3e6ed'
+        'd01444293df3334ff2dc43b2940043b1287ec791b72a77608662209754532e96b2fc84351f370fba5e49e0a5f7089845e01f2229c644d88a22d14b99be4bbcfa'
         'SKIP'
-        '931880cfaa3ae2161bf4d78b5b1d059c245a36f2f06521eda4820793259f000920c11ff179fd38e89a687ef8037a1d830795e03e3c5b0ec52e02046cf3ad6236')
+        '987f1be86053f9fbf3acbbd961dbc71171b88eb361820c05d32f7e54233e18173bfaee82bb8b721b31e2b4f7bf3fc9f7dfa05cc2f8d934763e5ccdbeae910bfe')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -96,7 +96,7 @@ build() {
   local pid_docs=$!
 
   make all
-  # make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
+  make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
   wait "${pid_docs}"
 }
 
@@ -115,6 +115,7 @@ _package() {
   )
   provides=(
     KSMBD-MODULE
+    NTSYNC-MODULE
     VIRTUALBOX-GUEST-MODULES
     WIREGUARD-MODULE
   )
@@ -149,17 +150,17 @@ _package-headers() {
 
   echo "Installing build files..."
   install -Dt "$builddir" -m644 .config Makefile Module.symvers System.map \
-    localversion.* version vmlinux # tools/bpf/bpftool/vmlinux.h
+    localversion.* version vmlinux tools/bpf/bpftool/vmlinux.h
   install -Dt "$builddir/kernel" -m644 kernel/Makefile
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
-  # ln -srt "$builddir" "$builddir/scripts/gdb/vmlinux-gdb.py"
+  ln -srt "$builddir" "$builddir/scripts/gdb/vmlinux-gdb.py"
 
   # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
 
   # required when DEBUG_INFO_BTF_MODULES is enabled
-  # install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
+  install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
   echo "Installing headers..."
   cp -t "$builddir" -a include
@@ -182,6 +183,14 @@ _package-headers() {
 
   echo "Installing KConfig files..."
   find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
+
+  # echo "Installing Rust files..."
+  # install -Dt "$builddir/rust" -m644 rust/*.rmeta
+  # install -Dt "$builddir/rust" rust/*.so
+
+  echo "Installing unstripped VDSO..."
+  make INSTALL_MOD_PATH="$pkgdir/usr" vdso_install \
+    link=  # Suppress build-id symlinks
 
   echo "Removing unneeded architectures..."
   local arch
