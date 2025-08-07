@@ -1,7 +1,7 @@
-From 6af531fb0de0a1707c680e89ecb9a3b91f2b59a9 Mon Sep 17 00:00:00 2001
+From d8f414ab2e87366d10bd8a81d938a48c8cbe77a1 Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 7 Apr 2025 13:52:27 +0530
-Subject: [PATCH 2/3] x86: add toggle to enforce indirect call verification
+Subject: [PATCH 102/105] x86: add toggle to enforce indirect call verification
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -13,10 +13,10 @@ When FRED is absent or CONFIG_FINEIBT_PARANOID_ALWAYS_ON is set, verify every in
  2 files changed, 31 insertions(+), 3 deletions(-)
 
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 4b9f378e05f6b..8f39aa95f0c90 100644
+index 7b2687be38d16..e160852bc241b 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -2447,6 +2447,32 @@ config FINEIBT_BHI
+@@ -2418,6 +2418,32 @@ config FINEIBT_BHI
  	def_bool y
  	depends on FINEIBT && CC_HAS_KCFI_ARITY
  
@@ -50,10 +50,10 @@ index 4b9f378e05f6b..8f39aa95f0c90 100644
  	def_bool y
  	depends on CC_HAS_ENTRY_PADDING && MITIGATION_RETHUNK && OBJTOOL
 diff --git a/arch/x86/kernel/alternative.c b/arch/x86/kernel/alternative.c
-index bf82c6f7d6905..7f3c60d1b5a8a 100644
+index ea1d984166cdd..23170694ba4e9 100644
 --- a/arch/x86/kernel/alternative.c
 +++ b/arch/x86/kernel/alternative.c
-@@ -1500,10 +1500,12 @@ static void __apply_fineibt(s32 *start_retpoline, s32 *end_retpoline,
+@@ -1758,10 +1758,12 @@ static void __apply_fineibt(s32 *start_retpoline, s32 *end_retpoline,
  		cfi_mode = CFI_KCFI;
  		if (HAS_KERNEL_IBT && cpu_feature_enabled(X86_FEATURE_IBT)) {
  			/*
@@ -70,5 +70,5 @@ index bf82c6f7d6905..7f3c60d1b5a8a 100644
  			cfi_mode = CFI_FINEIBT;
  		}
 -- 
-2.49.0
+2.50.1
 

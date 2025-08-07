@@ -1,0 +1,45 @@
+From 5a622be225f551d42c980cbc1a3216d329e57eed Mon Sep 17 00:00:00 2001
+From: randomhydrosol <randomhydrosol@glassrom.org>
+Date: Tue, 24 Jun 2025 11:51:31 +0530
+Subject: [PATCH 105/105] enable stack clash protection for clang
+
+---
+ Makefile                   | 4 ++++
+ security/Kconfig.hardening | 5 +++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 478f2004602da..d5617cc23aed7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -934,7 +934,11 @@ KBUILD_CFLAGS += $(call cc-option,-fzero-init-padding-bits=all)
+ 
+ # While VLAs have been removed, GCC produces unreachable stack probes
+ # for the randomize_kstack_offset feature. Disable it for all compilers.
++ifndef CC_HAS_STACK_CLASH_PROTECTION
+ KBUILD_CFLAGS	+= $(call cc-option, -fno-stack-clash-protection)
++else
++KBUILD_CFLAGS	+= $(call cc-option, -fstack-clash-protection)
++endif
+ 
+ # Clear used registers at func exit (to reduce data lifetime and ROP gadgets).
+ ifdef CONFIG_ZERO_CALL_USED_REGS
+diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
+index e2eecea6b1df3..bd3b9629fbbb5 100644
+--- a/security/Kconfig.hardening
++++ b/security/Kconfig.hardening
+@@ -82,6 +82,11 @@ choice
+ 
+ endchoice
+ 
++config CC_HAS_STACK_CLASH_PROTECTION
++	# May be a NOP on some clang versions
++	def_bool $(cc-option,-fstack-clash-protection)
++	depends on CC_IS_CLANG
++
+ config GCC_PLUGIN_STACKLEAK
+ 	bool "Poison kernel stack before returning from syscalls"
+ 	depends on GCC_PLUGINS
+-- 
+2.50.1
+

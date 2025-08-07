@@ -5,7 +5,7 @@
 
 pkgbase=linux-hardened
 pkgname=linux-hardened
-pkgver=6.13.12.hardened1
+pkgver=6.16.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
 url='https://github.com/anthraxx/linux-hardened'
@@ -44,10 +44,7 @@ _srcname=linux-${pkgver%.*}
 _srctag=v${pkgver%.*}-${pkgver##*.}
 source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
-  ${url}/releases/download/${_srctag}/${pkgbase}-${_srctag}.patch{,.sig}
   config  # the main kernel config file
-  ibt.patch
-  cake.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -55,18 +52,10 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('611fbb669cf5539da48137a9c052becd499f3f862afaf21ab84cea3966221242'
-            'SKIP'
-            '2c6aac4ed110fb85da9d730c1d29e73e4e34cd2ad61b9af4eed7308607563945'
-            'SKIP'
-            'SKIP'
+sha256sums=('1a4be2fe6b5246aa4ac8987a8a4af34c42a8dd7d08b46ab48516bcc1befbcd83'
             'SKIP'
 	    'SKIP')
-b2sums=('c48911f0bdabdb2534fdfb2c85c74702bdfce1befbb4085c8e931544b746c5f1b1ee48b156df3544ed1e2ee53064c7fe2dd2199879450eb0aa046a59ac51c4a0'
-        'SKIP'
-        '4a80f7154aa2c3d917bf140e62981198817354603fbc96248bef5ed2531efc66f54fc0c1ac91eccf88838bcfd67d911973dce0eabf36be01df3c084bebd3e6ed'
-        'SKIP'
-        'SKIP'
+b2sums=('87bc4da7e89cc8265aebffea7ec6c09f711be24fee87cb1c03a264c03fd5a538d66aa806640835aa5103926e612cdfbc52d7c861d7f7065f1a8bb11d893b0921'
         'SKIP'
 	'SKIP')
 
@@ -91,6 +80,12 @@ prepare() {
     patch -Np1 < "../$src"
   done
 
+  echo "Apply hardened patch"
+  for i in ${srcdir}/../linux-patches/*; do
+    echo "Applying patch ${i}..."
+    patch -Np1 < "${i}"
+  done
+
   echo "Setting config..."
   cp ../config .config
   LLVM=1 LLVM_IAS=1 make olddefconfig
@@ -98,6 +93,7 @@ prepare() {
 
   sed -i 's/-O2/-O3 -march=native -mtune=native -funroll-loops -Xclang -load -Xclang LLVMPolly.so -mllvm -polly -mllvm -polly-run-dce -mllvm -polly-run-inliner -mllvm -polly-ast-use-context -mllvm -polly-vectorizer=stripmine -mllvm -polly-invariant-load-hoisting/g' Makefile
   scripts/config --disable MODULES && scripts/config --enable TRIM_UNUSED_KSYMS
+  scripts/config --enable X86_NATIVE_CPU
   LLVM=1 LLVM_IAS=1 LSMOD=/home/builder/linux-hardened/lsmod make localyesconfig
 
   make -s kernelrelease > version

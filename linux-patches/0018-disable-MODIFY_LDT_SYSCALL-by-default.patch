@@ -1,0 +1,25 @@
+From bf13d2e23097917a0144d6826328fdac639fb390 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Thu, 4 May 2017 18:16:16 -0400
+Subject: [PATCH 018/105] disable MODIFY_LDT_SYSCALL by default
+
+Signed-off-by: Daniel Micay <danielmicay@gmail.com>
+---
+ arch/x86/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 464ec147815d7..ac6b330e171f2 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -2306,7 +2306,6 @@ config CMDLINE_OVERRIDE
+ 
+ config MODIFY_LDT_SYSCALL
+ 	bool "Enable the LDT (local descriptor table)"
+-	default y
+ 	help
+ 	  Linux can allow user programs to install a per-process x86
+ 	  Local Descriptor Table (LDT) using the modify_ldt(2) system
+-- 
+2.50.1
+

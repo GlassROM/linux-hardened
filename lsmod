@@ -1,36 +1,34 @@
 Module                  Size  Used by
-dm_verity              53248  0
-dm_bufio               57344  1 dm_verity
-reed_solomon           16384  1 dm_verity
-blake2b_generic        24576  0
-erofs                 159744  0
-netfs                 598016  1 erofs
+crc32_cryptoapi        12288  0
+cryptd                 28672  0
+polyval_generic        12288  0
 xt_LOG                 16384  0
 nf_log_syslog          24576  0
-xt_nat                 12288  56
+erofs                 163840  0
+netfs                 622592  1 erofs
+dm_verity              57344  0
+dm_bufio               57344  1 dm_verity
+reed_solomon           16384  1 dm_verity
 nf_conntrack_netlink    61440  0
+xt_nat                 12288  52
 veth                   40960  0
 bridge                450560  0
 stp                    12288  1 bridge
 llc                    16384  2 bridge,stp
 xt_set                 24576  0
 ip_set                 69632  1 xt_set
-xfrm_user              69632  1
+xfrm_user              73728  1
 xfrm_algo              16384  1 xfrm_user
-nft_chain_nat          12288  29
+nft_chain_nat          12288  27
 xt_MASQUERADE          16384  6
 nf_nat                 61440  3 xt_nat,nft_chain_nat,xt_MASQUERADE
-wireguard             118784  0
+wireguard             122880  0
 curve25519_x86_64      36864  1 wireguard
-libchacha20poly1305    16384  1 wireguard
-chacha_x86_64          28672  1 libchacha20poly1305
-poly1305_x86_64        28672  1 libchacha20poly1305
 libcurve25519_generic    45056  2 curve25519_x86_64,wireguard
-libchacha              12288  1 chacha_x86_64
 ip6_udp_tunnel         16384  1 wireguard
-udp_tunnel             28672  1 wireguard
-overlay               237568  15
-rfkill                 40960  1
+udp_tunnel             32768  1 wireguard
+overlay               237568  12
+rfkill                 45056  1
 ip6t_REJECT            12288  4
 nf_reject_ipv6         20480  1 ip6t_REJECT
 xt_hl                  12288  22
@@ -41,72 +39,57 @@ xt_recent              24576  8
 nft_limit              16384  1
 xt_limit               12288  0
 xt_addrtype            12288  8
-xt_tcpudp              20480  60
+xt_tcpudp              16384  60
 xt_conntrack           12288  27
-nf_conntrack          200704  5 xt_conntrack,nf_nat,xt_nat,nf_conntrack_netlink,xt_MASQUERADE
+nf_conntrack          204800  5 xt_conntrack,nf_nat,xt_nat,nf_conntrack_netlink,xt_MASQUERADE
 nf_defrag_ipv6         24576  1 nf_conntrack
 nf_defrag_ipv4         12288  1 nf_conntrack
-nft_compat             24576  198
-nf_tables             389120  1875 nft_compat,nft_chain_nat,nft_limit
-libcrc32c              12288  4 nf_conntrack,nf_nat,erofs,nf_tables
-crc32c_generic         12288  0
+nft_compat             24576  194
+nf_tables             393216  1821 nft_compat,nft_chain_nat,nft_limit
 vfat                   24576  1
 fat                   110592  1 vfat
 intel_rapl_msr         20480  0
 intel_rapl_common      53248  1 intel_rapl_msr
 intel_uncore_frequency_common    16384  0
-intel_pmc_core        122880  0
-intel_vsec             20480  1 intel_pmc_core
+intel_pmc_core        139264  0
 pmt_telemetry          16384  1 intel_pmc_core
-pmt_class              16384  1 pmt_telemetry
-crct10dif_pclmul       12288  1
+pmt_class              20480  1 pmt_telemetry
+intel_pmc_ssram_telemetry    16384  1 intel_pmc_core
+intel_vsec             20480  1 intel_pmc_ssram_telemetry
 polyval_clmulni        12288  0
-polyval_generic        12288  1 polyval_clmulni
-ghash_clmulni_intel    16384  0
+ghash_clmulni_intel    12288  0
 sha512_ssse3           49152  0
-sha256_ssse3           36864  1
 sha1_ssse3             32768  0
-aesni_intel           122880  0
-gf128mul               16384  2 polyval_generic,aesni_intel
-crypto_simd            16384  1 aesni_intel
-cryptd                 28672  2 crypto_simd,ghash_clmulni_intel
-serio_raw              20480  0
+aesni_intel            98304  0
 rapl                   20480  0
-atkbd                  40960  0
-joydev                 28672  0
-mousedev               24576  0
-libps2                 20480  1 atkbd
-mac_hid                12288  0
-vivaldi_fmap           12288  1 atkbd
+joydev                 24576  0
 hv_utils               57344  1
-hid_generic            12288  0
-ptp                    45056  1 hv_utils
-hyperv_keyboard        12288  0
-pcspkr                 12288  0
+ptp                    49152  1 hv_utils
+mousedev               28672  0
 hv_netvsc             118784  0
-hid_hyperv             16384  0
-hyperv_drm             24576  0
+pcspkr                 12288  0
 hv_balloon             49152  0
 pps_core               32768  1 ptp
-serio                  28672  4 hyperv_keyboard,serio_raw,atkbd
+mac_hid                12288  0
 sg                     53248  0
+dm_mod                229376  2 dm_verity,dm_bufio
 loop                   45056  0
-dm_mod                225280  2 dm_verity,dm_bufio
 nfnetlink              20480  6 nft_compat,nf_conntrack_netlink,nf_tables,ip_set
 vsock_loopback         12288  0
 vmw_vsock_virtio_transport_common    57344  1 vsock_loopback
-hv_sock                20480  0
-vmw_vsock_vmci_transport    45056  0
-vsock                  61440  6 vmw_vsock_virtio_transport_common,vsock_loopback,hv_sock,vmw_vsock_vmci_transport
+hv_sock                24576  0
+vmw_vsock_vmci_transport    49152  0
+vsock                  69632  6 vmw_vsock_virtio_transport_common,vsock_loopback,hv_sock,vmw_vsock_vmci_transport
 vmw_vmci              118784  1 vmw_vsock_vmci_transport
 ip_tables              36864  0
 x_tables               65536  15 xt_conntrack,nft_compat,xt_LOG,xt_tcpudp,xt_addrtype,xt_recent,xt_nat,ip6t_rt,xt_set,ipt_REJECT,ip_tables,xt_limit,xt_hl,xt_MASQUERADE,ip6t_REJECT
-f2fs                 1015808  1
-crc32_generic          12288  0
+f2fs                 1007616  1
 lz4hc_compress         20480  1 f2fs
 lz4_compress           24576  1 f2fs
-hv_storvsc             28672  3
+serio_raw              20480  0
+hv_storvsc             32768  3
 scsi_transport_fc     110592  1 hv_storvsc
-crc32_pclmul           12288  1
-crc32c_intel           12288  1
+hyperv_drm             24576  0
+hid_hyperv             16384  0
+hyperv_keyboard        12288  0
 hv_vmbus              188416  8 hv_balloon,hv_utils,hv_netvsc,hid_hyperv,hv_storvsc,hyperv_keyboard,hyperv_drm,hv_sock

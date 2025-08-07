@@ -1,0 +1,24 @@
+From 4a82fc35a69722c8d4ba29500a1b80f6c19c6d50 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Sun, 25 Feb 2018 02:15:24 -0500
+Subject: [PATCH 036/105] enable AUDIT by default
+
+---
+ init/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/init/Kconfig b/init/Kconfig
+index e77c2552af606..b14eda0d9be55 100644
+--- a/init/Kconfig
++++ b/init/Kconfig
+@@ -484,6 +484,7 @@ config CROSS_MEMORY_ATTACH
+ config AUDIT
+ 	bool "Auditing support"
+ 	depends on NET
++	default y
+ 	help
+ 	  Enable auditing infrastructure that can be used with another
+ 	  kernel subsystem, such as SELinux (which requires this for
+-- 
+2.50.1
+

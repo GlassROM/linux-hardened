@@ -1,0 +1,25 @@
+From 5ed23ef500b93c7c76269c8b663757038a70a700 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Mon, 29 May 2017 06:17:41 -0400
+Subject: [PATCH 002/105] enable HARDENED_USERCOPY by default
+
+Signed-off-by: Daniel Micay <danielmicay@gmail.com>
+---
+ security/Kconfig.hardening | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
+index fd1238753cadb..ce789ca76c4d0 100644
+--- a/security/Kconfig.hardening
++++ b/security/Kconfig.hardening
+@@ -218,6 +218,7 @@ config FORTIFY_SOURCE
+ config HARDENED_USERCOPY
+ 	bool "Harden memory copies between kernel and userspace"
+ 	imply STRICT_DEVMEM
++	default y
+ 	help
+ 	  This option checks for obviously wrong memory regions when
+ 	  copying memory to/from the kernel (via copy_to_user() and
+-- 
+2.50.1
+

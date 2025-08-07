@@ -1,0 +1,39 @@
+From a4c3de11df502d0fb995d02a19756c8ec29b44c6 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Thu, 11 May 2017 16:02:49 -0400
+Subject: [PATCH 074/105] randomize lower bits of the argument block
+
+This was based on the PaX RANDUSTACK feature in grsecurity, where all of
+the lower bits are randomized. PaX keeps 16-byte alignment.
+
+Signed-off-by: Daniel Micay <danielmicay@gmail.com>
+[levente@leventepolyak.net: do not randomize with ADDR_NO_RANDOMIZE personality]
+Signed-off-by: Levente Polyak <levente@leventepolyak.net>
+---
+ fs/exec.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/fs/exec.c b/fs/exec.c
+index ba400aafd6406..63adb3e326e90 100644
+--- a/fs/exec.c
++++ b/fs/exec.c
+@@ -68,6 +68,7 @@
+ #include <linux/user_events.h>
+ #include <linux/rseq.h>
+ #include <linux/ksm.h>
++#include <linux/random.h>
+ 
+ #include <linux/uaccess.h>
+ #include <asm/mmu_context.h>
+@@ -276,6 +277,8 @@ static int bprm_mm_init(struct linux_binprm *bprm)
+ 		goto err;
+ #endif
+ 
++	if (!(current->personality & ADDR_NO_RANDOMIZE) && randomize_va_space)
++		bprm->p ^= get_random_u32() & ~PAGE_MASK;
+ 	return 0;
+ 
+ err:
+-- 
+2.50.1
+

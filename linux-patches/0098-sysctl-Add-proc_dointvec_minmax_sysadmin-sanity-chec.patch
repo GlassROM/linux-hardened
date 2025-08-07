@@ -1,0 +1,29 @@
+From f52738f3276471364369d20f514b8c86552c7f9b Mon Sep 17 00:00:00 2001
+From: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
+Date: Thu, 17 Oct 2024 17:02:29 +0200
+Subject: [PATCH 098/105] sysctl: Add proc_dointvec_minmax_sysadmin sanity
+ check
+
+Since we expose proc_dointvec_minmax_sysadmin, add it to sanity checking
+functions.
+
+Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
+---
+ fs/proc/proc_sysctl.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
+index 08b78150cdde1..df2e229fd7564 100644
+--- a/fs/proc/proc_sysctl.c
++++ b/fs/proc/proc_sysctl.c
+@@ -1155,6 +1155,7 @@ static int sysctl_check_table(const char *path, struct ctl_table_header *header)
+ 		    (entry->proc_handler == proc_douintvec) ||
+ 		    (entry->proc_handler == proc_douintvec_minmax) ||
+ 		    (entry->proc_handler == proc_dointvec_minmax) ||
++		    (entry->proc_handler == proc_dointvec_minmax_sysadmin) ||
+ 		    (entry->proc_handler == proc_dou8vec_minmax) ||
+ 		    (entry->proc_handler == proc_dointvec_jiffies) ||
+ 		    (entry->proc_handler == proc_dointvec_userhz_jiffies) ||
+-- 
+2.50.1
+

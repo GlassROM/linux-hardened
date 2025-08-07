@@ -1,7 +1,7 @@
-From 4728fc8be940088a2c388e42a3e619fe8ef3d32a Mon Sep 17 00:00:00 2001
+From 710b674bc830ecb335c08a98f73bb03a500f7487 Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Sun, 13 Apr 2025 22:36:40 +0530
-Subject: [PATCH] Add option to set CAKE as default
+Subject: [PATCH 100/105] Add option to set CAKE as default
 
 Intentionally put it on top of the list so that hopefully future changes
 to this code are not a problem
@@ -12,10 +12,10 @@ Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
  1 file changed, 4 insertions(+)
 
 diff --git a/net/sched/Kconfig b/net/sched/Kconfig
-index a800127ef..85f1028d9 100644
+index ad914d2b2e221..4e4e743795433 100644
 --- a/net/sched/Kconfig
 +++ b/net/sched/Kconfig
-@@ -423,6 +423,9 @@ choice
+@@ -435,6 +435,9 @@ choice
  	  Select the queueing discipline that will be used by default
  	  for all network devices.
  
@@ -25,7 +25,7 @@ index a800127ef..85f1028d9 100644
  	config DEFAULT_FQ
  		bool "Fair Queue" if NET_SCH_FQ
  
-@@ -444,6 +447,7 @@ endchoice
+@@ -456,6 +459,7 @@ endchoice
  
  config DEFAULT_NET_SCH
  	string
@@ -34,5 +34,5 @@ index a800127ef..85f1028d9 100644
  	default "fq" if DEFAULT_FQ
  	default "fq_codel" if DEFAULT_FQ_CODEL
 -- 
-2.49.0
+2.50.1
 

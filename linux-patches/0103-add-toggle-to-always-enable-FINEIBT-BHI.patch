@@ -1,7 +1,7 @@
-From 86b897f7c8cd977c817482b25d6efd407310cd10 Mon Sep 17 00:00:00 2001
+From 294693e326e854fabc37468a8e30b2741f9d2de8 Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 14 Apr 2025 22:21:48 +0530
-Subject: [PATCH 3/3] add toggle to always enable FINEIBT-BHI
+Subject: [PATCH 103/105] add toggle to always enable FINEIBT-BHI
 
 Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
 ---
@@ -10,10 +10,10 @@ Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
  2 files changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 8f39aa95f0c90..45cb2103af93c 100644
+index e160852bc241b..cbb8cecf616b2 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -2473,6 +2473,21 @@ config FINEIBT_PARANOID_ALWAYS_ON
+@@ -2444,6 +2444,21 @@ config FINEIBT_PARANOID_ALWAYS_ON
        provides lower-latency, more secure transitions between privilege levels.
        When supported, FRED can further enhance system performance and robustness.
  
@@ -36,10 +36,10 @@ index 8f39aa95f0c90..45cb2103af93c 100644
  	def_bool y
  	depends on CC_HAS_ENTRY_PADDING && MITIGATION_RETHUNK && OBJTOOL
 diff --git a/arch/x86/kernel/alternative.c b/arch/x86/kernel/alternative.c
-index 7f3c60d1b5a8a..e6fe5407a9d06 100644
+index 23170694ba4e9..7dcdb85fd9d4c 100644
 --- a/arch/x86/kernel/alternative.c
 +++ b/arch/x86/kernel/alternative.c
-@@ -1072,7 +1072,8 @@ static __init int cfi_parse_cmdline(char *str)
+@@ -1312,7 +1312,8 @@ static __init int cfi_parse_cmdline(char *str)
  			} else {
  				pr_err("Ignoring paranoid; depends on fineibt.\n");
  			}
@@ -50,5 +50,5 @@ index 7f3c60d1b5a8a..e6fe5407a9d06 100644
  			if (cfi_mode == CFI_FINEIBT) {
  				cfi_bhi = true;
 -- 
-2.49.0
+2.50.1
 

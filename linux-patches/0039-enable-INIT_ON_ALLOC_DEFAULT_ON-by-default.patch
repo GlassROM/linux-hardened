@@ -1,0 +1,24 @@
+From fdf7cf7dc0947b44bce62b03d7420d83b9d283db Mon Sep 17 00:00:00 2001
+From: Levente Polyak <levente@leventepolyak.net>
+Date: Thu, 19 Sep 2019 19:02:23 +0200
+Subject: [PATCH 039/105] enable INIT_ON_ALLOC_DEFAULT_ON by default
+
+---
+ security/Kconfig.hardening | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
+index 767f66e765015..6265bab38a795 100644
+--- a/security/Kconfig.hardening
++++ b/security/Kconfig.hardening
+@@ -151,6 +151,7 @@ config STACKLEAK_RUNTIME_DISABLE
+ 
+ config INIT_ON_ALLOC_DEFAULT_ON
+ 	bool "Enable heap memory zeroing on allocation by default"
++	default yes
+ 	depends on !KMSAN
+ 	help
+ 	  This has the effect of setting "init_on_alloc=1" on the kernel
+-- 
+2.50.1
+

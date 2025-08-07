@@ -1,7 +1,7 @@
-From e167c8abd97e9a44a93fe00f375e4f7d3dffffd6 Mon Sep 17 00:00:00 2001
+From 80684eff281f2adf04534081f9acab216cff180d Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Sat, 13 Jul 2024 21:41:56 +0000
-Subject: [PATCH 1/3] Disable IBT for Hyper-V hypercalls
+Subject: [PATCH 101/105] Disable IBT for Hyper-V hypercalls
 
 Hyper-V does not have an endbr instruction at the start of the hypercall page, causing a kernel panic if IBT is enabled.
 
@@ -16,7 +16,7 @@ Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
  2 files changed, 72 insertions(+), 24 deletions(-)
 
 diff --git a/arch/x86/hyperv/hv_init.c b/arch/x86/hyperv/hv_init.c
-index ddeb40930bc80..8833f91f009ba 100644
+index afdbda2dd7b7e..6b78e7d938420 100644
 --- a/arch/x86/hyperv/hv_init.c
 +++ b/arch/x86/hyperv/hv_init.c
 @@ -17,7 +17,6 @@
@@ -27,7 +27,7 @@ index ddeb40930bc80..8833f91f009ba 100644
  #include <asm/hypervisor.h>
  #include <hyperv/hvhdk.h>
  #include <asm/mshyperv.h>
-@@ -548,26 +547,6 @@ void __init hyperv_init(void)
+@@ -516,26 +515,6 @@ void __init hyperv_init(void)
  	}
  
  skip_hypercall_pg_init:
@@ -55,18 +55,18 @@ index ddeb40930bc80..8833f91f009ba 100644
  	 * hyperv_init() is called before LAPIC is initialized: see
  	 * apic_intr_mode_init() -> x86_platform.apic_post_init() and
 diff --git a/arch/x86/include/asm/mshyperv.h b/arch/x86/include/asm/mshyperv.h
-index bab5ccfc60a74..e87b954d1ad9c 100644
+index abc4659f5809f..5874156179e11 100644
 --- a/arch/x86/include/asm/mshyperv.h
 +++ b/arch/x86/include/asm/mshyperv.h
-@@ -9,6 +9,7 @@
- #include <asm/nospec-branch.h>
+@@ -10,6 +10,7 @@
  #include <asm/paravirt.h>
+ #include <asm/msr.h>
  #include <hyperv/hvhdk.h>
 +#include <asm/ibt.h>
  
  /*
   * Hyper-V always provides a single IO-APIC at this MMIO address.
-@@ -56,6 +57,17 @@ u64 hv_tdx_hypercall(u64 control, u64 param1, u64 param2);
+@@ -57,6 +58,17 @@ u64 hv_tdx_hypercall(u64 control, u64 param1, u64 param2);
  #define HV_AP_INIT_GPAT_DEFAULT		0x0007040600070406ULL
  #define HV_AP_SEGMENT_LIMIT		0xffffffff
  
@@ -84,7 +84,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  /*
   * If the hypercall involves no input or output parameters, the hypervisor
   * ignores the corresponding GPA pointer.
-@@ -64,25 +76,35 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+@@ -65,25 +77,35 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
  {
  	u64 input_address = input ? virt_to_phys(input) : 0;
  	u64 output_address = output ? virt_to_phys(output) : 0;
@@ -121,7 +121,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  	__asm__ __volatile__("mov %[output_address], %%r8\n"
  			     CALL_NOSPEC
  			     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
-@@ -90,6 +112,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+@@ -91,6 +113,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
  			     : [output_address] "r" (output_address),
  			       THUNK_TARGET(hv_hypercall_pg)
  			     : "cc", "memory", "r8", "r9", "r10", "r11");
@@ -131,7 +131,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  #else
  	u32 input_address_hi = upper_32_bits(input_address);
  	u32 input_address_lo = lower_32_bits(input_address);
-@@ -99,6 +124,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+@@ -100,6 +125,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
  	if (!hv_hypercall_pg)
  		return U64_MAX;
  
@@ -141,7 +141,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  	__asm__ __volatile__(CALL_NOSPEC
  			     : "=A" (hv_status),
  			       "+c" (input_address_lo), ASM_CALL_CONSTRAINT
-@@ -107,6 +135,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
+@@ -108,6 +136,9 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
  			       "D"(output_address_hi), "S"(output_address_lo),
  			       THUNK_TARGET(hv_hypercall_pg)
  			     : "cc", "memory");
@@ -151,7 +151,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  #endif /* !x86_64 */
  	return hv_status;
  }
-@@ -120,30 +151,46 @@ static inline u64 hv_do_nested_hypercall(u64 control, void *input, void *output)
+@@ -115,30 +146,46 @@ static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
  /* Fast hypercall with 8 bytes of input and no output */
  static inline u64 _hv_do_fast_hypercall8(u64 control, u64 input1)
  {
@@ -199,7 +199,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  		__asm__ __volatile__ (CALL_NOSPEC
  				      : "=A"(hv_status),
  					"+c"(input1_lo),
-@@ -152,6 +199,9 @@ static inline u64 _hv_do_fast_hypercall8(u64 control, u64 input1)
+@@ -147,6 +194,9 @@ static inline u64 _hv_do_fast_hypercall8(u64 control, u64 input1)
  					"b" (input1_hi),
  					THUNK_TARGET(hv_hypercall_pg)
  				      : "cc", "edi", "esi");
@@ -209,7 +209,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  	}
  #endif
  	return hv_status;
-@@ -174,20 +224,30 @@ static inline u64 hv_do_fast_nested_hypercall8(u16 code, u64 input1)
+@@ -162,20 +212,30 @@ static inline u64 hv_do_fast_hypercall8(u16 code, u64 input1)
  /* Fast hypercall with 16 bytes of input */
  static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
  {
@@ -241,7 +241,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  		__asm__ __volatile__("mov %[input2], %%r8\n"
  				     CALL_NOSPEC
  				     : "=a" (hv_status), ASM_CALL_CONSTRAINT,
-@@ -195,6 +255,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+@@ -183,6 +243,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
  				     : [input2] "r" (input2),
  				       THUNK_TARGET(hv_hypercall_pg)
  				     : "cc", "r8", "r9", "r10", "r11");
@@ -251,7 +251,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  	}
  #else
  	{
-@@ -203,6 +266,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+@@ -191,6 +254,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
  		u32 input2_hi = upper_32_bits(input2);
  		u32 input2_lo = lower_32_bits(input2);
  
@@ -261,7 +261,7 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  		__asm__ __volatile__ (CALL_NOSPEC
  				      : "=A"(hv_status),
  					"+c"(input1_lo), ASM_CALL_CONSTRAINT
-@@ -210,6 +276,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
+@@ -198,6 +264,9 @@ static inline u64 _hv_do_fast_hypercall16(u64 control, u64 input1, u64 input2)
  					"D"(input2_hi), "S"(input2_lo),
  					THUNK_TARGET(hv_hypercall_pg)
  				      : "cc");
@@ -272,5 +272,5 @@ index bab5ccfc60a74..e87b954d1ad9c 100644
  #endif
  	return hv_status;
 -- 
-2.49.0
+2.50.1
 
