@@ -1,7 +1,7 @@
-From f26ca639aef63035a9aed606dd7f2c66b333535a Mon Sep 17 00:00:00 2001
+From a8a748fa2bef575d2a30e35e604497f854141975 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 8 May 2017 12:51:54 -0400
-Subject: [PATCH 012/105] enable FORTIFY_SOURCE by default
+Subject: [PATCH 012/101] enable FORTIFY_SOURCE by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

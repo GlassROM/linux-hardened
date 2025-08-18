@@ -1,7 +1,7 @@
-From 0831ee7b7d557fe5ec5805bac7469d06cd8dc56f Mon Sep 17 00:00:00 2001
+From 11e936f9bef5e5de7bb3343ff95d7ba061772cd6 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 5 Jan 2018 12:41:42 -0500
-Subject: [PATCH 028/105] disable DEVMEM by default
+Subject: [PATCH 028/101] disable DEVMEM by default
 
 ---
  drivers/char/Kconfig | 1 -

@@ -1,7 +1,7 @@
-From d8f414ab2e87366d10bd8a81d938a48c8cbe77a1 Mon Sep 17 00:00:00 2001
+From cdc47249e7a03fabb937a699401b7960f6e11e1c Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 7 Apr 2025 13:52:27 +0530
-Subject: [PATCH 102/105] x86: add toggle to enforce indirect call verification
+Subject: [PATCH 100/101] x86: add toggle to enforce indirect call verification
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

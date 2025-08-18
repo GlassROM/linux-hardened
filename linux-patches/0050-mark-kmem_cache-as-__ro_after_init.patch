@@ -1,7 +1,7 @@
-From 9129fca05a385f05c017544ba430dfb1d5ede523 Mon Sep 17 00:00:00 2001
+From f38ef52f4bc1510ddf3fa5062cef817213a1fa65 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 28 May 2017 18:51:30 -0400
-Subject: [PATCH 050/105] mark kmem_cache as __ro_after_init
+Subject: [PATCH 050/101] mark kmem_cache as __ro_after_init
 
 ---
  mm/slab_common.c | 2 +-

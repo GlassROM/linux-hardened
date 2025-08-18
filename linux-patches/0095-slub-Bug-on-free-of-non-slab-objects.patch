@@ -1,7 +1,7 @@
-From deec47fa4fcca34aa870720b97fa49d46e3358cf Mon Sep 17 00:00:00 2001
+From 8f74f437790756da7cc925c0ce207caa0da51835 Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Thu, 16 Dec 2021 10:55:13 +0100
-Subject: [PATCH 096/105] slub: Bug on free of non-slab objects
+Subject: [PATCH 095/101] slub: Bug on free of non-slab objects
 
 Before commit d0fe47c64152 ("slub: add back check for free nonslab
 objects"), freeing a non-slab object used to trigger a BUG if
@@ -25,7 +25,7 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 4 insertions(+)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index d4fe2f89b07bf..3b1aa77aa76a8 100644
+index 8ff7192452394..8895d00983159 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -4868,8 +4868,12 @@ static void free_large_kmalloc(struct folio *folio, void *object)

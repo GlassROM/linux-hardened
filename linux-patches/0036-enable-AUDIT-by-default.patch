@@ -1,14 +1,14 @@
-From 4a82fc35a69722c8d4ba29500a1b80f6c19c6d50 Mon Sep 17 00:00:00 2001
+From 3da0423ff2f2b49cc7a5b31dc6d5766c80d80f99 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 02:15:24 -0500
-Subject: [PATCH 036/105] enable AUDIT by default
+Subject: [PATCH 036/101] enable AUDIT by default
 
 ---
  init/Kconfig | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index e77c2552af606..b14eda0d9be55 100644
+index aab4dd0d4f067..f012066276d82 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -484,6 +484,7 @@ config CROSS_MEMORY_ATTACH

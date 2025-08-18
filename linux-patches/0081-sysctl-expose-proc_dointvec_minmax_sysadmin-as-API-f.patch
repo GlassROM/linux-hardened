@@ -1,7 +1,7 @@
-From 3e658bc0dcb4ea7246bd6412719899af682035d5 Mon Sep 17 00:00:00 2001
+From 92a6746b5805ad7c60bd047ef0816b6926a7aa1e Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 6 Sep 2020 20:28:32 +0200
-Subject: [PATCH 081/105] sysctl: expose proc_dointvec_minmax_sysadmin as API
+Subject: [PATCH 081/101] sysctl: expose proc_dointvec_minmax_sysadmin as API
  function
 
 Orthogonal to the other sysctl proc functions expose the variant that is

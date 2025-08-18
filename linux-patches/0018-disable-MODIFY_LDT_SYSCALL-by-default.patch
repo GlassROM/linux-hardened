@@ -1,7 +1,7 @@
-From bf13d2e23097917a0144d6826328fdac639fb390 Mon Sep 17 00:00:00 2001
+From 30acbd2dcf788f6610cf000090878aaa1c3ab3a0 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:16:16 -0400
-Subject: [PATCH 018/105] disable MODIFY_LDT_SYSCALL by default
+Subject: [PATCH 018/101] disable MODIFY_LDT_SYSCALL by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

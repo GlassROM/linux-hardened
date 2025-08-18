@@ -1,7 +1,7 @@
-From e37cb59493beaa96a9d1abacb18a13eb863f1235 Mon Sep 17 00:00:00 2001
+From 8ae1e1dd8cfdf95645b238e5970b6bc1cda86f44 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 14 May 2017 19:01:58 -0400
-Subject: [PATCH 048/105] mark slub runtime configuration as __ro_after_init
+Subject: [PATCH 048/101] mark slub runtime configuration as __ro_after_init
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 31e11ef256f90..17581d363e317 100644
+index 45a963e363d32..e3c4513793d59 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -856,13 +856,13 @@ static inline void *restore_red_left(struct kmem_cache *s, void *p)

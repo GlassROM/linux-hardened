@@ -1,7 +1,7 @@
-From b3332a6fa2619aba7a8f69b8da81b4d4f2c9fc5e Mon Sep 17 00:00:00 2001
+From 8a464bad8703720dba16499c1b71afac383e8e4b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 03:26:45 -0500
-Subject: [PATCH 084/105] hard-wire legacy checkreqprot option to 0
+Subject: [PATCH 083/101] hard-wire legacy checkreqprot option to 0
 
 The userspace API is left intact for compatibility.
 
@@ -13,10 +13,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  3 files changed, 1 insertion(+), 32 deletions(-)
 
 diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 008bc35bab1c7..4bf0a4903b524 100644
+index 881c0501bc7bb..5f8788002a463 100644
 --- a/Documentation/admin-guide/kernel-parameters.txt
 +++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -643,17 +643,6 @@
+@@ -651,17 +651,6 @@
  			nokmem -- Disable kernel memory accounting.
  			nobpf -- Disable BPF memory accounting.
  

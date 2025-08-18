@@ -1,7 +1,7 @@
-From 1e79002ef72ae3b00b5a5cafbb1d9d63baa5424e Mon Sep 17 00:00:00 2001
+From 08f27e2eecddea3c7bf39ff8c348a5e2c6111254 Mon Sep 17 00:00:00 2001
 From: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
 Date: Fri, 8 Dec 2023 11:53:31 +0100
-Subject: [PATCH 097/105] io_uring: set io_uring_disabled sysctl to 1 by
+Subject: [PATCH 096/101] io_uring: set io_uring_disabled sysctl to 1 by
  default
 
 This forces processes to have `CAP_SYS_ADMIN` in order to use io_uring or

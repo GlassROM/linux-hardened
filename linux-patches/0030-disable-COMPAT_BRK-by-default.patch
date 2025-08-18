@@ -1,7 +1,7 @@
-From f682ae41b426cf8bcc6fdd89fed09ba1deac27b0 Mon Sep 17 00:00:00 2001
+From 7fe4c5f5865338b64e135d1ecf4e9728a524f4e4 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 7 May 2017 18:28:33 -0400
-Subject: [PATCH 030/105] disable COMPAT_BRK by default
+Subject: [PATCH 030/101] disable COMPAT_BRK by default
 
 ---
  mm/Kconfig | 1 -

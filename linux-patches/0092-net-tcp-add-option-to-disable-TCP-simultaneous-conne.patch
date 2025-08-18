@@ -1,7 +1,7 @@
-From 7715700fadc5d569cd8b60d10c1042c4f54a6b90 Mon Sep 17 00:00:00 2001
+From 614eee0072a7e7a24bc01392c8b799b1dca6c2b6 Mon Sep 17 00:00:00 2001
 From: madaidan <50278627+madaidan@users.noreply.github.com>
 Date: Sun, 9 Feb 2020 00:03:41 +0000
-Subject: [PATCH 093/105] net: tcp: add option to disable TCP simultaneous
+Subject: [PATCH 092/101] net: tcp: add option to disable TCP simultaneous
  connect
 
 This is modified from Brad Spengler/PaX Team's code in the last public
@@ -126,7 +126,7 @@ index 3a43010d726fb..4ce93a361d07e 100644
  
  static struct ctl_table ipv4_net_table[] = {
 diff --git a/net/ipv4/tcp_input.c b/net/ipv4/tcp_input.c
-index 68bc79eb90197..fbb4215c1e6e0 100644
+index 94391f32a5d87..58e5cc607a64d 100644
 --- a/net/ipv4/tcp_input.c
 +++ b/net/ipv4/tcp_input.c
 @@ -83,6 +83,7 @@
@@ -137,7 +137,7 @@ index 68bc79eb90197..fbb4215c1e6e0 100644
  
  #define FLAG_DATA		0x01 /* Incoming frame contained data.		*/
  #define FLAG_WIN_UPDATE		0x02 /* Incoming ACK was a window update.	*/
-@@ -6653,7 +6654,7 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
+@@ -6655,7 +6656,7 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
  		SKB_DR_SET(reason, TCP_RFC7323_PAWS);
  		goto discard_and_undo;
  	}

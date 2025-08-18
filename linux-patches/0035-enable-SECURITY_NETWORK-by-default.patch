@@ -1,7 +1,7 @@
-From 8f647ef006e15a480f5b80668487baae06abae2c Mon Sep 17 00:00:00 2001
+From 0cfc1567629f340171855e1ad7006819d46e9837 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 02:14:02 -0500
-Subject: [PATCH 035/105] enable SECURITY_NETWORK by default
+Subject: [PATCH 035/101] enable SECURITY_NETWORK by default
 
 ---
  security/Kconfig | 1 +

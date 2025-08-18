@@ -1,7 +1,7 @@
-From 220657801a4e5486e7504c6ed3445874d9a409f5 Mon Sep 17 00:00:00 2001
+From 3c000785b2b35d81bd43af3b85d07971475ed247 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 4 Nov 2018 18:48:53 +0100
-Subject: [PATCH 089/105] enable protected_{fifos,regular} by default
+Subject: [PATCH 088/101] enable protected_{fifos,regular} by default
 
 ---
  fs/namei.c | 4 ++--

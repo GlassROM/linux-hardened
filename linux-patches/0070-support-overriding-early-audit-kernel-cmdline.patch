@@ -1,7 +1,7 @@
-From 0e9df37de0a5cef9b464306a3bce142876eaf5e3 Mon Sep 17 00:00:00 2001
+From 95d1d614fb1140908c6c52af43af616dcc8623fd Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 9 Jul 2017 17:20:29 -0400
-Subject: [PATCH 070/105] support overriding early audit kernel cmdline
+Subject: [PATCH 070/101] support overriding early audit kernel cmdline
 
 ---
  kernel/audit.c | 3 +++

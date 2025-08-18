@@ -1,14 +1,14 @@
-From 4d4e812b039061a2bdaefa7e9f0b25c5c9355e5e Mon Sep 17 00:00:00 2001
+From 41d6f8e9f6f8d2d469a301f343b422beeae7deac Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Tue, 22 Dec 2020 23:40:09 +0100
-Subject: [PATCH 042/105] stop hiding UID16 behind EXPERT
+Subject: [PATCH 042/101] stop hiding UID16 behind EXPERT
 
 ---
  init/Kconfig | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index b14eda0d9be55..4a55e12159ed0 100644
+index f012066276d82..afb65eab2647e 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1597,7 +1597,7 @@ menuconfig EXPERT

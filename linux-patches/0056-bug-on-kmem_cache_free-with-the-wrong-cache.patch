@@ -1,7 +1,7 @@
-From d12331287128fee4baba631059826c0f5d512572 Mon Sep 17 00:00:00 2001
+From 9e8c6fdeafa82b8c8d45576e902d24ec1e47aa2a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 11:50:53 -0400
-Subject: [PATCH 056/105] bug on kmem_cache_free with the wrong cache
+Subject: [PATCH 056/101] bug on kmem_cache_free with the wrong cache
 
 At least when CONFIG_BUG_ON_DATA_CORRUPTION is enabled.
 
@@ -15,7 +15,7 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 58e30647da3b1..7f8ec5f22eba5 100644
+index 0032945da78d9..7b464b917975e 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -4725,10 +4725,15 @@ static inline struct kmem_cache *cache_from_obj(struct kmem_cache *s, void *x)

@@ -1,7 +1,7 @@
-From 654a1274e35b659dd57c5e08b65a2a4da8210464 Mon Sep 17 00:00:00 2001
+From 78173e815ef5630cf1159efa958884082d0c8e21 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 01:39:32 -0500
-Subject: [PATCH 007/105] enable ARM64_SW_TTBR0_PAN by default
+Subject: [PATCH 007/101] enable ARM64_SW_TTBR0_PAN by default
 
 ---
  arch/arm64/Kconfig | 1 +

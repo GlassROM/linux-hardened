@@ -1,7 +1,7 @@
-From e5017971391f8885b320aa22f4f535ade69173f7 Mon Sep 17 00:00:00 2001
+From 8f78dd4e362d02ced42b1b9394cc09276cbc4eb6 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 23:36:14 -0400
-Subject: [PATCH 087/105] enable SECURITY_TIOCSTI_RESTRICT by default
+Subject: [PATCH 086/101] enable SECURITY_TIOCSTI_RESTRICT by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

@@ -1,14 +1,14 @@
-From 397a6b4dce00baa8e1f6f3a54fcc009e2f3f874e Mon Sep 17 00:00:00 2001
+From 79630c3c4d53829854a3e7d41dd17e843fe83a1c Mon Sep 17 00:00:00 2001
 From: Bernhard40 <32568352+Bernhard40@users.noreply.github.com>
 Date: Fri, 6 Oct 2017 10:21:50 +0000
-Subject: [PATCH 020/105] stop hiding AIO behind EXPERT
+Subject: [PATCH 020/101] stop hiding AIO behind EXPERT
 
 ---
  init/Kconfig | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index 666783eb50abd..acc5cd33d89da 100644
+index 2e15b4a8478e8..53f0624f85ae3 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1776,7 +1776,7 @@ config SHMEM

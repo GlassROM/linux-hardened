@@ -1,7 +1,7 @@
-From 405facbc638f42bf6f1cdfb755814c857ecb24b1 Mon Sep 17 00:00:00 2001
+From d53a4c21b5b6456201071e37233f557d32d55445 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 15:58:57 -0400
-Subject: [PATCH 059/105] slub: Add support for verifying slab sanitization
+Subject: [PATCH 059/101] slub: Add support for verifying slab sanitization
 
 This is an extension to the sanitization feature in PaX for when
 sacricifing more performance for security is acceptable.
@@ -20,7 +20,7 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  2 files changed, 49 insertions(+), 4 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 6d6aafc2ba12b..747c5595a2d75 100644
+index b676def5a104a..af793c0fd53b4 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -235,6 +235,12 @@ static inline bool kmem_cache_debug(struct kmem_cache *s)

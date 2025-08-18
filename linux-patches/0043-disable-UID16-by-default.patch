@@ -1,14 +1,14 @@
-From 0018b3b1b8c74b055040ee1923193709ccb767f8 Mon Sep 17 00:00:00 2001
+From bed98693349f41cea4082ede0b362210a06ecf8a Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Tue, 22 Dec 2020 23:41:32 +0100
-Subject: [PATCH 043/105] disable UID16 by default
+Subject: [PATCH 043/101] disable UID16 by default
 
 ---
  init/Kconfig | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index 4a55e12159ed0..ff6d900b5dcc4 100644
+index afb65eab2647e..fa0059a100beb 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1599,7 +1599,6 @@ menuconfig EXPERT

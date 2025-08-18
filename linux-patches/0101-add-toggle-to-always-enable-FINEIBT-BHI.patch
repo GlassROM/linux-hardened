@@ -1,7 +1,7 @@
-From 294693e326e854fabc37468a8e30b2741f9d2de8 Mon Sep 17 00:00:00 2001
+From cb237413fa016324b617fbd9213cbb25f8db1588 Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 14 Apr 2025 22:21:48 +0530
-Subject: [PATCH 103/105] add toggle to always enable FINEIBT-BHI
+Subject: [PATCH 101/101] add toggle to always enable FINEIBT-BHI
 
 Signed-off-by: randomhydrosol <randomhydrosol@glassrom.org>
 ---

@@ -1,7 +1,7 @@
-From db9fe7c5fdf8d2c13aefb685509285ec2af93c1e Mon Sep 17 00:00:00 2001
+From 8c755f65f267696ec1faa9414f8cf8fd01836584 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 29 May 2017 12:11:11 -0400
-Subject: [PATCH 026/105] enable DEBUG_WX by default
+Subject: [PATCH 026/101] enable DEBUG_WX by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

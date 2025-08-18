@@ -1,7 +1,7 @@
-From bec361718c2748f74aa87f78601de80b22d23bfd Mon Sep 17 00:00:00 2001
+From 3966e2bea5f035145d676e98cb2dc424e5fa2e62 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 22 May 2017 05:06:20 -0400
-Subject: [PATCH 073/105] arm64: determine stack entropy based on mmap entropy
+Subject: [PATCH 073/101] arm64: determine stack entropy based on mmap entropy
 
 Stack mapping entropy is currently hard-wired to 11 bits of entropy on
 32-bit and 18 bits of entropy on 64-bit. The stack itself gains an extra

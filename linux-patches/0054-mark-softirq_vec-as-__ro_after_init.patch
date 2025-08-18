@@ -1,7 +1,7 @@
-From 14ec0481add71796730f4475efb7f23a4720b9be Mon Sep 17 00:00:00 2001
+From 196536f733340e34eb46da4b1922bb5204c25403 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 4 Jul 2017 01:42:33 -0400
-Subject: [PATCH 054/105] mark softirq_vec as __ro_after_init
+Subject: [PATCH 054/101] mark softirq_vec as __ro_after_init
 
 Note: __cacheline_aligned_in_smp conflicts with __ro_after_init on x86.
 

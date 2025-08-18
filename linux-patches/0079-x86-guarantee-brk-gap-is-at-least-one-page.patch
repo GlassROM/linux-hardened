@@ -1,7 +1,7 @@
-From b38a070903e1bf1ccb64c7ba0f72e4b1de3614a3 Mon Sep 17 00:00:00 2001
+From c6b90db2af10d60aaa8039b4e8a0a4388273097a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:23:48 -0400
-Subject: [PATCH 079/105] x86: guarantee brk gap is at least one page
+Subject: [PATCH 079/101] x86: guarantee brk gap is at least one page
 
 Per PaX, but for this alternate brk randomization approach.
 

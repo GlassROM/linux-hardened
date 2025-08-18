@@ -1,7 +1,7 @@
-From 81e7ed1ffe2501cd66c4b01ac91278b36ccd33d9 Mon Sep 17 00:00:00 2001
+From e9345fc917430332bcd2dd3dc92fc53087f83900 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 02:16:49 -0500
-Subject: [PATCH 037/105] enable SECURITY_SELINUX by default
+Subject: [PATCH 037/101] enable SECURITY_SELINUX by default
 
 ---
  security/selinux/Kconfig | 2 +-

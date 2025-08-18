@@ -1,7 +1,7 @@
-From ef499f90a1a7ed6456380d74221372e886f47466 Mon Sep 17 00:00:00 2001
+From 57285a748a4829f32f888896eb5645a561ac7a54 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 12:09:17 -0400
-Subject: [PATCH 013/105] enable PANIC_ON_OOPS by default
+Subject: [PATCH 013/101] enable PANIC_ON_OOPS by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

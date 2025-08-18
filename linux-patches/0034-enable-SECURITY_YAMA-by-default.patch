@@ -1,7 +1,7 @@
-From f2ab155b310076ad45f18fa29837b9d1d0b62485 Mon Sep 17 00:00:00 2001
+From 2d592ef77f1f5a8c6bef37ed3455f640ca81ba6c Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 29 May 2017 06:17:59 -0400
-Subject: [PATCH 034/105] enable SECURITY_YAMA by default
+Subject: [PATCH 034/101] enable SECURITY_YAMA by default
 
 ---
  security/yama/Kconfig | 2 +-

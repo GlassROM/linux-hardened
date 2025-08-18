@@ -1,7 +1,7 @@
-From 93ecfdb7ac2f01aef703b512368c0eb42c7ed213 Mon Sep 17 00:00:00 2001
+From 0a8fcccb42373bfd892c3b43077c5991339a95fc Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 29 May 2017 07:08:42 -0400
-Subject: [PATCH 019/105] set LEGACY_VSYSCALL_NONE by default
+Subject: [PATCH 019/101] set LEGACY_VSYSCALL_NONE by default
 
 ---
  arch/x86/Kconfig | 2 +-

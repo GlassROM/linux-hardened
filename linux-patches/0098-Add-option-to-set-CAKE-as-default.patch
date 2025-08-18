@@ -1,7 +1,7 @@
-From 710b674bc830ecb335c08a98f73bb03a500f7487 Mon Sep 17 00:00:00 2001
+From 784412d6488aba0951382971ac76c80f717a3d4f Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Sun, 13 Apr 2025 22:36:40 +0530
-Subject: [PATCH 100/105] Add option to set CAKE as default
+Subject: [PATCH 098/101] Add option to set CAKE as default
 
 Intentionally put it on top of the list so that hopefully future changes
 to this code are not a problem

@@ -1,7 +1,7 @@
-From 37f3674cf271b141a55c92b8bd2d21beb52c1d06 Mon Sep 17 00:00:00 2001
+From 86f726aefbe051bc6b1477a4e0219ab3fb3a2100 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:11:52 -0400
-Subject: [PATCH 016/105] disable X86_16BIT by default
+Subject: [PATCH 016/101] disable X86_16BIT by default
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 ---

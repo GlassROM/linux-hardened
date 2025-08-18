@@ -1,7 +1,7 @@
-From 69dfeeeb22e4c906d78be2e0850df25835a53611 Mon Sep 17 00:00:00 2001
+From b867843234b778dffe1404111efae6e14b44e073 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Wed, 31 Jul 2019 20:50:48 +0100
-Subject: [PATCH 064/105] userns: add kconfig to set default for unprivileged
+Subject: [PATCH 064/101] userns: add kconfig to set default for unprivileged
  CLONE_NEWUSER
 
 When disabled, unprivileged users will not be able to create
@@ -22,7 +22,7 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  2 files changed, 20 insertions(+)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index ff6d900b5dcc4..b0c4c64666df9 100644
+index fa0059a100beb..037a2c54c6e3d 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1350,6 +1350,22 @@ config USER_NS

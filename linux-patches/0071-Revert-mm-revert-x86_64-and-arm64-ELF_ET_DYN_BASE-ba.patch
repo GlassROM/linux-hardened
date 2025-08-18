@@ -1,7 +1,7 @@
-From d31831146803024ef6e985d1d6e07d7d33ead33b Mon Sep 17 00:00:00 2001
+From d5c7e16f1c113a69a0825a0370fb1645fdd81f98 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 26 Aug 2017 20:16:03 -0400
-Subject: [PATCH 071/105] Revert "mm: revert x86_64 and arm64 ELF_ET_DYN_BASE
+Subject: [PATCH 071/101] Revert "mm: revert x86_64 and arm64 ELF_ET_DYN_BASE
  base changes"
 
 This reverts commit aab425db4279aeb83b7911693f0cccbd3644c9fd.

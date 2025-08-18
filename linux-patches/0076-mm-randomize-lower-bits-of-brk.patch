@@ -1,7 +1,7 @@
-From cd1b870a0357472ca43c1c698507e4953afb2bc0 Mon Sep 17 00:00:00 2001
+From 8d1c10d519e2e89afb0c7e9db69e8626a4ba39c9 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:22:38 -0400
-Subject: [PATCH 076/105] mm: randomize lower bits of brk
+Subject: [PATCH 076/101] mm: randomize lower bits of brk
 
 Per PaX, but for this alternate brk randomization approach.
 

@@ -1,7 +1,7 @@
-From 80684eff281f2adf04534081f9acab216cff180d Mon Sep 17 00:00:00 2001
+From 23016e2188125028fd5e0024d6c1d1006683c9fb Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Sat, 13 Jul 2024 21:41:56 +0000
-Subject: [PATCH 101/105] Disable IBT for Hyper-V hypercalls
+Subject: [PATCH 099/101] Disable IBT for Hyper-V hypercalls
 
 Hyper-V does not have an endbr instruction at the start of the hypercall page, causing a kernel panic if IBT is enabled.
 

@@ -1,7 +1,7 @@
-From 849eee0767cef66a88888879cf2d91713bc59a79 Mon Sep 17 00:00:00 2001
+From e89ca6f6f6e5f2d344c5fb8e1b83531a58983aad Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 5 Jan 2018 12:43:49 -0500
-Subject: [PATCH 029/105] enable IO_STRICT_DEVMEM by default
+Subject: [PATCH 029/101] enable IO_STRICT_DEVMEM by default
 
 ---
  lib/Kconfig.debug | 1 +

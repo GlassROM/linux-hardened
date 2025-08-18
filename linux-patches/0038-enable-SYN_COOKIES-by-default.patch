@@ -1,7 +1,7 @@
-From dccb610c0ad2f62396f609046b1e530fd9375ade Mon Sep 17 00:00:00 2001
+From 4ea89ac57942bc4804aa142800116ec8f31dcac4 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 6 Jan 2018 13:41:11 -0500
-Subject: [PATCH 038/105] enable SYN_COOKIES by default
+Subject: [PATCH 038/101] enable SYN_COOKIES by default
 
 ---
  net/ipv4/Kconfig | 1 +

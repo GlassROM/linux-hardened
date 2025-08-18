@@ -1,7 +1,7 @@
-From 0d1d38b38457639faa8874be82229faf720039dd Mon Sep 17 00:00:00 2001
+From 4c96b18619b67b5b81e0be785aaccc296ff816b6 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 00:59:48 -0400
-Subject: [PATCH 068/105] PaX shadow cr4 sanity check (essentially a revert)
+Subject: [PATCH 068/101] PaX shadow cr4 sanity check (essentially a revert)
 
 Signed-off-by: Daniel Micay <danielmicay@gmail.com>
 [levente@leventepolyak.net: Adapt to cpu_tlbstate moved out-of-line]

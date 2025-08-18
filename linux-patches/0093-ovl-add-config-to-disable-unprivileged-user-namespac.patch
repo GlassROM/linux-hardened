@@ -1,7 +1,7 @@
-From ff7af1effb73dd01bcb9c41e02ead7de7f2b67fe Mon Sep 17 00:00:00 2001
+From a86a55338aa3c6a729d8f111534e0b4a36347f91 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Thu, 11 Mar 2021 23:09:50 +0100
-Subject: [PATCH 094/105] ovl: add config to disable unprivileged user
+Subject: [PATCH 093/101] ovl: add config to disable unprivileged user
  namespace mounts
 
 When disabled, unprivileged users will not be able to create

@@ -1,7 +1,7 @@
-From 9c5099521add895bbedf96f1536f27f7f1e8cbf6 Mon Sep 17 00:00:00 2001
+From 5e2f70b800316ba84f48c63ed018cf09e8dc16d9 Mon Sep 17 00:00:00 2001
 From: Matt Brown <matt@nmatt.com>
 Date: Mon, 29 May 2017 17:37:59 -0400
-Subject: [PATCH 085/105] security: tty: Add owner user namespace to tty_struct
+Subject: [PATCH 084/101] security: tty: Add owner user namespace to tty_struct
 
 This patch adds struct user_namespace *owner_user_ns to the tty_struct.
 Then it is set to current_user_ns() in the alloc_tty_struct function.

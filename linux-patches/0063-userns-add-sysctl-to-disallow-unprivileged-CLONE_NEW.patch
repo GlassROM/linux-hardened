@@ -1,7 +1,7 @@
-From e099a8b8f6d277ee4a5672de3d224db5476b2a88 Mon Sep 17 00:00:00 2001
+From 15fca83435ff65bd9e8653053d44663103835c09 Mon Sep 17 00:00:00 2001
 From: Serge Hallyn <serge.hallyn@canonical.com>
 Date: Fri, 31 May 2013 19:12:12 +0100
-Subject: [PATCH 063/105] userns: add sysctl to disallow unprivileged
+Subject: [PATCH 063/101] userns: add sysctl to disallow unprivileged
  CLONE_NEWUSER by default
 
 Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>

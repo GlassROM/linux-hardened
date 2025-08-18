@@ -1,7 +1,7 @@
-From d48d3b40c946155fe01d0a4c61f611e071ba7e82 Mon Sep 17 00:00:00 2001
+From 396be16985918dfffc0ff086d7a7ed4833a4fd6b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 20 Aug 2017 15:39:25 -0400
-Subject: [PATCH 010/105] enable SLAB_FREELIST_HARDENED by default
+Subject: [PATCH 010/101] enable SLAB_FREELIST_HARDENED by default
 
 ---
  mm/Kconfig | 1 +

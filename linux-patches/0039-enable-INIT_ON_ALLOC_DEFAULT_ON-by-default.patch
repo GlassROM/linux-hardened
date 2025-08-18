@@ -1,7 +1,7 @@
-From fdf7cf7dc0947b44bce62b03d7420d83b9d283db Mon Sep 17 00:00:00 2001
+From 757bcbd8da34a625a72d10749a4c8ffe014a69e4 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Thu, 19 Sep 2019 19:02:23 +0200
-Subject: [PATCH 039/105] enable INIT_ON_ALLOC_DEFAULT_ON by default
+Subject: [PATCH 039/101] enable INIT_ON_ALLOC_DEFAULT_ON by default
 
 ---
  security/Kconfig.hardening | 1 +

@@ -1,7 +1,7 @@
-From dfed9385cc6c20ce9ccd9e65d71836a688f4686a Mon Sep 17 00:00:00 2001
+From 4c896c6b909ad96ae1066ad825b911ff65469508 Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Fri, 29 Nov 2019 16:27:14 +0100
-Subject: [PATCH 092/105] slub: Extend init_on_alloc to slab caches with
+Subject: [PATCH 091/101] slub: Extend init_on_alloc to slab caches with
  constructors
 
 This has required some rework during the port to 5.13, due to
@@ -34,7 +34,7 @@ index cae39f6b0db08..3a99b644cef8b 100644
  			return flags & __GFP_ZERO;
  		return true;
 diff --git a/mm/slub.c b/mm/slub.c
-index b27b15b0b4ada..d4fe2f89b07bf 100644
+index ee0aef97197a1..8ff7192452394 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -4225,6 +4225,8 @@ bool slab_post_alloc_hook(struct kmem_cache *s, struct list_lru *lru,

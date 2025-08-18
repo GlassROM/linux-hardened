@@ -1,7 +1,7 @@
-From 6c1e7d7c15fdbb20e6a6188a12c123d6dc7f346a Mon Sep 17 00:00:00 2001
+From 8d4f1dc6d595cc00b87b1f0464964cb1b6fd5f12 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:15:52 -0400
-Subject: [PATCH 017/105] stop hiding MODIFY_LDT_SYSCALL behind EXPERT
+Subject: [PATCH 017/101] stop hiding MODIFY_LDT_SYSCALL behind EXPERT
 
 ---
  arch/x86/Kconfig | 2 +-

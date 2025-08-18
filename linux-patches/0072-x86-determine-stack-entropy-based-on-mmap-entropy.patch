@@ -1,7 +1,7 @@
-From ba3d943bae205872bc1578a15563a7ad01b353a2 Mon Sep 17 00:00:00 2001
+From e16e5d781094ad3843bcae8a3f8be790c7d1dc00 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 21 May 2017 20:30:44 -0400
-Subject: [PATCH 072/105] x86: determine stack entropy based on mmap entropy
+Subject: [PATCH 072/101] x86: determine stack entropy based on mmap entropy
 
 Stack mapping entropy is currently hard-wired to 11 bits of entropy on
 32-bit and 22 bits of entropy on 64-bit. The stack itself gains an extra
