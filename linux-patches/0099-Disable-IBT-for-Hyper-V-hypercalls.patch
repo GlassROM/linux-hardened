@@ -1,4 +1,4 @@
-From 23016e2188125028fd5e0024d6c1d1006683c9fb Mon Sep 17 00:00:00 2001
+From 9ed7a432e27ebb8b2fc7827f0c9c4d5ce23aa59e Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Sat, 13 Jul 2024 21:41:56 +0000
 Subject: [PATCH 099/101] Disable IBT for Hyper-V hypercalls
@@ -272,5 +272,5 @@ index abc4659f5809f..5874156179e11 100644
  #endif
  	return hv_status;
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From db4dab033d7873ae263d7765e826d045d421dd4c Mon Sep 17 00:00:00 2001
+From 207c21d37cb65f67d3c2f94f708dfbea40d46d7b Mon Sep 17 00:00:00 2001
 From: Matt Brown <matt@nmatt.com>
 Date: Mon, 29 May 2017 17:38:00 -0400
 Subject: [PATCH 085/101] security: tty: make TIOCSTI ioctl require
@@ -163,5 +163,5 @@ index d8be46c1bd925..1f0451d8fa80c 100644
  	bool "Enable different security models"
  	depends on SYSFS
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From 27456a7a61e47e3f9b9ca28604c6e599631f9157 Mon Sep 17 00:00:00 2001
+From 6605e481698349db20c534ac659497a0ebea8583 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 4 Jul 2017 01:24:28 -0400
 Subject: [PATCH 052/101] mark kobj_ns_type_register as only used for init
@@ -41,5 +41,5 @@ index abe5f5b856ceb..a80fa9d8f2db4 100644
  	enum kobj_ns_type type = ops->type;
  	int error;
 -- 
-2.50.1
+2.51.0
 

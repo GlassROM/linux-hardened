@@ -1,4 +1,4 @@
-From 8956c2b3cc26c07436e7808f85cb6c8a4387bc24 Mon Sep 17 00:00:00 2001
+From 8367450543cbbd70249ed88decd1b549d7f7ca30 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 7 May 2017 16:16:39 -0400
 Subject: [PATCH 031/101] use maximum supported mmap rnd entropy by default
@@ -31,5 +31,5 @@ index a3308a220f864..24d44e9aa7297 100644
  	help
  	  This value can be used to select the number of bits to use to
 -- 
-2.50.1
+2.51.0
 

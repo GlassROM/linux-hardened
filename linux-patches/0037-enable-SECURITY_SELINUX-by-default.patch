@@ -1,4 +1,4 @@
-From e9345fc917430332bcd2dd3dc92fc53087f83900 Mon Sep 17 00:00:00 2001
+From 52aebb8a28e21a801899aa3f0c3ad2212aee6bc6 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 02:16:49 -0500
 Subject: [PATCH 037/101] enable SECURITY_SELINUX by default
@@ -21,5 +21,5 @@ index 61abc1e094a80..ceda05c0c4f69 100644
  	  This selects Security-Enhanced Linux (SELinux).
  	  You will also need a policy configuration and a labeled filesystem.
 -- 
-2.50.1
+2.51.0
 

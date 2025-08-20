@@ -1,4 +1,4 @@
-From 8f53027cc4276c9bddea3e73b90c6c13398584dd Mon Sep 17 00:00:00 2001
+From d3c2805d1088bf1e0de9d806b6d9126c1f266a80 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:23:06 -0400
 Subject: [PATCH 077/101] x86: randomize lower bits of brk
@@ -27,5 +27,5 @@ index 1bcbe97aaa063..47b8e54c9056e 100644
  
  /*
 -- 
-2.50.1
+2.51.0
 

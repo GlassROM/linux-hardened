@@ -1,4 +1,4 @@
-From f4d469f02f69ca59e9e86cb7a2df33fcbc7422c2 Mon Sep 17 00:00:00 2001
+From 8bff17e165449dfbbe42104ee9e498186c44cd95 Mon Sep 17 00:00:00 2001
 From: Emese Revfy <re.emese@gmail.com>
 Date: Tue, 31 May 2016 01:34:02 +0200
 Subject: [PATCH 065/101] Add the extra_latent_entropy kernel parameter
@@ -93,5 +93,5 @@ index 6b34ba19358d8..d83e715c9d404 100644
  	  secure!
  
 -- 
-2.50.1
+2.51.0
 

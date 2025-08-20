@@ -1,4 +1,4 @@
-From 57285a748a4829f32f888896eb5645a561ac7a54 Mon Sep 17 00:00:00 2001
+From 32291d9aa637b1423db50089549616a9fd24888a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 12:09:17 -0400
 Subject: [PATCH 013/101] enable PANIC_ON_OOPS by default
@@ -30,5 +30,5 @@ index ebe33181b6e6e..1d019fbbf1d03 100644
  config PANIC_ON_OOPS_VALUE
  	int
 -- 
-2.50.1
+2.51.0
 

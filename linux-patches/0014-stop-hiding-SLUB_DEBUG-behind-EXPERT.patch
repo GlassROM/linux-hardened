@@ -1,4 +1,4 @@
-From 5857fa896b7b7334136397db5793791adb46989a Mon Sep 17 00:00:00 2001
+From f784082f0fa027b9c7cd0b0a42376b5b8851685b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 14 May 2017 22:39:34 -0400
 Subject: [PATCH 014/101] stop hiding SLUB_DEBUG behind EXPERT
@@ -22,5 +22,5 @@ index 32b65073d0ccc..a7795b68b5ec5 100644
  	select STACKDEPOT if STACKTRACE_SUPPORT
  	help
 -- 
-2.50.1
+2.51.0
 

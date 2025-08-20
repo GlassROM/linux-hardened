@@ -1,4 +1,4 @@
-From a8a748fa2bef575d2a30e35e604497f854141975 Mon Sep 17 00:00:00 2001
+From 388e0760d7f93152710839e3c4dbe037d148b7e7 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 8 May 2017 12:51:54 -0400
 Subject: [PATCH 012/101] enable FORTIFY_SOURCE by default
@@ -21,5 +21,5 @@ index a106169f6480d..767f66e765015 100644
  	  Detect overflows of buffers in common string and memory functions
  	  where the compiler can determine and validate the buffer sizes.
 -- 
-2.50.1
+2.51.0
 

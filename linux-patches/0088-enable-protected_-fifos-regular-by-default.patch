@@ -1,4 +1,4 @@
-From 3c000785b2b35d81bd43af3b85d07971475ed247 Mon Sep 17 00:00:00 2001
+From 0eee95f797a05f36f2dd3d6fe09bd22a12054804 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 4 Nov 2018 18:48:53 +0100
 Subject: [PATCH 088/101] enable protected_{fifos,regular} by default
@@ -23,5 +23,5 @@ index 2700441e077b4..e856928243610 100644
  #ifdef CONFIG_SYSCTL
  static const struct ctl_table namei_sysctls[] = {
 -- 
-2.50.1
+2.51.0
 

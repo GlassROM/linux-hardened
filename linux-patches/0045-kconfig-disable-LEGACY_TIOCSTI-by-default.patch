@@ -1,4 +1,4 @@
-From b2c68d923167336f1ecd751fd3ef673ac619d346 Mon Sep 17 00:00:00 2001
+From db5c52c0446af35c8a4a7bf81eebe14eb9c9627d Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Mon, 1 May 2023 23:20:43 +0200
 Subject: [PATCH 045/101] kconfig: disable LEGACY_TIOCSTI by default
@@ -20,5 +20,5 @@ index 3c51e08c1d8cd..a3e62d52ebcfa 100644
  	  Historically the kernel has allowed TIOCSTI, which will push
  	  characters into a controlling TTY. This continues to be used
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From 0f005d38ad458264b0d814bd9a7d5aa8f482fdef Mon Sep 17 00:00:00 2001
+From b71b54da70bc260f147d18fdf9d31b489bd82a81 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 27 Sep 2020 00:43:48 +0200
 Subject: [PATCH 041/101] kconfig: select DEBUG_FS_ALLOW_NONE by default if
@@ -23,5 +23,5 @@ index e3e6514d6ee42..139f3ab1646c3 100644
  	  This selects the default access restrictions for debugfs.
  	  It can be overridden with kernel command line option
 -- 
-2.50.1
+2.51.0
 

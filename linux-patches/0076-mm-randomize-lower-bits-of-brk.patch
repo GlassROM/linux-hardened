@@ -1,4 +1,4 @@
-From 8d1c10d519e2e89afb0c7e9db69e8626a4ba39c9 Mon Sep 17 00:00:00 2001
+From 5565d94cc2807055030cdc1e833b64931151100b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:22:38 -0400
 Subject: [PATCH 076/101] mm: randomize lower bits of brk
@@ -33,5 +33,5 @@ index 0b270c43d7d12..7a859af42fbdd 100644
  
  unsigned long arch_mmap_rnd(void)
 -- 
-2.50.1
+2.51.0
 

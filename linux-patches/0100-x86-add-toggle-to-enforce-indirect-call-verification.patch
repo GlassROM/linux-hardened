@@ -1,4 +1,4 @@
-From cdc47249e7a03fabb937a699401b7960f6e11e1c Mon Sep 17 00:00:00 2001
+From d46c88f8b27137a478cf5b2e908e6bffac83d39d Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 7 Apr 2025 13:52:27 +0530
 Subject: [PATCH 100/101] x86: add toggle to enforce indirect call verification
@@ -70,5 +70,5 @@ index ea1d984166cdd..23170694ba4e9 100644
  			cfi_mode = CFI_FINEIBT;
  		}
 -- 
-2.50.1
+2.51.0
 

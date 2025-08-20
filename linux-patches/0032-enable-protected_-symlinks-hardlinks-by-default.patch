@@ -1,4 +1,4 @@
-From 642e93d0bbf3ac2eade5c17b8d9ac182ae8406c2 Mon Sep 17 00:00:00 2001
+From 3d4ad2cbbf9c676c5a7c97f119ec96d33b02a421 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 30 May 2017 10:47:23 -0400
 Subject: [PATCH 032/101] enable protected_{symlinks,hardlinks} by default
@@ -23,5 +23,5 @@ index c26a7ee421849..2700441e077b4 100644
  static int sysctl_protected_regular __read_mostly;
  
 -- 
-2.50.1
+2.51.0
 

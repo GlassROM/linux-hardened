@@ -1,4 +1,4 @@
-From 8ae1e1dd8cfdf95645b238e5970b6bc1cda86f44 Mon Sep 17 00:00:00 2001
+From 86904c69c216bdd6071faa13269af71b66cd57d2 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 14 May 2017 19:01:58 -0400
 Subject: [PATCH 048/101] mark slub runtime configuration as __ro_after_init
@@ -9,7 +9,7 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 45a963e363d32..e3c4513793d59 100644
+index 394646988b1c2..487fda379cd1c 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -856,13 +856,13 @@ static inline void *restore_red_left(struct kmem_cache *s, void *p)
@@ -30,7 +30,7 @@ index 45a963e363d32..e3c4513793d59 100644
  
  /*
   * slub is about to manipulate internal object metadata.  This memory lies
-@@ -5399,10 +5399,10 @@ EXPORT_SYMBOL(kmem_cache_alloc_bulk_noprof);
+@@ -5404,10 +5404,10 @@ EXPORT_SYMBOL(kmem_cache_alloc_bulk_noprof);
   * and increases the number of allocations possible without having to
   * take the list_lock.
   */
@@ -45,5 +45,5 @@ index 45a963e363d32..e3c4513793d59 100644
  /*
   * Calculate the order of allocation given an slab object size.
 -- 
-2.50.1
+2.51.0
 

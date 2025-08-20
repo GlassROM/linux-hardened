@@ -1,4 +1,4 @@
-From 4c96b18619b67b5b81e0be785aaccc296ff816b6 Mon Sep 17 00:00:00 2001
+From b62924ed3180c10140fd6884c89813cafbfc4e94 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 00:59:48 -0400
 Subject: [PATCH 068/101] PaX shadow cr4 sanity check (essentially a revert)
@@ -52,5 +52,5 @@ index a838be04f8749..1bcbe97aaa063 100644
  	newval = cr4 ^ mask;
  	if (newval != cr4) {
 -- 
-2.50.1
+2.51.0
 

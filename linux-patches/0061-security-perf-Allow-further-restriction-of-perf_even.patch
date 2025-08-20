@@ -1,4 +1,4 @@
-From 1211bad6af8673610d56182d73b7b5deb2b851f8 Mon Sep 17 00:00:00 2001
+From e3b89ee5841d03a025090f4abab46660b255a4ce Mon Sep 17 00:00:00 2001
 From: Ben Hutchings <ben@decadent.org.uk>
 Date: Mon, 11 Jan 2016 15:23:55 +0000
 Subject: [PATCH 061/101] security,perf: Allow further restriction of
@@ -141,5 +141,5 @@ index 1dc1f7b3bfb80..0bbbfa4250459 100644
  		 "in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)",
  		 perf_event_paranoid());
 -- 
-2.50.1
+2.51.0
 

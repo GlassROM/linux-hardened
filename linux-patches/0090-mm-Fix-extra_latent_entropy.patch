@@ -1,4 +1,4 @@
-From 2763615b549a6160bd66d71f4662f95853de4f62 Mon Sep 17 00:00:00 2001
+From 7f20107090bdd37e4cc9318e33785262cee22647 Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Tue, 7 May 2019 11:46:21 +0200
 Subject: [PATCH 090/101] mm: Fix extra_latent_entropy
@@ -122,5 +122,5 @@ index 3c6ccd73349e1..c48003b58a172 100644
  		atomic_long_add(nr_pages, &page_zone(page)->managed_pages);
  	}
 -- 
-2.50.1
+2.51.0
 

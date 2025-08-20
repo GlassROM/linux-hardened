@@ -1,4 +1,4 @@
-From 8f78dd4e362d02ced42b1b9394cc09276cbc4eb6 Mon Sep 17 00:00:00 2001
+From 0071a6d37c04783e68692fee9e643dbfa5f2e29a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 23:36:14 -0400
 Subject: [PATCH 086/101] enable SECURITY_TIOCSTI_RESTRICT by default
@@ -22,5 +22,5 @@ index 1f0451d8fa80c..38212ef51e11f 100644
  	  This enforces restrictions on unprivileged users injecting commands
  	  into other processes which share a tty session using the TIOCSTI
 -- 
-2.50.1
+2.51.0
 

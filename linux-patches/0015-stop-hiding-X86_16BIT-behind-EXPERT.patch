@@ -1,4 +1,4 @@
-From 11718b31711f879290b6b9d18a50ace84149aabb Mon Sep 17 00:00:00 2001
+From b0aceb762c7cd5e2f526253e6df2205cea5a457a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:11:31 -0400
 Subject: [PATCH 015/101] stop hiding X86_16BIT behind EXPERT
@@ -21,5 +21,5 @@ index 8bed9030ad473..f10d8ffa2d2fc 100644
  	depends on MODIFY_LDT_SYSCALL
  	help
 -- 
-2.50.1
+2.51.0
 

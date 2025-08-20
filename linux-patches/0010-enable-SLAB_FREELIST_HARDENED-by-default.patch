@@ -1,4 +1,4 @@
-From 396be16985918dfffc0ff086d7a7ed4833a4fd6b Mon Sep 17 00:00:00 2001
+From 7c328542b87c5960771e34ba1a0c12947de0c1b7 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 20 Aug 2017 15:39:25 -0400
 Subject: [PATCH 010/101] enable SLAB_FREELIST_HARDENED by default
@@ -20,5 +20,5 @@ index bdf70000c4cd9..9063f2acb2224 100644
  	  Many kernel heap attacks try to target slab cache metadata and
  	  other infrastructure. This options makes minor performance
 -- 
-2.50.1
+2.51.0
 

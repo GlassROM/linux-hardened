@@ -1,4 +1,4 @@
-From 95d1d614fb1140908c6c52af43af616dcc8623fd Mon Sep 17 00:00:00 2001
+From 77431db5f5fd949c8e7a52ee4bd8502da2d5736d Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 9 Jul 2017 17:20:29 -0400
 Subject: [PATCH 070/101] support overriding early audit kernel cmdline
@@ -22,5 +22,5 @@ index 61b5744d0bb68..32bc6aac091ee 100644
  		pr_err("audit: error setting audit state (%d)\n",
  		       audit_default);
 -- 
-2.50.1
+2.51.0
 

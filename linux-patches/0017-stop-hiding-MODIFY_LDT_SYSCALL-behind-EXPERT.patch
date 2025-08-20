@@ -1,4 +1,4 @@
-From 8d4f1dc6d595cc00b87b1f0464964cb1b6fd5f12 Mon Sep 17 00:00:00 2001
+From eda10a3bd0a45d4da2daafd375bfd2819a494922 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:15:52 -0400
 Subject: [PATCH 017/101] stop hiding MODIFY_LDT_SYSCALL behind EXPERT
@@ -21,5 +21,5 @@ index 09102dfac8e89..464ec147815d7 100644
  	help
  	  Linux can allow user programs to install a per-process x86
 -- 
-2.50.1
+2.51.0
 

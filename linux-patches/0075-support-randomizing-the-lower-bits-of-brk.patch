@@ -1,4 +1,4 @@
-From dd6f42a5dd118b464aabbe8f670b9e07b773939c Mon Sep 17 00:00:00 2001
+From 0fe6e498f9e5513f47c684dbb8af281bd6e241f4 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 30 May 2017 18:03:30 -0400
 Subject: [PATCH 075/101] support randomizing the lower bits of brk
@@ -38,5 +38,5 @@ index 09c563c951123..e14bdb94fbea5 100644
  		mm->brk = brk;
  		goto success;
 -- 
-2.50.1
+2.51.0
 

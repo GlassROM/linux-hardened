@@ -1,4 +1,4 @@
-From a2bf7924ecbfda0c3e674d701ab59dec418ec9f8 Mon Sep 17 00:00:00 2001
+From 297ff2de663c8f5206a5688654ebe5db6b0cae36 Mon Sep 17 00:00:00 2001
 From: Bernhard40 <32568352+Bernhard40@users.noreply.github.com>
 Date: Fri, 6 Oct 2017 10:24:10 +0000
 Subject: [PATCH 021/101] disable AIO by default
@@ -20,5 +20,5 @@ index 53f0624f85ae3..aab4dd0d4f067 100644
  	  This option enables POSIX asynchronous I/O which may by used
  	  by some high performance threaded applications. Disabling
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From 8c6f49f3dd672006621fb77b9c7d20b025b757ec Mon Sep 17 00:00:00 2001
+From 7e7312a4ac9f65fc039b9560a3b615ed2f795f95 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 11:35:35 -0400
 Subject: [PATCH 049/101] add __ro_after_init to slab_nomerge and slab_state
@@ -34,5 +34,5 @@ index bfe7c40eeee1a..d55e61da87aaf 100644
  static int __init setup_slab_nomerge(char *str)
  {
 -- 
-2.50.1
+2.51.0
 

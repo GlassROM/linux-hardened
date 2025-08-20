@@ -1,4 +1,4 @@
-From 5a75b908f2b818858aad1289163e24abf452a73e Mon Sep 17 00:00:00 2001
+From 0f563289a8e5330d0d0f89b79917626c4c21c754 Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Fri, 20 Sep 2019 14:02:42 +0200
 Subject: [PATCH 058/101] slub: Extend init_on_free to slab caches with
@@ -41,7 +41,7 @@ index 05a21dc796e09..7cb59e43fd783 100644
  }
  
 diff --git a/mm/slub.c b/mm/slub.c
-index 7b464b917975e..b676def5a104a 100644
+index 11ba03dc87888..510bea5f3d7cd 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -2376,6 +2376,8 @@ bool slab_free_hook(struct kmem_cache *s, void *x, bool init,
@@ -77,5 +77,5 @@ index 7b464b917975e..b676def5a104a 100644
  	} while (object != old_tail);
  
 -- 
-2.50.1
+2.51.0
 

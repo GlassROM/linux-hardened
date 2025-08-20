@@ -1,4 +1,4 @@
-From 11e936f9bef5e5de7bb3343ff95d7ba061772cd6 Mon Sep 17 00:00:00 2001
+From 29723241f6246d15d8bdc6fa44d1188c1cbe574b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 5 Jan 2018 12:41:42 -0500
 Subject: [PATCH 028/101] disable DEVMEM by default
@@ -20,5 +20,5 @@ index 99865add0b790..54811ea891ebd 100644
  	  Say Y here if you want to support the /dev/mem device.
  	  The /dev/mem device is used to access areas of physical
 -- 
-2.50.1
+2.51.0
 

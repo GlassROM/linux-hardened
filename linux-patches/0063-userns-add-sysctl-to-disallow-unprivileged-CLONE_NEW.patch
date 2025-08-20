@@ -1,4 +1,4 @@
-From 15fca83435ff65bd9e8653053d44663103835c09 Mon Sep 17 00:00:00 2001
+From ac7c1947247653667b3e10b3e7e19336c7ca3270 Mon Sep 17 00:00:00 2001
 From: Serge Hallyn <serge.hallyn@canonical.com>
 Date: Fri, 31 May 2013 19:12:12 +0100
 Subject: [PATCH 063/101] userns: add sysctl to disallow unprivileged
@@ -123,5 +123,5 @@ index 682f40d5632d4..8aa32e6ad20bc 100644
  static DEFINE_MUTEX(userns_state_mutex);
  
 -- 
-2.50.1
+2.51.0
 

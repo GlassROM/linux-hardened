@@ -1,4 +1,4 @@
-From 78173e815ef5630cf1159efa958884082d0c8e21 Mon Sep 17 00:00:00 2001
+From 9e09decba962caebb35cfaa937d070f371400d63 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 01:39:32 -0500
 Subject: [PATCH 007/101] enable ARM64_SW_TTBR0_PAN by default
@@ -20,5 +20,5 @@ index 393d71124f5d2..d7d8847a21290 100644
  	  Enabling this option prevents the kernel from accessing
  	  user-space memory directly by pointing TTBR0_EL1 to a reserved
 -- 
-2.50.1
+2.51.0
 

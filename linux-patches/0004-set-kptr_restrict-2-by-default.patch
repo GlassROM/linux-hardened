@@ -1,4 +1,4 @@
-From 7162489d1d5da0b23fe816758a2e808b76180818 Mon Sep 17 00:00:00 2001
+From bb3fac18cc5b5e9fcf79eb2bd1d7981e7500944f Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 12:06:14 -0400
 Subject: [PATCH 004/101] set kptr_restrict=2 by default
@@ -22,5 +22,5 @@ index 3d85800757aa5..05cedcf7b7354 100644
  static noinline_for_stack
  char *restricted_pointer(char *buf, char *end, const void *ptr,
 -- 
-2.50.1
+2.51.0
 

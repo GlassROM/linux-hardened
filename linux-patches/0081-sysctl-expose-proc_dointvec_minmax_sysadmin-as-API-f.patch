@@ -1,4 +1,4 @@
-From 92a6746b5805ad7c60bd047ef0816b6926a7aa1e Mon Sep 17 00:00:00 2001
+From 5143a99e0af1d8f8c3a4ef3c321b9b48092a8b45 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 6 Sep 2020 20:28:32 +0200
 Subject: [PATCH 081/101] sysctl: expose proc_dointvec_minmax_sysadmin as API
@@ -112,5 +112,5 @@ index 9a64f600c5ca6..be99a1b3912a3 100644
  EXPORT_SYMBOL(proc_dointvec_ms_jiffies);
  EXPORT_SYMBOL(proc_dostring);
 -- 
-2.50.1
+2.51.0
 

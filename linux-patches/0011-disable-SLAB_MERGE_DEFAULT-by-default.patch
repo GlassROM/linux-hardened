@@ -1,4 +1,4 @@
-From ce04656e1357bb04ad4562836f492efb24735def Mon Sep 17 00:00:00 2001
+From 89b8cf0edd4d220bebf1490481a6c840a0824da5 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 8 Jul 2017 02:38:54 -0400
 Subject: [PATCH 011/101] disable SLAB_MERGE_DEFAULT by default
@@ -20,5 +20,5 @@ index 9063f2acb2224..efdaea64426df 100644
  	  For reduced kernel memory fragmentation, slab caches can be
  	  merged when they share the same size and other characteristics.
 -- 
-2.50.1
+2.51.0
 

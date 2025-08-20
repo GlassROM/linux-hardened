@@ -1,4 +1,4 @@
-From de00887bd88b68060f5fea6097cb3d00b5f72122 Mon Sep 17 00:00:00 2001
+From f64e45a3de85f6c7dd49098aff059642b1aef553 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 01:33:48 -0500
 Subject: [PATCH 008/101] arm64: enable RANDOMIZE_BASE by default
@@ -20,5 +20,5 @@ index d7d8847a21290..df4ffd608fdef 100644
  	  Randomizes the virtual address at which the kernel image is
  	  loaded, as a security feature that deters exploit attempts
 -- 
-2.50.1
+2.51.0
 

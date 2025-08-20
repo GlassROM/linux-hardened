@@ -1,4 +1,4 @@
-From 4c896c6b909ad96ae1066ad825b911ff65469508 Mon Sep 17 00:00:00 2001
+From b4c07050e81f44fd2a1ed1985f769b7220ed8cca Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Fri, 29 Nov 2019 16:27:14 +0100
 Subject: [PATCH 091/101] slub: Extend init_on_alloc to slab caches with
@@ -34,7 +34,7 @@ index cae39f6b0db08..3a99b644cef8b 100644
  			return flags & __GFP_ZERO;
  		return true;
 diff --git a/mm/slub.c b/mm/slub.c
-index ee0aef97197a1..8ff7192452394 100644
+index 6fc38567a89b0..3825d269ae1ca 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
 @@ -4225,6 +4225,8 @@ bool slab_post_alloc_hook(struct kmem_cache *s, struct list_lru *lru,
@@ -47,5 +47,5 @@ index ee0aef97197a1..8ff7192452394 100644
  					 s->flags, init_flags);
  		kmsan_slab_alloc(s, p[i], init_flags);
 -- 
-2.50.1
+2.51.0
 

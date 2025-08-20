@@ -1,4 +1,4 @@
-From 00080fca8e08c78217ef6e63853576f4fb173c6a Mon Sep 17 00:00:00 2001
+From 0ef8c84b68930e90d6c7a060568d0305cf681ffc Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Mon, 6 May 2019 17:07:11 +0200
 Subject: [PATCH 089/101] modpost: Add
@@ -109,5 +109,5 @@ index b99fa4d6a37b2..67bc0c6d61ae3 100644
  	return error_occurred ? 1 : 0;
  }
 -- 
-2.50.1
+2.51.0
 

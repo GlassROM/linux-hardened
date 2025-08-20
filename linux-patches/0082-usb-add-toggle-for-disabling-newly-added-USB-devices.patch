@@ -1,4 +1,4 @@
-From 275ec62eb6764b3a5d13d5fbabbdaca85cabd2fa Mon Sep 17 00:00:00 2001
+From ba06e3e52d39400aaffe6f282111683d6dbac606 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 17:51:48 -0400
 Subject: [PATCH 082/101] usb: add toggle for disabling newly added USB devices
@@ -151,5 +151,5 @@ index 92c752f5446ff..b8221705765fa 100644
  
  #endif
 -- 
-2.50.1
+2.51.0
 

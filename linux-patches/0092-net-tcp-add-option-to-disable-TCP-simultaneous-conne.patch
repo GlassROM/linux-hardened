@@ -1,4 +1,4 @@
-From 614eee0072a7e7a24bc01392c8b799b1dca6c2b6 Mon Sep 17 00:00:00 2001
+From 2cc4955626ee54459ebe91803a6314993627e8f0 Mon Sep 17 00:00:00 2001
 From: madaidan <50278627+madaidan@users.noreply.github.com>
 Date: Sun, 9 Feb 2020 00:03:41 +0000
 Subject: [PATCH 092/101] net: tcp: add option to disable TCP simultaneous
@@ -147,5 +147,5 @@ index 94391f32a5d87..58e5cc607a64d 100644
  		 * simultaneous connect with crossed SYNs.
  		 * Particularly, it can be connect to self.
 -- 
-2.50.1
+2.51.0
 
