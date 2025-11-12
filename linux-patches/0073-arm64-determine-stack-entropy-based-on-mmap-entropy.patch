@@ -1,4 +1,4 @@
-From 82907d7637417ebfb73ad7076b63c7c23cfc8cd5 Mon Sep 17 00:00:00 2001
+From cbf97e43b2f6e4557e5d5b417981fd7f593a0aef Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 22 May 2017 05:06:20 -0400
 Subject: [PATCH 073/101] arm64: determine stack entropy based on mmap entropy
@@ -47,5 +47,5 @@ index d7edf20ad215d..ac3805f359de4 100644
  
  #ifdef __AARCH64EB__
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 34ece66cd2700ccff66ecafd733872bce07f5f79 Mon Sep 17 00:00:00 2001
+From e4e6c1e2c0d77d3a7a80405333e857b2113f9714 Mon Sep 17 00:00:00 2001
 From: Matt Brown <matt@nmatt.com>
 Date: Mon, 29 May 2017 17:37:59 -0400
 Subject: [PATCH 084/101] security: tty: Add owner user namespace to tty_struct
@@ -66,5 +66,5 @@ index 0a46e4054dec7..99c733852fb2d 100644
  
  /* Each of a tty's open files has private_data pointing to tty_file_private */
 -- 
-2.51.0
+2.51.2
 

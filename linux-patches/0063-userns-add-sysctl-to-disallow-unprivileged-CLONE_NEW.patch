@@ -1,4 +1,4 @@
-From ac7c1947247653667b3e10b3e7e19336c7ca3270 Mon Sep 17 00:00:00 2001
+From 54c767b91cce4e9b101d478c3d2954bdc0d02b5e Mon Sep 17 00:00:00 2001
 From: Serge Hallyn <serge.hallyn@canonical.com>
 Date: Fri, 31 May 2013 19:12:12 +0100
 Subject: [PATCH 063/101] userns: add sysctl to disallow unprivileged
@@ -14,9 +14,9 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
 ---
  include/linux/user_namespace.h |  4 ++++
  kernel/fork.c                  | 11 +++++++++++
- kernel/sysctl.c                | 14 ++++++++++++++
+ kernel/sysctl.c                | 15 +++++++++++++++
  kernel/user_namespace.c        |  3 +++
- 4 files changed, 32 insertions(+)
+ 4 files changed, 33 insertions(+)
 
 diff --git a/include/linux/user_namespace.h b/include/linux/user_namespace.h
 index a0bb6d0121378..93129fea552ea 100644
@@ -41,7 +41,7 @@ index a0bb6d0121378..93129fea552ea 100644
  {
  	return &init_user_ns;
 diff --git a/kernel/fork.c b/kernel/fork.c
-index 1ee8eb11f38ba..4128b0bd1a348 100644
+index bb86c57cc0d98..d505c1b0bddf4 100644
 --- a/kernel/fork.c
 +++ b/kernel/fork.c
 @@ -83,6 +83,7 @@
@@ -52,7 +52,7 @@ index 1ee8eb11f38ba..4128b0bd1a348 100644
  #include <linux/oom.h>
  #include <linux/khugepaged.h>
  #include <linux/signalfd.h>
-@@ -1933,6 +1934,10 @@ __latent_entropy struct task_struct *copy_process(
+@@ -1938,6 +1939,10 @@ __latent_entropy struct task_struct *copy_process(
  	if ((clone_flags & (CLONE_NEWUSER|CLONE_FS)) == (CLONE_NEWUSER|CLONE_FS))
  		return ERR_PTR(-EINVAL);
  
@@ -63,7 +63,7 @@ index 1ee8eb11f38ba..4128b0bd1a348 100644
  	/*
  	 * Thread groups must share signals as well, and detached threads
  	 * can only be started up within the thread group.
-@@ -3099,6 +3104,12 @@ int ksys_unshare(unsigned long unshare_flags)
+@@ -3105,6 +3110,12 @@ int ksys_unshare(unsigned long unshare_flags)
  	if (unshare_flags & CLONE_NEWNS)
  		unshare_flags |= CLONE_FS;
  
@@ -77,23 +77,24 @@ index 1ee8eb11f38ba..4128b0bd1a348 100644
  	if (err)
  		goto bad_unshare_out;
 diff --git a/kernel/sysctl.c b/kernel/sysctl.c
-index 9b4f0cff76ead..9a64f600c5ca6 100644
+index cb6196e3fa993..5b44614b38020 100644
 --- a/kernel/sysctl.c
 +++ b/kernel/sysctl.c
-@@ -63,6 +63,9 @@
- #ifdef CONFIG_RT_MUTEXES
- #include <linux/rtmutex.h>
- #endif
+@@ -23,6 +23,10 @@
+ #include <linux/uaccess.h>
+ #include <asm/processor.h>
+ 
 +#ifdef CONFIG_USER_NS
 +#include <linux/user_namespace.h>
 +#endif
- 
++
  /* shared constants to be used in various sysctls */
  const int sysctl_vals[] = { 0, 1, 2, 3, 4, 100, 200, 1000, 3000, INT_MAX, 65535, -1 };
-@@ -1581,6 +1584,17 @@ int proc_do_static_key(const struct ctl_table *table, int write,
+ EXPORT_SYMBOL(sysctl_vals);
+@@ -1455,6 +1459,17 @@ int proc_do_static_key(const struct ctl_table *table, int write,
  }
  
- static const struct ctl_table kern_table[] = {
+ static const struct ctl_table sysctl_subsys_table[] = {
 +#ifdef CONFIG_USER_NS
 +	{
 +		.procname	= "unprivileged_userns_clone",
@@ -107,7 +108,7 @@ index 9b4f0cff76ead..9a64f600c5ca6 100644
 +#endif
  #ifdef CONFIG_PROC_SYSCTL
  	{
- 		.procname	= "tainted",
+ 		.procname	= "sysctl_writes_strict",
 diff --git a/kernel/user_namespace.c b/kernel/user_namespace.c
 index 682f40d5632d4..8aa32e6ad20bc 100644
 --- a/kernel/user_namespace.c
@@ -123,5 +124,5 @@ index 682f40d5632d4..8aa32e6ad20bc 100644
  static DEFINE_MUTEX(userns_state_mutex);
  
 -- 
-2.51.0
+2.51.2
 

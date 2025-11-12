@@ -1,4 +1,4 @@
-From d2b9c3c32f5b11371ebb46de4c385d8d8548dac4 Mon Sep 17 00:00:00 2001
+From 58ceec88e5eaedbfe2a536fe133f0baf1a6a887b Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 03:26:45 -0500
 Subject: [PATCH 083/101] hard-wire legacy checkreqprot option to 0
@@ -13,7 +13,7 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  3 files changed, 1 insertion(+), 32 deletions(-)
 
 diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 881c0501bc7bb..5f8788002a463 100644
+index 25d8b286d35a7..4900ad891bd4b 100644
 --- a/Documentation/admin-guide/kernel-parameters.txt
 +++ b/Documentation/admin-guide/kernel-parameters.txt
 @@ -651,17 +651,6 @@
@@ -35,7 +35,7 @@ index 881c0501bc7bb..5f8788002a463 100644
  			See Documentation/arch/s390/common_io.rst for details.
  
 diff --git a/security/selinux/hooks.c b/security/selinux/hooks.c
-index 595ceb314aeb3..84545bac30321 100644
+index c95a5874bf7d4..7cf52a7b80209 100644
 --- a/security/selinux/hooks.c
 +++ b/security/selinux/hooks.c
 @@ -139,18 +139,6 @@ static int __init selinux_enabled_setup(char *str)
@@ -58,7 +58,7 @@ index 595ceb314aeb3..84545bac30321 100644
   * selinux_secmark_enabled - Check to see if SECMARK is currently enabled
   *
 diff --git a/security/selinux/selinuxfs.c b/security/selinux/selinuxfs.c
-index e67a8ce4b64c2..78a19288de515 100644
+index 9aa1d03ab6120..02485c3abb1b1 100644
 --- a/security/selinux/selinuxfs.c
 +++ b/security/selinux/selinuxfs.c
 @@ -699,20 +699,12 @@ static ssize_t sel_write_checkreqprot(struct file *file, const char __user *buf,
@@ -84,5 +84,5 @@ index e67a8ce4b64c2..78a19288de515 100644
  
  out:
 -- 
-2.51.0
+2.51.2
 

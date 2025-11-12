@@ -1,4 +1,4 @@
-From bbda3f49884984c2c0d446482d1881fb8c5a4d0b Mon Sep 17 00:00:00 2001
+From 2ee58b0a3e3b04d3f01d501d021639e854bfdb41 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:23:39 -0400
 Subject: [PATCH 078/101] mm: guarantee brk gap is at least one page
@@ -17,10 +17,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/mm/util.c b/mm/util.c
-index 7a859af42fbdd..931594f6cd7ef 100644
+index 70d1922494e0d..c31fd21a57243 100644
 --- a/mm/util.c
 +++ b/mm/util.c
-@@ -390,9 +390,9 @@ unsigned long __weak arch_randomize_brk(struct mm_struct *mm)
+@@ -391,9 +391,9 @@ unsigned long __weak arch_randomize_brk(struct mm_struct *mm)
  {
  	/* Is the current task 32bit ? */
  	if (!IS_ENABLED(CONFIG_64BIT) || is_compat_task())
@@ -33,5 +33,5 @@ index 7a859af42fbdd..931594f6cd7ef 100644
  
  unsigned long arch_mmap_rnd(void)
 -- 
-2.51.0
+2.51.2
 

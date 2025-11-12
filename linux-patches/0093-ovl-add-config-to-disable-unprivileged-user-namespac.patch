@@ -1,4 +1,4 @@
-From 789a4925810a89d02df6a9cdaaed717fc9e0959f Mon Sep 17 00:00:00 2001
+From d6526d94e27a279c9970098b08c4c149ffeb6236 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Thu, 11 Mar 2021 23:09:50 +0100
 Subject: [PATCH 093/101] ovl: add config to disable unprivileged user
@@ -40,7 +40,7 @@ index 2ac67e04a6fbe..3340e13c959c8 100644
 +
 +	  If unsure, say N.
 diff --git a/fs/overlayfs/super.c b/fs/overlayfs/super.c
-index e19940d649ca3..ad982ec089409 100644
+index df85a76597e91..1a8320c6fd521 100644
 --- a/fs/overlayfs/super.c
 +++ b/fs/overlayfs/super.c
 @@ -1516,7 +1516,9 @@ struct file_system_type ovl_fs_type = {
@@ -54,5 +54,5 @@ index e19940d649ca3..ad982ec089409 100644
  };
  MODULE_ALIAS_FS("overlay");
 -- 
-2.51.0
+2.51.2
 

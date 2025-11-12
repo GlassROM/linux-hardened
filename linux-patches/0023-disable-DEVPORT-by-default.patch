@@ -1,4 +1,4 @@
-From 82ae18b388b8deb6dae37670b13bb9aa505181bc Mon Sep 17 00:00:00 2001
+From a615fb44ebd845b7ce1abca8d233db47f0243094 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 27 May 2017 07:28:10 -0400
 Subject: [PATCH 023/101] disable DEVPORT by default
@@ -8,7 +8,7 @@ Subject: [PATCH 023/101] disable DEVPORT by default
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
-index ae61967605563..99865add0b790 100644
+index d2cfc584e2023..258a33a54e8ed 100644
 --- a/drivers/char/Kconfig
 +++ b/drivers/char/Kconfig
 @@ -343,7 +343,6 @@ config NVRAM
@@ -20,5 +20,5 @@ index ae61967605563..99865add0b790 100644
  	  Say Y here if you want to support the /dev/port device. The /dev/port
  	  device is similar to /dev/mem, but for I/O ports.
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 793088abbe6e332ff42d82eb7cff6fd20327078b Mon Sep 17 00:00:00 2001
+From e520969205cb235a316a8cd613b6612b93239f8c Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 28 May 2017 18:51:30 -0400
 Subject: [PATCH 050/101] mark kmem_cache as __ro_after_init
@@ -21,5 +21,5 @@ index d55e61da87aaf..04a5e278a874e 100644
  /*
   * Set of flags that will prevent slab merging
 -- 
-2.51.0
+2.51.2
 

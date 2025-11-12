@@ -1,4 +1,4 @@
-From 89009af3bbd8739c8cd03d36b189c05ec63ca396 Mon Sep 17 00:00:00 2001
+From fe993c5084902a0373ea3a0101525b03aa94e15b Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Tue, 12 Dec 2023 18:35:05 +0100
 Subject: [PATCH 046/101] mm/slab: enable RANDOM_KMALLOC_CACHES by default
@@ -8,7 +8,7 @@ Subject: [PATCH 046/101] mm/slab: enable RANDOM_KMALLOC_CACHES by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/mm/Kconfig b/mm/Kconfig
-index 770d1ea89bfb3..ea6af5d1a559e 100644
+index ed74fb55ef79b..4a05c2eb57776 100644
 --- a/mm/Kconfig
 +++ b/mm/Kconfig
 @@ -286,7 +286,7 @@ config SLUB_CPU_PARTIAL
@@ -21,5 +21,5 @@ index 770d1ea89bfb3..ea6af5d1a559e 100644
  	bool "Randomize slab caches for normal kmalloc"
  	help
 -- 
-2.51.0
+2.51.2
 

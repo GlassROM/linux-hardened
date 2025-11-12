@@ -1,4 +1,4 @@
-From be9e15bd4913e88b30ad80a738c8606a826d46f7 Mon Sep 17 00:00:00 2001
+From d9f0b48de5ebfd9057c766c13922beaf2fedb534 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 17 Sep 2019 18:00:54 +0200
 Subject: [PATCH 055/101] mm: slab: BUG on page type confusion under
@@ -16,10 +16,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 4 insertions(+)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 487fda379cd1c..4c4f2b7d66067 100644
+index 81ee0ddb81cee..b175b1eb0e950 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
-@@ -4712,8 +4712,12 @@ static inline struct kmem_cache *virt_to_cache(const void *obj)
+@@ -4774,8 +4774,12 @@ static inline struct kmem_cache *virt_to_cache(const void *obj)
  	struct slab *slab;
  
  	slab = virt_to_slab(obj);
@@ -33,5 +33,5 @@ index 487fda379cd1c..4c4f2b7d66067 100644
  }
  
 -- 
-2.51.0
+2.51.2
 

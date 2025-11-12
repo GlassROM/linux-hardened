@@ -1,4 +1,4 @@
-From 35dd19563ce1aca920c1209ece19058d585204b6 Mon Sep 17 00:00:00 2001
+From 8aca65fb5919b863648e424de4d1edd12528b62e Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 21 May 2017 20:30:44 -0400
 Subject: [PATCH 072/101] x86: determine stack entropy based on mmap entropy
@@ -56,5 +56,5 @@ index 10ee30f6d1847..6d0abe9e5adcd 100644
  
  #define ARCH_DLINFO							\
 -- 
-2.51.0
+2.51.2
 

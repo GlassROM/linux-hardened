@@ -1,4 +1,4 @@
-From 2cc4955626ee54459ebe91803a6314993627e8f0 Mon Sep 17 00:00:00 2001
+From a2e942e478b8b7abafc7dfaefbd47301c47a5dda Mon Sep 17 00:00:00 2001
 From: madaidan <50278627+madaidan@users.noreply.github.com>
 Date: Sun, 9 Feb 2020 00:03:41 +0000
 Subject: [PATCH 092/101] net: tcp: add option to disable TCP simultaneous
@@ -34,12 +34,12 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  5 files changed, 53 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/networking/ip-sysctl.rst b/Documentation/networking/ip-sysctl.rst
-index 0f1251cce3149..d03bdb3aa5e76 100644
+index 9756d16e3df14..43e92535f3b19 100644
 --- a/Documentation/networking/ip-sysctl.rst
 +++ b/Documentation/networking/ip-sysctl.rst
-@@ -768,6 +768,24 @@ tcp_backlog_ack_defer - BOOLEAN
+@@ -854,6 +854,24 @@ tcp_backlog_ack_defer - BOOLEAN
  
- 	Default : true
+ 	Default: 1 (enabled)
  
 +tcp_simult_connect - BOOLEAN
 +	Enable TCP simultaneous connect that adds a weakness in Linux's strict
@@ -60,10 +60,10 @@ index 0f1251cce3149..d03bdb3aa5e76 100644
 +	Default: Value of CONFIG_TCP_SIMULT_CONNECT_DEFAULT_ON
 +
  tcp_slow_start_after_idle - BOOLEAN
- 	If set, provide RFC2861 behavior and time out the congestion
+ 	If enabled, provide RFC2861 behavior and time out the congestion
  	window after an idle period.  An idle period is defined at
 diff --git a/include/net/tcp.h b/include/net/tcp.h
-index 5078ad868feef..3f4eac6808115 100644
+index 526a26e7a1505..724931a158cf5 100644
 --- a/include/net/tcp.h
 +++ b/include/net/tcp.h
 @@ -262,6 +262,7 @@ static_assert((1 << ATO_BITS) > TCP_DELACK_MAX);
@@ -126,7 +126,7 @@ index 3a43010d726fb..4ce93a361d07e 100644
  
  static struct ctl_table ipv4_net_table[] = {
 diff --git a/net/ipv4/tcp_input.c b/net/ipv4/tcp_input.c
-index 94391f32a5d87..58e5cc607a64d 100644
+index a88e82f7ec485..c74ac5ebdda13 100644
 --- a/net/ipv4/tcp_input.c
 +++ b/net/ipv4/tcp_input.c
 @@ -83,6 +83,7 @@
@@ -137,7 +137,7 @@ index 94391f32a5d87..58e5cc607a64d 100644
  
  #define FLAG_DATA		0x01 /* Incoming frame contained data.		*/
  #define FLAG_WIN_UPDATE		0x02 /* Incoming ACK was a window update.	*/
-@@ -6655,7 +6656,7 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
+@@ -6557,7 +6558,7 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
  		SKB_DR_SET(reason, TCP_RFC7323_PAWS);
  		goto discard_and_undo;
  	}
@@ -147,5 +147,5 @@ index 94391f32a5d87..58e5cc607a64d 100644
  		 * simultaneous connect with crossed SYNs.
  		 * Particularly, it can be connect to self.
 -- 
-2.51.0
+2.51.2
 

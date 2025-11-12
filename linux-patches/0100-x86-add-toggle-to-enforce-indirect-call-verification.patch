@@ -1,4 +1,4 @@
-From d46c88f8b27137a478cf5b2e908e6bffac83d39d Mon Sep 17 00:00:00 2001
+From b09085a54f8861f2e5fe08054a904bc200019b7b Mon Sep 17 00:00:00 2001
 From: randomhydrosol <randomhydrosol@glassrom.org>
 Date: Mon, 7 Apr 2025 13:52:27 +0530
 Subject: [PATCH 100/101] x86: add toggle to enforce indirect call verification
@@ -13,10 +13,10 @@ When FRED is absent or CONFIG_FINEIBT_PARANOID_ALWAYS_ON is set, verify every in
  2 files changed, 31 insertions(+), 3 deletions(-)
 
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 7b2687be38d16..e160852bc241b 100644
+index ce01a3c4a7f03..9796d0e8cb538 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -2418,6 +2418,32 @@ config FINEIBT_BHI
+@@ -2415,6 +2415,32 @@ config FINEIBT_BHI
  	def_bool y
  	depends on FINEIBT && CC_HAS_KCFI_ARITY
  
@@ -50,10 +50,10 @@ index 7b2687be38d16..e160852bc241b 100644
  	def_bool y
  	depends on CC_HAS_ENTRY_PADDING && MITIGATION_RETHUNK && OBJTOOL
 diff --git a/arch/x86/kernel/alternative.c b/arch/x86/kernel/alternative.c
-index ea1d984166cdd..23170694ba4e9 100644
+index 7bde68247b5fc..edb285342c713 100644
 --- a/arch/x86/kernel/alternative.c
 +++ b/arch/x86/kernel/alternative.c
-@@ -1758,10 +1758,12 @@ static void __apply_fineibt(s32 *start_retpoline, s32 *end_retpoline,
+@@ -1720,10 +1720,12 @@ static void __apply_fineibt(s32 *start_retpoline, s32 *end_retpoline,
  		cfi_mode = CFI_KCFI;
  		if (HAS_KERNEL_IBT && cpu_feature_enabled(X86_FEATURE_IBT)) {
  			/*
@@ -70,5 +70,5 @@ index ea1d984166cdd..23170694ba4e9 100644
  			cfi_mode = CFI_FINEIBT;
  		}
 -- 
-2.51.0
+2.51.2
 

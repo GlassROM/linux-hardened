@@ -1,4 +1,4 @@
-From 2b4cb627bfb66fa46913c03b4120f62d89116481 Mon Sep 17 00:00:00 2001
+From 420913515179e5a7564f0d21fc87d3fd42ae233a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 12 May 2017 00:06:16 -0400
 Subject: [PATCH 051/101] mark __{supported,default_kernel}_pte_mask as
@@ -37,7 +37,7 @@ index 8a34fff6ab2b1..172e2cd0053e3 100644
  /* Used in PAGE_KERNEL_* macros which are reasonably used out-of-tree: */
  EXPORT_SYMBOL(__default_kernel_pte_mask);
 diff --git a/arch/x86/mm/init_64.c b/arch/x86/mm/init_64.c
-index fdb6cab524f08..75b7a507f0f25 100644
+index b9426fce5f3e3..1c3347764cff8 100644
 --- a/arch/x86/mm/init_64.c
 +++ b/arch/x86/mm/init_64.c
 @@ -104,9 +104,9 @@ static inline pgprot_t prot_sethuge(pgprot_t prot)
@@ -53,5 +53,5 @@ index fdb6cab524f08..75b7a507f0f25 100644
  /* Used in PAGE_KERNEL_* macros which are reasonably used out-of-tree: */
  EXPORT_SYMBOL(__default_kernel_pte_mask);
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 5565d94cc2807055030cdc1e833b64931151100b Mon Sep 17 00:00:00 2001
+From ac9d2c8db541d913a9027840337c9b6f48d853f3 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:22:38 -0400
 Subject: [PATCH 076/101] mm: randomize lower bits of brk
@@ -17,10 +17,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/mm/util.c b/mm/util.c
-index 0b270c43d7d12..7a859af42fbdd 100644
+index 98d301875b755..70d1922494e0d 100644
 --- a/mm/util.c
 +++ b/mm/util.c
-@@ -390,9 +390,9 @@ unsigned long __weak arch_randomize_brk(struct mm_struct *mm)
+@@ -391,9 +391,9 @@ unsigned long __weak arch_randomize_brk(struct mm_struct *mm)
  {
  	/* Is the current task 32bit ? */
  	if (!IS_ENABLED(CONFIG_64BIT) || is_compat_task())
@@ -33,5 +33,5 @@ index 0b270c43d7d12..7a859af42fbdd 100644
  
  unsigned long arch_mmap_rnd(void)
 -- 
-2.51.0
+2.51.2
 

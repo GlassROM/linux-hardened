@@ -1,4 +1,4 @@
-From 0eee95f797a05f36f2dd3d6fe09bd22a12054804 Mon Sep 17 00:00:00 2001
+From 176e93ef99de65df75f4ce2497b014d8a9ec7165 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Sun, 4 Nov 2018 18:48:53 +0100
 Subject: [PATCH 088/101] enable protected_{fifos,regular} by default
@@ -8,7 +8,7 @@ Subject: [PATCH 088/101] enable protected_{fifos,regular} by default
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/fs/namei.c b/fs/namei.c
-index 2700441e077b4..e856928243610 100644
+index c746e9018af11..1298febf6d5c3 100644
 --- a/fs/namei.c
 +++ b/fs/namei.c
 @@ -1097,8 +1097,8 @@ static inline void put_link(struct nameidata *nd)
@@ -23,5 +23,5 @@ index 2700441e077b4..e856928243610 100644
  #ifdef CONFIG_SYSCTL
  static const struct ctl_table namei_sysctls[] = {
 -- 
-2.51.0
+2.51.2
 

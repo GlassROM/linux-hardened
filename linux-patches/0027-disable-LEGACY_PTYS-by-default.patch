@@ -1,4 +1,4 @@
-From eac14890d418ecf243a5a97e90145390fe2d28ea Mon Sep 17 00:00:00 2001
+From c69eb2c48dab51779b6784ee422eeb72634f5095 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 5 Jan 2018 13:21:16 -0500
 Subject: [PATCH 027/101] disable LEGACY_PTYS by default
@@ -20,5 +20,5 @@ index 149f3d53b7608..3c51e08c1d8cd 100644
  	  A pseudo terminal (PTY) is a software device consisting of two
  	  halves: a master and a slave. The slave device behaves identical to
 -- 
-2.51.0
+2.51.2
 

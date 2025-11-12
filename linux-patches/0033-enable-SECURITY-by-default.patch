@@ -1,4 +1,4 @@
-From f7a04c03ab24a2b8ca82c2ec2815875244850117 Mon Sep 17 00:00:00 2001
+From 84df4349f7f4c12da11bc52de80301f6a2c06bfa Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 25 Feb 2018 02:13:48 -0500
 Subject: [PATCH 033/101] enable SECURITY by default
@@ -8,7 +8,7 @@ Subject: [PATCH 033/101] enable SECURITY by default
  1 file changed, 1 insertion(+)
 
 diff --git a/security/Kconfig b/security/Kconfig
-index 921bb8ec5376a..1a5d2f1c8f024 100644
+index 108797420fe13..23fa5391a438b 100644
 --- a/security/Kconfig
 +++ b/security/Kconfig
 @@ -76,6 +76,7 @@ config SECURITY
@@ -20,5 +20,5 @@ index 921bb8ec5376a..1a5d2f1c8f024 100644
  	  This allows you to choose different security modules to be
  	  configured into your kernel.
 -- 
-2.51.0
+2.51.2
 

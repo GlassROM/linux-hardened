@@ -1,4 +1,4 @@
-From 5653a402fbfd1d15f5e96816c62b5749c414ae30 Mon Sep 17 00:00:00 2001
+From 1893fcfeaf5d53d4ef5e6a464cf1978f34d92620 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 27 May 2017 07:29:45 -0400
 Subject: [PATCH 024/101] disable PROC_VMCORE by default
@@ -20,5 +20,5 @@ index 6ae966c561e73..27d78d669f955 100644
  	  Exports the dump image of crashed kernel in ELF format.
  
 -- 
-2.51.0
+2.51.2
 

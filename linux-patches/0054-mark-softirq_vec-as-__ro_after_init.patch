@@ -1,4 +1,4 @@
-From d16accc04aea21e9a4eead4052a81bd8f3756d08 Mon Sep 17 00:00:00 2001
+From 5d6bbacda062da3ed2b0716f4be6798fc3dba2ae Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 4 Jul 2017 01:42:33 -0400
 Subject: [PATCH 054/101] mark softirq_vec as __ro_after_init
@@ -24,5 +24,5 @@ index dc7e1de1eb171..1e647e2a9eb63 100644
  DEFINE_PER_CPU(struct task_struct *, ksoftirqd);
  
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 8bff17e165449dfbbe42104ee9e498186c44cd95 Mon Sep 17 00:00:00 2001
+From 5d2d31d38fe6aa833bbe7d19f911de168c63cf9d Mon Sep 17 00:00:00 2001
 From: Emese Revfy <re.emese@gmail.com>
 Date: Tue, 31 May 2016 01:34:02 +0200
 Subject: [PATCH 065/101] Add the extra_latent_entropy kernel parameter
@@ -19,10 +19,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  3 files changed, 34 insertions(+)
 
 diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index f6d317e1674d6..881c0501bc7bb 100644
+index e92c0056e4e0a..25d8b286d35a7 100644
 --- a/Documentation/admin-guide/kernel-parameters.txt
 +++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -4673,6 +4673,11 @@
+@@ -4741,6 +4741,11 @@
  			the specified number of seconds.  This is to be used if
  			your oopses keep scrolling off the screen.
  
@@ -35,7 +35,7 @@ index f6d317e1674d6..881c0501bc7bb 100644
  
  	pci=option[,option...]	[PCI,EARLY] various PCI subsystem options.
 diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-index a5593e1172072..3c6ccd73349e1 100644
+index 28fa3304a06e6..67fa7b1723668 100644
 --- a/mm/page_alloc.c
 +++ b/mm/page_alloc.c
 @@ -186,6 +186,15 @@ EXPORT_PER_CPU_SYMBOL(_numa_mem_);
@@ -54,7 +54,7 @@ index a5593e1172072..3c6ccd73349e1 100644
  #ifdef CONFIG_GCC_PLUGIN_LATENT_ENTROPY
  volatile unsigned long latent_entropy __latent_entropy;
  EXPORT_SYMBOL(latent_entropy);
-@@ -1455,6 +1464,21 @@ void __meminit __free_pages_core(struct page *page, unsigned int order,
+@@ -1602,6 +1611,21 @@ void __meminit __free_pages_core(struct page *page, unsigned int order,
  			set_page_count(p, 0);
  		}
  
@@ -93,5 +93,5 @@ index 6b34ba19358d8..d83e715c9d404 100644
  	  secure!
  
 -- 
-2.51.0
+2.51.2
 

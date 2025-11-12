@@ -1,4 +1,4 @@
-From a3b32ae927dd1c7aaf289e8073e0122c61fc0203 Mon Sep 17 00:00:00 2001
+From 00c4cfc2388ffd09182a882a7fa2609681388455 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 7 May 2017 18:28:33 -0400
 Subject: [PATCH 030/101] disable COMPAT_BRK by default
@@ -8,7 +8,7 @@ Subject: [PATCH 030/101] disable COMPAT_BRK by default
  1 file changed, 1 deletion(-)
 
 diff --git a/mm/Kconfig b/mm/Kconfig
-index efdaea64426df..770d1ea89bfb3 100644
+index 249ea39d89459..ed74fb55ef79b 100644
 --- a/mm/Kconfig
 +++ b/mm/Kconfig
 @@ -329,7 +329,6 @@ config SHUFFLE_PAGE_ALLOCATOR
@@ -20,5 +20,5 @@ index efdaea64426df..770d1ea89bfb3 100644
  	  Randomizing heap placement makes heap exploits harder, but it
  	  also breaks ancient binaries (including anything libc5 based).
 -- 
-2.51.0
+2.51.2
 

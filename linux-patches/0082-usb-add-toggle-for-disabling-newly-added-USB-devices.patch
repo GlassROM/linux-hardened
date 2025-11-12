@@ -1,4 +1,4 @@
-From ba06e3e52d39400aaffe6f282111683d6dbac606 Mon Sep 17 00:00:00 2001
+From ee87aab159b700be364e7b82922d5960703ba096 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 17:51:48 -0400
 Subject: [PATCH 082/101] usb: add toggle for disabling newly added USB devices
@@ -88,7 +88,7 @@ index 0000000000000..813db3f0b1cb0
 +	usb_sysctl_table = NULL;
 +}
 diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-index 118fa4c93a795..ab81a219c2de5 100644
+index fca7735fc660e..d3460aa50f5ce 100644
 --- a/drivers/usb/core/usb.c
 +++ b/drivers/usb/core/usb.c
 @@ -72,6 +72,9 @@ MODULE_PARM_DESC(autosuspend, "default autosuspend delay");
@@ -101,7 +101,7 @@ index 118fa4c93a795..ab81a219c2de5 100644
  static bool match_endpoint(struct usb_endpoint_descriptor *epd,
  		struct usb_endpoint_descriptor **bulk_in,
  		struct usb_endpoint_descriptor **bulk_out,
-@@ -1086,6 +1089,9 @@ static int __init usb_init(void)
+@@ -1166,6 +1169,9 @@ static int __init usb_init(void)
  	usb_debugfs_init();
  
  	usb_acpi_register();
@@ -111,7 +111,7 @@ index 118fa4c93a795..ab81a219c2de5 100644
  	retval = bus_register(&usb_bus_type);
  	if (retval)
  		goto bus_register_failed;
-@@ -1125,6 +1131,8 @@ static int __init usb_init(void)
+@@ -1205,6 +1211,8 @@ static int __init usb_init(void)
  bus_notifier_failed:
  	bus_unregister(&usb_bus_type);
  bus_register_failed:
@@ -120,7 +120,7 @@ index 118fa4c93a795..ab81a219c2de5 100644
  	usb_acpi_unregister();
  	usb_debugfs_cleanup();
  out:
-@@ -1149,6 +1157,7 @@ static void __exit usb_exit(void)
+@@ -1229,6 +1237,7 @@ static void __exit usb_exit(void)
  	class_unregister(&usbmisc_class);
  	bus_unregister_notifier(&usb_bus_type, &usb_bus_nb);
  	bus_unregister(&usb_bus_type);
@@ -129,10 +129,10 @@ index 118fa4c93a795..ab81a219c2de5 100644
  	usb_debugfs_cleanup();
  	idr_destroy(&usb_bus_idr);
 diff --git a/include/linux/usb.h b/include/linux/usb.h
-index 92c752f5446ff..b8221705765fa 100644
+index 9d662c6abb4d7..e978f6fb1f7b6 100644
 --- a/include/linux/usb.h
 +++ b/include/linux/usb.h
-@@ -2062,6 +2062,17 @@ extern void usb_led_activity(enum usb_led_event ev);
+@@ -2076,6 +2076,17 @@ extern void usb_led_activity(enum usb_led_event ev);
  static inline void usb_led_activity(enum usb_led_event ev) {}
  #endif
  
@@ -151,5 +151,5 @@ index 92c752f5446ff..b8221705765fa 100644
  
  #endif
 -- 
-2.51.0
+2.51.2
 

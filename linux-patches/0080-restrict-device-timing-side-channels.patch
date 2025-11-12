@@ -1,4 +1,4 @@
-From 9922df8e849405584deeb24b8cb21cb962274d32 Mon Sep 17 00:00:00 2001
+From 84e0132a7cdea901655c61c3d010d4ec41075474 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 18:26:10 -0400
 Subject: [PATCH 080/101] restrict device timing side channels
@@ -19,7 +19,7 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  6 files changed, 58 insertions(+), 3 deletions(-)
 
 diff --git a/fs/inode.c b/fs/inode.c
-index 99318b157a9a1..fc1dee66a6b1e 100644
+index 01ebdc40021e2..42d2c3ab02d0a 100644
 --- a/fs/inode.c
 +++ b/fs/inode.c
 @@ -167,6 +167,10 @@ late_initcall(mg_debugfs_init);
@@ -133,12 +133,12 @@ index 1fb08922552c7..0140615106898 100644
  {
  	return true;
 diff --git a/include/linux/fs.h b/include/linux/fs.h
-index 040c0036320fd..532d202c1a12c 100644
+index ed02715261036..3985a75efc28f 100644
 --- a/include/linux/fs.h
 +++ b/include/linux/fs.h
-@@ -3986,4 +3986,15 @@ static inline bool vfs_empty_path(int dfd, const char __user *path)
- 
- int generic_atomic_write_valid(struct kiocb *iocb, struct iov_iter *iter);
+@@ -4039,4 +4039,15 @@ static inline bool extensible_ioctl_valid(unsigned int cmd_a,
+ 	return true;
+ }
  
 +extern int device_sidechannel_restrict;
 +
@@ -153,7 +153,7 @@ index 040c0036320fd..532d202c1a12c 100644
 +
  #endif /* _LINUX_FS_H */
 diff --git a/include/linux/fsnotify.h b/include/linux/fsnotify.h
-index 454d8e4669589..5499bb7499dcf 100644
+index 28a9cb13fbfa3..e16cbb76bc48f 100644
 --- a/include/linux/fsnotify.h
 +++ b/include/linux/fsnotify.h
 @@ -124,6 +124,9 @@ static inline int fsnotify_file(struct file *file, __u32 mask)
@@ -184,5 +184,5 @@ index 829f49ae07b96..5bb7ee4028add 100644
  
  /**
 -- 
-2.51.0
+2.51.2
 

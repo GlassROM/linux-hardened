@@ -1,4 +1,4 @@
-From 581358f315cf3ff0785d0209f47c6fe2ea4bf5ca Mon Sep 17 00:00:00 2001
+From 9b38ffda07677b238731b30e517c12063e7c3467 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 15 May 2017 23:51:12 -0400
 Subject: [PATCH 067/101] sanity check for negative length in nla_memcpy
@@ -24,5 +24,5 @@ index be9c576b6e2dc..484d839bcf5e0 100644
  	if (count > minlen)
  		memset(dest + minlen, 0, count - minlen);
 -- 
-2.51.0
+2.51.2
 

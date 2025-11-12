@@ -1,4 +1,4 @@
-From b1b8ca31290c0ea5d3d62712d46c43a59fc38df7 Mon Sep 17 00:00:00 2001
+From 3aa0f8cc4e1224b862aa734f372e67adbf0bec12 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Fri, 5 Jan 2018 12:43:49 -0500
 Subject: [PATCH 029/101] enable IO_STRICT_DEVMEM by default
@@ -8,7 +8,7 @@ Subject: [PATCH 029/101] enable IO_STRICT_DEVMEM by default
  1 file changed, 1 insertion(+)
 
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index 1d019fbbf1d03..e3e6514d6ee42 100644
+index ec37d97af1aa0..3d3cf3b759388 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -1926,6 +1926,7 @@ config STRICT_DEVMEM
@@ -20,5 +20,5 @@ index 1d019fbbf1d03..e3e6514d6ee42 100644
  	  If this option is disabled, you allow userspace (root) access to all
  	  io-memory regardless of whether a driver is actively using that
 -- 
-2.51.0
+2.51.2
 

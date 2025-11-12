@@ -1,4 +1,4 @@
-From 0514f8cae3acdf12092d8b1aa3d203a31e71ec04 Mon Sep 17 00:00:00 2001
+From 985436c5964755d41084b8375e87c952d1de7940 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 11:50:53 -0400
 Subject: [PATCH 056/101] bug on kmem_cache_free with the wrong cache
@@ -15,10 +15,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 4c4f2b7d66067..11ba03dc87888 100644
+index b175b1eb0e950..504252b6558d7 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
-@@ -4730,10 +4730,15 @@ static inline struct kmem_cache *cache_from_obj(struct kmem_cache *s, void *x)
+@@ -4792,10 +4792,15 @@ static inline struct kmem_cache *cache_from_obj(struct kmem_cache *s, void *x)
  		return s;
  
  	cachep = virt_to_cache(x);
@@ -38,5 +38,5 @@ index 4c4f2b7d66067..11ba03dc87888 100644
  }
  
 -- 
-2.51.0
+2.51.2
 

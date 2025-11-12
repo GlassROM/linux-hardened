@@ -1,4 +1,4 @@
-From 6666b7b0bd66632e434b31c86eedfff87161b5f4 Mon Sep 17 00:00:00 2001
+From 583eac6b58b95ed3aecb1ec1cc8df543e63f813c Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 7 May 2017 00:28:23 -0400
 Subject: [PATCH 047/101] add __read_only for non-init related usage
@@ -21,5 +21,5 @@ index e69768f50d532..432c30a1fc7ed 100644
  #ifdef CONFIG_SMP
  #define ____cacheline_aligned_in_smp ____cacheline_aligned
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From fe7b7889912c20f6c2600982aba380f7252820e8 Mon Sep 17 00:00:00 2001
+From 34ccf7187403874a223f592ab981956a98d026a6 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Wed, 31 Jul 2019 20:50:48 +0100
 Subject: [PATCH 064/101] userns: add kconfig to set default for unprivileged
@@ -22,10 +22,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  2 files changed, 20 insertions(+)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index fa0059a100beb..037a2c54c6e3d 100644
+index 6ea9c3dbf9011..0aac88d4b1d89 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1350,6 +1350,22 @@ config USER_NS
+@@ -1382,6 +1382,22 @@ config USER_NS
  
  	  If unsure, say N.
  
@@ -65,5 +65,5 @@ index 8aa32e6ad20bc..434a25f7b2edb 100644
  static struct kmem_cache *user_ns_cachep __ro_after_init;
  static DEFINE_MUTEX(userns_state_mutex);
 -- 
-2.51.0
+2.51.2
 

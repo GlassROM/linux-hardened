@@ -1,4 +1,4 @@
-From b62924ed3180c10140fd6884c89813cafbfc4e94 Mon Sep 17 00:00:00 2001
+From d3b355b6c68a06c4c928e9116767b7e2244b3abc Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 16 May 2017 00:59:48 -0400
 Subject: [PATCH 068/101] PaX shadow cr4 sanity check (essentially a revert)
@@ -16,10 +16,10 @@ Signed-off-by: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
  3 files changed, 3 insertions(+)
 
 diff --git a/arch/x86/include/asm/tlbflush.h b/arch/x86/include/asm/tlbflush.h
-index e9b81876ebe43..3a56108600c4f 100644
+index 00daedfefc1b0..a00d167fe5ce2 100644
 --- a/arch/x86/include/asm/tlbflush.h
 +++ b/arch/x86/include/asm/tlbflush.h
-@@ -490,6 +490,7 @@ static inline void cpu_tlbstate_update_lam(unsigned long lam, u64 untag_mask)
+@@ -485,6 +485,7 @@ static inline void cpu_tlbstate_update_lam(unsigned long lam, u64 untag_mask)
  
  static inline void __native_tlb_flush_global(unsigned long cr4)
  {
@@ -28,10 +28,10 @@ index e9b81876ebe43..3a56108600c4f 100644
  	native_write_cr4(cr4);
  }
 diff --git a/arch/x86/kernel/cpu/common.c b/arch/x86/kernel/cpu/common.c
-index fb50c1dd53ef7..cb6d102baee26 100644
+index f98ec9c7fc07f..6f318d29bc82c 100644
 --- a/arch/x86/kernel/cpu/common.c
 +++ b/arch/x86/kernel/cpu/common.c
-@@ -450,6 +450,7 @@ EXPORT_SYMBOL_GPL(native_write_cr4);
+@@ -451,6 +451,7 @@ EXPORT_SYMBOL_GPL(native_write_cr4);
  void cr4_update_irqsoff(unsigned long set, unsigned long clear)
  {
  	unsigned long newval, cr4 = this_cpu_read(cpu_tlbstate.cr4);
@@ -40,10 +40,10 @@ index fb50c1dd53ef7..cb6d102baee26 100644
  	lockdep_assert_irqs_disabled();
  
 diff --git a/arch/x86/kernel/process.c b/arch/x86/kernel/process.c
-index a838be04f8749..1bcbe97aaa063 100644
+index e3a3987b0c4fb..a7fe7fdba4e17 100644
 --- a/arch/x86/kernel/process.c
 +++ b/arch/x86/kernel/process.c
-@@ -688,6 +688,7 @@ void speculation_ctrl_update_current(void)
+@@ -696,6 +696,7 @@ void speculation_ctrl_update_current(void)
  static inline void cr4_toggle_bits_irqsoff(unsigned long mask)
  {
  	unsigned long newval, cr4 = this_cpu_read(cpu_tlbstate.cr4);
@@ -52,5 +52,5 @@ index a838be04f8749..1bcbe97aaa063 100644
  	newval = cr4 ^ mask;
  	if (newval != cr4) {
 -- 
-2.51.0
+2.51.2
 

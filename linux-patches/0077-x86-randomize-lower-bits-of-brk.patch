@@ -1,4 +1,4 @@
-From d3c2805d1088bf1e0de9d806b6d9126c1f266a80 Mon Sep 17 00:00:00 2001
+From 91e9a45cdfcac2409a5d20c5acc5ad343768730a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 1 Jun 2017 03:23:06 -0400
 Subject: [PATCH 077/101] x86: randomize lower bits of brk
@@ -11,10 +11,10 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/x86/kernel/process.c b/arch/x86/kernel/process.c
-index 1bcbe97aaa063..47b8e54c9056e 100644
+index a7fe7fdba4e17..7159d4dbfd1bb 100644
 --- a/arch/x86/kernel/process.c
 +++ b/arch/x86/kernel/process.c
-@@ -1021,9 +1021,9 @@ unsigned long arch_align_stack(unsigned long sp)
+@@ -1029,9 +1029,9 @@ unsigned long arch_align_stack(unsigned long sp)
  unsigned long arch_randomize_brk(struct mm_struct *mm)
  {
  	if (mmap_is_ia32())
@@ -27,5 +27,5 @@ index 1bcbe97aaa063..47b8e54c9056e 100644
  
  /*
 -- 
-2.51.0
+2.51.2
 

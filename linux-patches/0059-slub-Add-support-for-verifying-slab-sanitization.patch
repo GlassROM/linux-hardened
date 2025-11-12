@@ -1,4 +1,4 @@
-From fa030da6aebff4bbb4047349f116b008528b7b47 Mon Sep 17 00:00:00 2001
+From 4bfacc3cbf64062f2730c7090d4ea2a6ffdf5808 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 15:58:57 -0400
 Subject: [PATCH 059/101] slub: Add support for verifying slab sanitization
@@ -20,10 +20,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  2 files changed, 49 insertions(+), 4 deletions(-)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 510bea5f3d7cd..a3be91336bf7d 100644
+index e590bc5e086a9..e516bb14c66b5 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
-@@ -235,6 +235,12 @@ static inline bool kmem_cache_debug(struct kmem_cache *s)
+@@ -252,6 +252,12 @@ static inline bool kmem_cache_debug(struct kmem_cache *s)
  	return kmem_cache_debug_flags(s, SLAB_DEBUG_FLAGS);
  }
  
@@ -36,7 +36,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  void *fixup_red_left(struct kmem_cache *s, void *p)
  {
  	if (kmem_cache_debug_flags(s, SLAB_RED_ZONE))
-@@ -2376,7 +2382,7 @@ bool slab_free_hook(struct kmem_cache *s, void *x, bool init,
+@@ -2432,7 +2438,7 @@ bool slab_free_hook(struct kmem_cache *s, void *x, bool init,
  		 */
  		set_orig_size(s, x, orig_size);
  
@@ -45,7 +45,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  			s->ctor(x);
  	}
  	/* KASAN might put x into memory quarantine, delaying its reuse. */
-@@ -2447,7 +2453,7 @@ static void *setup_object(struct kmem_cache *s, void *object)
+@@ -2503,7 +2509,7 @@ static void *setup_object(struct kmem_cache *s, void *object)
  {
  	setup_object_debug(s, object);
  	object = kasan_init_slab_obj(s, object);
@@ -54,7 +54,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  		kasan_unpoison_new_object(s, object);
  		s->ctor(object);
  		kasan_poison_new_object(s, object);
-@@ -4203,7 +4209,19 @@ static __fastpath_inline void *slab_alloc_node(struct kmem_cache *s, struct list
+@@ -4261,7 +4267,19 @@ static __fastpath_inline void *slab_alloc_node(struct kmem_cache *s, struct list
  	object = __slab_alloc_node(s, gfpflags, node, addr, orig_size);
  
  	maybe_wipe_obj_freeptr(s, object);
@@ -75,7 +75,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  
  out:
  	/*
-@@ -5344,6 +5362,21 @@ int __kmem_cache_alloc_bulk(struct kmem_cache *s, gfp_t flags, size_t size,
+@@ -5406,6 +5424,21 @@ int __kmem_cache_alloc_bulk(struct kmem_cache *s, gfp_t flags, size_t size,
  	local_unlock_irqrestore(&s->cpu_slab->lock, irqflags);
  	slub_put_cpu_ptr(s->cpu_slab);
  
@@ -97,7 +97,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  	return i;
  
  error:
-@@ -5387,6 +5420,7 @@ int kmem_cache_alloc_bulk_noprof(struct kmem_cache *s, gfp_t flags, size_t size,
+@@ -5449,6 +5482,7 @@ int kmem_cache_alloc_bulk_noprof(struct kmem_cache *s, gfp_t flags, size_t size,
  				 void **p)
  {
  	int i;
@@ -105,7 +105,7 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  
  	if (!size)
  		return 0;
-@@ -5403,8 +5437,11 @@ int kmem_cache_alloc_bulk_noprof(struct kmem_cache *s, gfp_t flags, size_t size,
+@@ -5465,8 +5499,11 @@ int kmem_cache_alloc_bulk_noprof(struct kmem_cache *s, gfp_t flags, size_t size,
  	 * memcg and kmem_cache debug support and memory initialization.
  	 * Done outside of the IRQ disabled fastpath loop.
  	 */
@@ -119,10 +119,10 @@ index 510bea5f3d7cd..a3be91336bf7d 100644
  	}
  	return i;
 diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
-index 0f45bf3328bd6..e2eecea6b1df3 100644
+index 30947f9492a56..2fe403946b4b8 100644
 --- a/security/Kconfig.hardening
 +++ b/security/Kconfig.hardening
-@@ -211,6 +211,14 @@ config PAGE_SANITIZE_VERIFY
+@@ -218,6 +218,14 @@ config PAGE_SANITIZE_VERIFY
  	  When init_on_free is enabled, verify that newly allocated pages
  	  are zeroed to detect write-after-free bugs.
  
@@ -138,5 +138,5 @@ index 0f45bf3328bd6..e2eecea6b1df3 100644
  
  menu "Bounds checking"
 -- 
-2.51.0
+2.51.2
 

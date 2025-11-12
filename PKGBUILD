@@ -5,10 +5,10 @@
 
 pkgbase=linux-hardened
 pkgname=linux-hardened
-pkgver=6.16.2.hardened1
+pkgver=6.17.7.hardened1
 pkgrel=1
 pkgdesc='Security-Hardened Linux'
-url='https://github.com/anthraxx/linux-hardened'
+url='https://github.com/GlassROM/linux-hardened'
 arch=(x86_64)
 license=(GPL-2.0-only)
 makedepends=(
@@ -52,10 +52,10 @@ validpgpkeys=(
   E240B57E2C4630BA768E2F26FC1B547C8D8172C8  # Levente Polyak
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('b760a6fa793d774fbd3b7fa0bea3efd5c4f5294dfb98ef1bd5f6d5f7cef4f06d'
+sha256sums=('ddf2ea0d4439e1d57136be3623102af9458f601f5b1cb77e83246e88aea09d0e'
             'SKIP'
 	    'SKIP')
-b2sums=('9585d9abd085707cf5b7f3917ee41ff234083b941863fc5fa9eb7e81ed486da5fc58cd756020359f8784d29fcdac96720cc1dec2c10bef9a5c061cd2222f1680'
+b2sums=('7338c33e209a87d2acdc80cb30066b719a1924ac38db0ac4087c4cb2ae6d510d75fbc97eeadac9bbc070afe09f29e65fd7ab18383fe677adcf993c17d4407535'
         'SKIP'
 	'SKIP')
 

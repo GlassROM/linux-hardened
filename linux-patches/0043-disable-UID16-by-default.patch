@@ -1,4 +1,4 @@
-From e2d8d4a5dcf9955efc17031995c0b0ce635757ee Mon Sep 17 00:00:00 2001
+From 9b996bc4412024a3c6c1508e2c227e4e1ad39047 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Tue, 22 Dec 2020 23:41:32 +0100
 Subject: [PATCH 043/101] disable UID16 by default
@@ -8,10 +8,10 @@ Subject: [PATCH 043/101] disable UID16 by default
  1 file changed, 1 deletion(-)
 
 diff --git a/init/Kconfig b/init/Kconfig
-index afb65eab2647e..fa0059a100beb 100644
+index c99773bcb65e9..6ea9c3dbf9011 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1599,7 +1599,6 @@ menuconfig EXPERT
+@@ -1632,7 +1632,6 @@ menuconfig EXPERT
  config UID16
  	bool "Enable 16-bit UID system calls"
  	depends on HAVE_UID16 && MULTIUSER
@@ -20,5 +20,5 @@ index afb65eab2647e..fa0059a100beb 100644
  	  This enables the legacy 16-bit UID syscall wrappers.
  
 -- 
-2.51.0
+2.51.2
 

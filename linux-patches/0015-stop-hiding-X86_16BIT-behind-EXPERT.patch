@@ -1,4 +1,4 @@
-From b0aceb762c7cd5e2f526253e6df2205cea5a457a Mon Sep 17 00:00:00 2001
+From 24f9a18b998bb62a85ae3ac734aee9fba40df913 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 4 May 2017 18:11:31 -0400
 Subject: [PATCH 015/101] stop hiding X86_16BIT behind EXPERT
@@ -8,10 +8,10 @@ Subject: [PATCH 015/101] stop hiding X86_16BIT behind EXPERT
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 8bed9030ad473..f10d8ffa2d2fc 100644
+index 05880301212e3..6d18b36dc3b58 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -1236,7 +1236,7 @@ config VM86
+@@ -1233,7 +1233,7 @@ config VM86
  	default X86_LEGACY_VM86
  
  config X86_16BIT
@@ -21,5 +21,5 @@ index 8bed9030ad473..f10d8ffa2d2fc 100644
  	depends on MODIFY_LDT_SYSCALL
  	help
 -- 
-2.51.0
+2.51.2
 

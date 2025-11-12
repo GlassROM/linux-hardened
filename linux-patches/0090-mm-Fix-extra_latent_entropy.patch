@@ -1,4 +1,4 @@
-From 7f20107090bdd37e4cc9318e33785262cee22647 Mon Sep 17 00:00:00 2001
+From 6f875532e4db0e0483964cf0b4e7c8cdf143531f Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Tue, 7 May 2019 11:46:21 +0200
 Subject: [PATCH 090/101] mm: Fix extra_latent_entropy
@@ -28,10 +28,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  3 files changed, 25 insertions(+), 15 deletions(-)
 
 diff --git a/mm/internal.h b/mm/internal.h
-index 6b8ed20177432..f8227f0a5ebec 100644
+index 45b725c3dc030..1ea901cee37a2 100644
 --- a/mm/internal.h
 +++ b/mm/internal.h
-@@ -757,6 +757,9 @@ static inline struct folio *page_rmappable_folio(struct page *page)
+@@ -788,6 +788,9 @@ static inline struct folio *page_rmappable_folio(struct page *page)
  	return folio;
  }
  
@@ -42,26 +42,26 @@ index 6b8ed20177432..f8227f0a5ebec 100644
  {
  	struct folio *folio = (struct folio *)page;
 diff --git a/mm/mm_init.c b/mm/mm_init.c
-index f2944748f526d..e76be15983ed8 100644
+index 5c21b3af216b2..c0cab50d40495 100644
 --- a/mm/mm_init.c
 +++ b/mm/mm_init.c
-@@ -1997,6 +1997,7 @@ static void __init deferred_free_pages(unsigned long pfn,
- 	if (nr_pages == MAX_ORDER_NR_PAGES && IS_MAX_ORDER_ALIGNED(pfn)) {
+@@ -2002,6 +2002,7 @@ static void __init deferred_free_pages(unsigned long pfn,
  		for (i = 0; i < nr_pages; i += pageblock_nr_pages)
- 			set_pageblock_migratetype(page + i, MIGRATE_MOVABLE);
+ 			init_pageblock_migratetype(page + i, MIGRATE_MOVABLE,
+ 					false);
 +		__gather_extra_latent_entropy(page, 1 << MAX_PAGE_ORDER);
  		__free_pages_core(page, MAX_PAGE_ORDER, MEMINIT_EARLY);
  		return;
  	}
-@@ -2007,6 +2008,7 @@ static void __init deferred_free_pages(unsigned long pfn,
- 	for (i = 0; i < nr_pages; i++, page++, pfn++) {
+@@ -2013,6 +2014,7 @@ static void __init deferred_free_pages(unsigned long pfn,
  		if (pageblock_aligned(pfn))
- 			set_pageblock_migratetype(page, MIGRATE_MOVABLE);
+ 			init_pageblock_migratetype(page, MIGRATE_MOVABLE,
+ 					false);
 +		__gather_extra_latent_entropy(page, 1);
  		__free_pages_core(page, 0, MEMINIT_EARLY);
  	}
  }
-@@ -2559,6 +2561,7 @@ void __init memblock_free_pages(struct page *page, unsigned long pfn,
+@@ -2565,6 +2567,7 @@ void __init memblock_free_pages(struct page *page, unsigned long pfn,
  
  	/* pages were reserved and not allocated */
  	clear_page_tag_ref(page);
@@ -70,10 +70,10 @@ index f2944748f526d..e76be15983ed8 100644
  }
  
 diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-index 3c6ccd73349e1..c48003b58a172 100644
+index 67fa7b1723668..32d9c06560c0b 100644
 --- a/mm/page_alloc.c
 +++ b/mm/page_alloc.c
-@@ -1434,6 +1434,25 @@ static void __free_pages_ok(struct page *page, unsigned int order,
+@@ -1581,6 +1581,25 @@ static void __free_pages_ok(struct page *page, unsigned int order,
  		free_one_page(zone, page, pfn, order, fpi_flags);
  }
  
@@ -99,7 +99,7 @@ index 3c6ccd73349e1..c48003b58a172 100644
  void __meminit __free_pages_core(struct page *page, unsigned int order,
  		enum meminit_context context)
  {
-@@ -1464,21 +1483,6 @@ void __meminit __free_pages_core(struct page *page, unsigned int order,
+@@ -1611,21 +1630,6 @@ void __meminit __free_pages_core(struct page *page, unsigned int order,
  			set_page_count(p, 0);
  		}
  
@@ -122,5 +122,5 @@ index 3c6ccd73349e1..c48003b58a172 100644
  		atomic_long_add(nr_pages, &page_zone(page)->managed_pages);
  	}
 -- 
-2.51.0
+2.51.2
 

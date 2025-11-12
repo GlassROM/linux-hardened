@@ -1,4 +1,4 @@
-From 0fe6e498f9e5513f47c684dbb8af281bd6e241f4 Mon Sep 17 00:00:00 2001
+From 10f9108df184ff9984a2094eb2757b793603c15d Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Tue, 30 May 2017 18:03:30 -0400
 Subject: [PATCH 075/101] support randomizing the lower bits of brk
@@ -20,10 +20,10 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 7 insertions(+)
 
 diff --git a/mm/mmap.c b/mm/mmap.c
-index 09c563c951123..e14bdb94fbea5 100644
+index 7306253cc3b57..6af71622c79bc 100644
 --- a/mm/mmap.c
 +++ b/mm/mmap.c
-@@ -155,6 +155,13 @@ SYSCALL_DEFINE1(brk, unsigned long, brk)
+@@ -152,6 +152,13 @@ SYSCALL_DEFINE1(brk, unsigned long, brk)
  
  	newbrk = PAGE_ALIGN(brk);
  	oldbrk = PAGE_ALIGN(mm->brk);
@@ -38,5 +38,5 @@ index 09c563c951123..e14bdb94fbea5 100644
  		mm->brk = brk;
  		goto success;
 -- 
-2.51.0
+2.51.2
 

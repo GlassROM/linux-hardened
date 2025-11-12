@@ -1,4 +1,4 @@
-From e3b89ee5841d03a025090f4abab46660b255a4ce Mon Sep 17 00:00:00 2001
+From 01ce00643ce62838df96d41e5da4ea98b2f99e6b Mon Sep 17 00:00:00 2001
 From: Ben Hutchings <ben@decadent.org.uk>
 Date: Mon, 11 Jan 2016 15:23:55 +0000
 Subject: [PATCH 061/101] security,perf: Allow further restriction of
@@ -38,10 +38,10 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  6 files changed, 27 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/admin-guide/sysctl/kernel.rst b/Documentation/admin-guide/sysctl/kernel.rst
-index dd49a89a62d35..a8749be3be860 100644
+index 8b49eab937d07..30459e11ae54a 100644
 --- a/Documentation/admin-guide/sysctl/kernel.rst
 +++ b/Documentation/admin-guide/sysctl/kernel.rst
-@@ -972,6 +972,8 @@ with respect to CAP_PERFMON use cases.
+@@ -991,6 +991,8 @@ with respect to CAP_PERFMON use cases.
  >=1  Disallow CPU event access by users without ``CAP_PERFMON``.
  
  >=2  Disallow kernel profiling by users without ``CAP_PERFMON``.
@@ -70,7 +70,7 @@ index ec9d960256839..74f72a31cae8b 100644
  {
  	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
 diff --git a/kernel/events/core.c b/kernel/events/core.c
-index 8060c2857bb2b..4f9d56c967774 100644
+index c0e938d28758f..da3c54790dc8d 100644
 --- a/kernel/events/core.c
 +++ b/kernel/events/core.c
 @@ -463,8 +463,13 @@ static struct kmem_cache *perf_event_cache;
@@ -87,7 +87,7 @@ index 8060c2857bb2b..4f9d56c967774 100644
  
  /* Minimum for 512 kiB + 1 user control page. 'free' kiB per user. */
  static int sysctl_perf_event_mlock __read_mostly = 512 + (PAGE_SIZE / 1024);
-@@ -13377,7 +13382,7 @@ SYSCALL_DEFINE5(perf_event_open,
+@@ -13385,7 +13390,7 @@ SYSCALL_DEFINE5(perf_event_open,
  		return err;
  
  	/* Do we allow access to perf_event_open(2) ? */
@@ -97,7 +97,7 @@ index 8060c2857bb2b..4f9d56c967774 100644
  		return err;
  
 diff --git a/security/Kconfig b/security/Kconfig
-index a02207499dc03..77e5bc6a2748e 100644
+index 132b6fb4bc7e5..ea669f5e261b9 100644
 --- a/security/Kconfig
 +++ b/security/Kconfig
 @@ -72,6 +72,15 @@ config MSEAL_SYSTEM_MAPPINGS
@@ -129,10 +129,10 @@ index 4fe3b8b1958f6..a7d88cc23a70c 100644
     in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)
  
 diff --git a/tools/perf/util/evsel.c b/tools/perf/util/evsel.c
-index 1dc1f7b3bfb80..0bbbfa4250459 100644
+index 5df59812b80ca..365f40a5b5153 100644
 --- a/tools/perf/util/evsel.c
 +++ b/tools/perf/util/evsel.c
-@@ -3747,6 +3747,7 @@ int evsel__open_strerror(struct evsel *evsel, struct target *target,
+@@ -3762,6 +3762,7 @@ int evsel__open_strerror(struct evsel *evsel, struct target *target,
  		 ">= 0: Disallow raw and ftrace function tracepoint access\n"
  		 ">= 1: Disallow CPU event access\n"
  		 ">= 2: Disallow kernel profiling\n"
@@ -141,5 +141,5 @@ index 1dc1f7b3bfb80..0bbbfa4250459 100644
  		 "in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)",
  		 perf_event_paranoid());
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From a911877b0ef0bb29ea51f96eb515d1589dfbd270 Mon Sep 17 00:00:00 2001
+From 8e956a090580cd669076faec728d528940c05e5c Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 29 May 2017 07:08:42 -0400
 Subject: [PATCH 019/101] set LEGACY_VSYSCALL_NONE by default
@@ -8,10 +8,10 @@ Subject: [PATCH 019/101] set LEGACY_VSYSCALL_NONE by default
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index ac6b330e171f2..7b2687be38d16 100644
+index b9029e7bdd1c5..ce01a3c4a7f03 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -2221,7 +2221,7 @@ config COMPAT_VDSO
+@@ -2218,7 +2218,7 @@ config COMPAT_VDSO
  choice
  	prompt "vsyscall table for legacy applications"
  	depends on X86_64
@@ -21,5 +21,5 @@ index ac6b330e171f2..7b2687be38d16 100644
  	  Legacy user code that does not know how to find the vDSO expects
  	  to be able to issue three syscalls by calling fixed addresses in
 -- 
-2.51.0
+2.51.2
 

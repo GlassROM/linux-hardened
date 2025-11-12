@@ -1,4 +1,4 @@
-From e7131c3712579ddbf8dc78f8495b2b07b395c7c8 Mon Sep 17 00:00:00 2001
+From c2573ad1a09c18872973c5fcec39a51588e5e129 Mon Sep 17 00:00:00 2001
 From: Levente Polyak <levente@leventepolyak.net>
 Date: Thu, 19 Sep 2019 19:03:01 +0200
 Subject: [PATCH 040/101] enable INIT_ON_FREE_DEFAULT_ON by default
@@ -8,10 +8,10 @@ Subject: [PATCH 040/101] enable INIT_ON_FREE_DEFAULT_ON by default
  1 file changed, 1 insertion(+)
 
 diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
-index 6265bab38a795..74eddac7af5e3 100644
+index 6901896b3fe23..5842befa4f0ed 100644
 --- a/security/Kconfig.hardening
 +++ b/security/Kconfig.hardening
-@@ -165,6 +165,7 @@ config INIT_ON_ALLOC_DEFAULT_ON
+@@ -172,6 +172,7 @@ config INIT_ON_ALLOC_DEFAULT_ON
  
  config INIT_ON_FREE_DEFAULT_ON
  	bool "Enable heap memory zeroing on free by default"
@@ -20,5 +20,5 @@ index 6265bab38a795..74eddac7af5e3 100644
  	help
  	  This has the effect of setting "init_on_free=1" on the kernel
 -- 
-2.51.0
+2.51.2
 

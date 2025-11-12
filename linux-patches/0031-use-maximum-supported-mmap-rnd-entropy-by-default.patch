@@ -1,4 +1,4 @@
-From 8367450543cbbd70249ed88decd1b549d7f7ca30 Mon Sep 17 00:00:00 2001
+From 7e6b559f5cc456404c9ab6f04da520d33f2e8eb7 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 7 May 2017 16:16:39 -0400
 Subject: [PATCH 031/101] use maximum supported mmap rnd entropy by default
@@ -9,10 +9,10 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/Kconfig b/arch/Kconfig
-index a3308a220f864..24d44e9aa7297 100644
+index 880cddff5eda7..06de5536add0c 100644
 --- a/arch/Kconfig
 +++ b/arch/Kconfig
-@@ -1137,7 +1137,7 @@ config ARCH_MMAP_RND_BITS
+@@ -1154,7 +1154,7 @@ config ARCH_MMAP_RND_BITS
  	int "Number of bits to use for ASLR of mmap base address" if EXPERT
  	range ARCH_MMAP_RND_BITS_MIN ARCH_MMAP_RND_BITS_MAX
  	default ARCH_MMAP_RND_BITS_DEFAULT if ARCH_MMAP_RND_BITS_DEFAULT
@@ -21,7 +21,7 @@ index a3308a220f864..24d44e9aa7297 100644
  	depends on HAVE_ARCH_MMAP_RND_BITS
  	help
  	  This value can be used to select the number of bits to use to
-@@ -1171,7 +1171,7 @@ config ARCH_MMAP_RND_COMPAT_BITS
+@@ -1188,7 +1188,7 @@ config ARCH_MMAP_RND_COMPAT_BITS
  	int "Number of bits to use for ASLR of mmap base address for compatible applications" if EXPERT
  	range ARCH_MMAP_RND_COMPAT_BITS_MIN ARCH_MMAP_RND_COMPAT_BITS_MAX
  	default ARCH_MMAP_RND_COMPAT_BITS_DEFAULT if ARCH_MMAP_RND_COMPAT_BITS_DEFAULT
@@ -31,5 +31,5 @@ index a3308a220f864..24d44e9aa7297 100644
  	help
  	  This value can be used to select the number of bits to use to
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 8e09bc0c74d283f7b3f8f40aa847c8c9ac600587 Mon Sep 17 00:00:00 2001
+From b7a01ef691ac7c0282e179a3c4f413b53747af7a Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sat, 6 Jan 2018 13:41:11 -0500
 Subject: [PATCH 038/101] enable SYN_COOKIES by default
@@ -20,5 +20,5 @@ index 12850a277251d..ff7a4b67eeb31 100644
  	  Normal TCP/IP networking is open to an attack known as "SYN
  	  flooding". This denial-of-service attack prevents legitimate remote
 -- 
-2.51.0
+2.51.2
 

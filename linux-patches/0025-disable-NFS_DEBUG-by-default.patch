@@ -1,4 +1,4 @@
-From d7b47f42faf20122ffcecd4741ce03f20fb91290 Mon Sep 17 00:00:00 2001
+From 557334ab7c1a695f40403778df341b144f340fdc Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Sun, 28 May 2017 03:03:46 -0400
 Subject: [PATCH 025/101] disable NFS_DEBUG by default
@@ -20,5 +20,5 @@ index 07932ce9246c1..c6754a2a6448d 100644
  config NFS_DISABLE_UDP_SUPPORT
         bool "NFS: Disable NFS UDP protocol support"
 -- 
-2.51.0
+2.51.2
 

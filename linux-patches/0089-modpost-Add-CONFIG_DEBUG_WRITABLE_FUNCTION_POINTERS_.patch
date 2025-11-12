@@ -1,4 +1,4 @@
-From 0ef8c84b68930e90d6c7a060568d0305cf681ffc Mon Sep 17 00:00:00 2001
+From ae2b10055b840f6507b2690aa0c31ec0bab2ace5 Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Mon, 6 May 2019 17:07:11 +0200
 Subject: [PATCH 089/101] modpost: Add
@@ -21,7 +21,7 @@ Signed-off-by: Levente Polyak <levente@leventepolyak.net>
  3 files changed, 19 insertions(+), 6 deletions(-)
 
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index 139f3ab1646c3..9bd1ba30a3e9f 100644
+index cff7e8d4fad92..5d3e0fe6a5835 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -511,6 +511,9 @@ config SECTION_MISMATCH_WARN_ONLY
@@ -109,5 +109,5 @@ index b99fa4d6a37b2..67bc0c6d61ae3 100644
  	return error_occurred ? 1 : 0;
  }
 -- 
-2.51.0
+2.51.2
 

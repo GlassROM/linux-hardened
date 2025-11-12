@@ -1,4 +1,4 @@
-From 649dd357da576dcb00eecd5412e9f2fa608a0507 Mon Sep 17 00:00:00 2001
+From 39b1ccbf9a69228af023a4d5606d4a5d1d81063a Mon Sep 17 00:00:00 2001
 From: Thibaut Sautereau <thibaut.sautereau@ssi.gouv.fr>
 Date: Thu, 16 Dec 2021 10:55:13 +0100
 Subject: [PATCH 095/101] slub: Bug on free of non-slab objects
@@ -25,10 +25,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 4 insertions(+)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 3825d269ae1ca..5f13ba052e133 100644
+index 01ccb960b5f7d..385de79c12575 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
-@@ -4873,8 +4873,12 @@ static void free_large_kmalloc(struct folio *folio, void *object)
+@@ -4935,8 +4935,12 @@ static void free_large_kmalloc(struct folio *folio, void *object)
  		return;
  	}
  
@@ -42,5 +42,5 @@ index 3825d269ae1ca..5f13ba052e133 100644
  	kmemleak_free(object);
  	kasan_kfree_large(object);
 -- 
-2.51.0
+2.51.2
 

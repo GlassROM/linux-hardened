@@ -1,4 +1,4 @@
-From 75ae33a6499e64f3856864d2f7d2aa7e1d5bee64 Mon Sep 17 00:00:00 2001
+From a6848dd13a18b774086995e71c939c7b29a6f9fb Mon Sep 17 00:00:00 2001
 From: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
 Date: Thu, 17 Oct 2024 17:02:29 +0200
 Subject: [PATCH 097/101] sysctl: Add proc_dointvec_minmax_sysadmin sanity
@@ -13,10 +13,10 @@ Signed-off-by: Nicolas Bouchinet <nicolas.bouchinet@ssi.gouv.fr>
  1 file changed, 1 insertion(+)
 
 diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
-index 08b78150cdde1..df2e229fd7564 100644
+index 49ab74e0bfde3..4be54d32a60a9 100644
 --- a/fs/proc/proc_sysctl.c
 +++ b/fs/proc/proc_sysctl.c
-@@ -1155,6 +1155,7 @@ static int sysctl_check_table(const char *path, struct ctl_table_header *header)
+@@ -1154,6 +1154,7 @@ static int sysctl_check_table(const char *path, struct ctl_table_header *header)
  		    (entry->proc_handler == proc_douintvec) ||
  		    (entry->proc_handler == proc_douintvec_minmax) ||
  		    (entry->proc_handler == proc_dointvec_minmax) ||
@@ -25,5 +25,5 @@ index 08b78150cdde1..df2e229fd7564 100644
  		    (entry->proc_handler == proc_dointvec_jiffies) ||
  		    (entry->proc_handler == proc_dointvec_userhz_jiffies) ||
 -- 
-2.51.0
+2.51.2
 

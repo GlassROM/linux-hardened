@@ -1,4 +1,4 @@
-From 3505badcb0e7662e5b178c87037cb63a8bdda5f0 Mon Sep 17 00:00:00 2001
+From 430bd17a8320c1a9dd6624d401e9baf5c03fbe45 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Mon, 29 May 2017 06:17:59 -0400
 Subject: [PATCH 034/101] enable SECURITY_YAMA by default
@@ -21,5 +21,5 @@ index a810304123ca5..b809050b25d23 100644
  	  This selects Yama, which extends DAC support with additional
  	  system-wide security settings beyond regular Linux discretionary
 -- 
-2.51.0
+2.51.2
 

@@ -1,4 +1,4 @@
-From 32291d9aa637b1423db50089549616a9fd24888a Mon Sep 17 00:00:00 2001
+From 9f4c207b12fa1d6d7069006c4111dcd923fd82f4 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Wed, 3 May 2017 12:09:17 -0400
 Subject: [PATCH 013/101] enable PANIC_ON_OOPS by default
@@ -9,7 +9,7 @@ Signed-off-by: Daniel Micay <danielmicay@gmail.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index ebe33181b6e6e..1d019fbbf1d03 100644
+index dc0e0c6ed075e..ec37d97af1aa0 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -1056,6 +1056,7 @@ menu "Debug Oops, Lockups and Hangs"
@@ -30,5 +30,5 @@ index ebe33181b6e6e..1d019fbbf1d03 100644
  config PANIC_ON_OOPS_VALUE
  	int
 -- 
-2.51.0
+2.51.2
 
